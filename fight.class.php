@@ -25,23 +25,20 @@
 				
 				//The attacker hit on even and the attacked on odd
 				if (($hit % 2) != 0) {
-					$lost_lifepoints   = intval(self::$Actions[$action][1] + ($attacker->Strength * ($attacker->Strength / 100)));
-					$attacked->Health -= $lost_lifepoints;
-					
-					echo '"'.$attacker->Name.'" dio un/a "'.$weapon_name.'" a "'.$attacked->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$attacked->Health.' puntos de vida)'.'<br>';
-					
-					if ($attacked->Health <= 0) {
-						echo '"'.$attacker->Name.'" ha ganado la pelea!'.'<br>';
-					}
+					$origin = $attacker;
+					$target = $attacked;
 				} else {
-					$lost_lifepoints   = intval(self::$Actions[$action][1] + ($attacked->Strength * ($attacked->Strength / 100)));
-					$attacker->Health -= $lost_lifepoints;
-					
-					echo '"'.$attacked->Name.'" dio un/a "'.$weapon_name.'" a "'.$attacker->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$attacker->Health.' puntos de vida)'.'<br>';
-					
-					if ($attacker->Health <= 0) {
-						echo '"'.$attacked->Name.'" ha ganado la pelea!'.'<br>';
-					}
+					$origin = $attacked;
+					$target = $attacker;
+				}
+				
+				$lost_lifepoints   = intval(self::$Actions[$action][1] + ($origin->Strength * ($origin->Strength / 100)));
+				$target->Health -= $lost_lifepoints;
+				
+				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
+
+				if ($target->Health <= 0) {
+					echo '"'.$origin->Name.'" ha ganado la pelea!'.'<br>';
 				}
 				
 				$hit++;
