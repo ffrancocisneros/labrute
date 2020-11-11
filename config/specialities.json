@@ -1,0 +1,35 @@
+{
+	"meta": {},
+	"data": {
+	   "sixthSense": {
+            "name": {
+                "en":"sixth sense",
+                "fr":"sixième sens"
+            },
+            "descr": {
+                "fr": "Ta vigilance aiguisée te permet d'anticiper les fourberies de ton adversaire et de frapper avant lui !\\n\
+                        Chances de contre : +10%"
+            },
+		},
+        "feline": {
+            "name": {
+                "en":"feline agility",
+                "fr":"agilité du félin"
+            },
+            "descr": {
+                "fr": "Tu n'as pas de pelote de laine pour t'amuser, mais tu peux toujours embêter la brute en face.\
+                        Agilité +3 Agilité +50%"
+            },
+		},
+        "armor": {
+            "name": {
+                "en":"armor",
+                "fr":"armure"
+            },
+            "descr": {
+                "fr": "Ça, c'est une armure. Un truc qu'on met par dessus son t-shirt pour pas le salir. En même temps, ça permet de mieux résister aux attaques.\
+                        Armure +5, vitesse -10%. Modifie légèrement l'apparence de la brute."
+            },
+        }
+    }
+}
