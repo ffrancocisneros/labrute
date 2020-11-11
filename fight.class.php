@@ -37,7 +37,11 @@
 				$target->Health -= $lost_lifepoints;
 				
 				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
-
+				echo '<div style="margin:0 0 0.5em 2em;color:grey">'
+					. 'Details: '.$weapon_name.' makes '.$weapon_damage.' damage points '
+					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'
+					. '</div>';
+				
 				if ($target->Health <= 0) {
 					echo '"'.$origin->Name.'" ha ganado la pelea!'.'<br>';
 				}
