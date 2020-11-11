@@ -43,6 +43,12 @@ Listing the variable/textual elements in JSON files :
         * XP levels : 0% done
         * Competences tree (specifications below) : 0% done
         * Change destiny after reaching a new XP level : 0% done
+    * Apply the functionalities to the profiles of the players
+        * weapons list : TODO
+        * skills list  : TODO
+        * characteristics list : TODO
+        * pets list : TODO
+        * competences list : TODO
 
 
 === Specifications ===
