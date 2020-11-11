@@ -2,14 +2,12 @@
 	require_once('random.class.php');
 	
 	class Fight {
-		private static $Actions = array(
-			0 => array('Puñetazo', 5), 
-			1 => array('Patada', 10), 
-			2 => array('Shuriken', 15), 
-			3 => array('Puñalada', 20), 
-		);
 		
 		public static function doFight($attacker, $attacked) {
+			
+			// Chose a language among the avalaible ones in the /config files
+			$lang = "es";			
+			$weapons = self::getWeapons();			
 			//Prepare the seed for this fight
 			$seed = hash('SHA512', $attacker->Name.$attacker->Experience.$attacked->Name.$attacked->Experience);
 			$seed = substr($seed, 0, 15); //More than 16 chars exceed the integer limit on PHP
@@ -20,8 +18,10 @@
 			$hit = 1;
 			
 			while ($attacker->Health > 0 && $attacked->Health > 0) {
-				$action = Random::num(0, count(self::$Actions)-1);
-				$weapon_name = self::$Actions[$action][0];
+				// TODO : the class Random() of Scorpio may generate better alea
+				// but it seems to generate always the same result for now ?
+				$weapon = array_rand($weapons);
+				$weapon_name = $weapons[$weapon]["name"][$lang];
 				
 				//The attacker hit on even and the attacked on odd
 				if (($hit % 2) != 0) {
@@ -32,7 +32,7 @@
 					$target = $attacker;
 				}
 				
-				$lost_lifepoints   = intval(self::$Actions[$action][1] + ($origin->Strength * ($origin->Strength / 100)));
+				$lost_lifepoints = intval($weapons[$weapon]["damageMin"] + ($origin->Strength * ($origin->Strength / 100)));
 				$target->Health -= $lost_lifepoints;
 				
 				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
@@ -45,6 +45,17 @@
 			}
 			
 			return true;
+		}
+		
+		
+		/**
+		 * Get the characteristics of all the weapons of the game (name, damages...)
+		 * @return array
+		 */
+		private static function getWeapons() {
+			
+			$text_data = file_get_contents('config/weapons.json');
+			return json_decode($text_data, JSON_OBJECT_AS_ARRAY)['data'];
 		}
 	}
 ?>
