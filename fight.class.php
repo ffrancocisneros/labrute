@@ -20,7 +20,7 @@
 			$hit = 1;
 			
 			while ($attacker->Health > 0 && $attacked->Health > 0) {
-				$action = Random::num(0, 3);
+				$action = Random::num(0, count(self::$Actions)-1);
 				$weapon_name = self::$Actions[$action][0];
 				
 				//The attacker hit on even and the attacked on odd
