@@ -32,7 +32,8 @@
 					$target = $attacker;
 				}
 				
-				$lost_lifepoints = intval($weapons[$weapon]["damageMin"] + ($origin->Strength * ($origin->Strength / 100)));
+				$weapon_damage   = random_int($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
+				$lost_lifepoints = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
 				$target->Health -= $lost_lifepoints;
 				
 				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
