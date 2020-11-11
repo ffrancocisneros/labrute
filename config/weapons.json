@@ -1,0 +1,63 @@
+{
+    "meta" : {
+        "game":"labrute",
+        "decription": "Available weapons for the game Labrute. The min and max damage values are the real values from the original Labrute (source: http://twin.tithom.fr/muxxu/labrute/armes/). Respect the alphabetical order to make the maintenance easier."
+        },
+    "data" : {
+        "bareHands" : {
+            "name" : {
+                "en":"bare hands",
+                "fr":"mains nues",
+                "es":"puñetazo"
+                },
+            "damageMin" : 0,
+            "damageMax" : 2
+            },
+        "knife" : {
+            "name" : {
+                "en":"knife",
+                "fr":"couteau",
+                "es":"cuchillo"
+                },
+            "damageMin" : 7,
+            "damageMax" : 11
+            },
+        "shuriken" : {
+            "name" : {
+                "en":"shuriken",
+                "fr":"shuriken",
+                "es":"shuriken"
+                },
+            "damageMin" : 5,
+            "damageMax" : 8
+            },
+        "simitar" : {
+            "name" : {
+                "en":"simitar",
+                "fr":"cimeterre",
+                "es":"cimetro"
+                },
+            "damageMin" : 10,
+            "damageMax" : 12
+            },
+        "stick" : {
+            "name" : {
+                "en":"stick",
+                "fr":"bâton",
+                "es":"palo"
+                },
+            "damageMin" : 7,
+            "damageMax" : 9
+            },
+        "sword" : {
+            "name" : {
+                "en":"sword",
+                "fr":"épée",
+                "es":"espada"
+                },
+            "damageMin" : 25,
+            "damageMax" : 30
+            }
+	}
+}
+

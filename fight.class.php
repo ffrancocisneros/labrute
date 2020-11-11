@@ -2,14 +2,12 @@
 	require_once('random.class.php');
 	
 	class Fight {
-		private static $Actions = array(
-			0 => array('Puñetazo', 5), 
-			1 => array('Patada', 10), 
-			2 => array('Shuriken', 15), 
-			3 => array('Puñalada', 20), 
-		);
 		
 		public static function doFight($attacker, $attacked) {
+			
+			// Chose a language among the avalaible ones in the /config files
+			$lang = "es";			
+			$weapons = self::getWeapons();			
 			//Prepare the seed for this fight
 			$seed = hash('SHA512', $attacker->Name.$attacker->Experience.$attacked->Name.$attacked->Experience);
 			$seed = substr($seed, 0, 15); //More than 16 chars exceed the integer limit on PHP
@@ -20,31 +18,49 @@
 			$hit = 1;
 			
 			while ($attacker->Health > 0 && $attacked->Health > 0) {
-				$action = Random::num(0, 3);
+				// TODO : the class Random() of Scorpio may generate better alea
+				// but it seems to generate always the same result for now ?
+				$weapon = array_rand($weapons);
+				$weapon_name = $weapons[$weapon]["name"][$lang];
 				
 				//The attacker hit on even and the attacked on odd
 				if (($hit % 2) != 0) {
-					$attacked->Health -= intval(self::$Actions[$action][1] + ($attacker->Strength * ($attacker->Strength / 100)));
-					
-					echo '"'.$attacker->Name.'" dio un/a "'.self::$Actions[$action][0].'" a "'.$attacked->Name.'" restandole '.intval(self::$Actions[$action][1] + ($attacker->Strength * ($attacker->Strength / 100))).' puntos de vida! (Le quedan '.$attacked->Health.' puntos de vida)'.'<br>';
-					
-					if ($attacked->Health <= 0) {
-						echo '"'.$attacker->Name.'" ha ganado la pelea!'.'<br>';
-					}
+					$origin = $attacker;
+					$target = $attacked;
 				} else {
-					$attacker->Health -= intval(self::$Actions[$action][1] + ($attacked->Strength * ($attacked->Strength / 100)));
-					
-					echo '"'.$attacked->Name.'" dio un/a "'.self::$Actions[$action][0].'" a "'.$attacker->Name.'" restandole '.intval(self::$Actions[$action][1] + ($attacked->Strength * ($attacked->Strength / 100))).' puntos de vida! (Le quedan '.$attacker->Health.' puntos de vida)'.'<br>';
-					
-					if ($attacker->Health <= 0) {
-						echo '"'.$attacked->Name.'" ha ganado la pelea!'.'<br>';
-					}
+					$origin = $attacked;
+					$target = $attacker;
+				}
+				
+				$weapon_damage   = random_int($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
+				$lost_lifepoints = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
+				$target->Health -= $lost_lifepoints;
+				
+				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
+				echo '<div style="margin:0 0 0.5em 2em;color:grey">'
+					. 'Details: '.$weapon_name.' makes '.$weapon_damage.' damage points '
+					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'
+					. '</div>';
+				
+				if ($target->Health <= 0) {
+					echo '"'.$origin->Name.'" ha ganado la pelea!'.'<br>';
 				}
 				
 				$hit++;
 			}
 			
 			return true;
+		}
+		
+		
+		/**
+		 * Get the characteristics of all the weapons of the game (name, damages...)
+		 * @return array
+		 */
+		private static function getWeapons() {
+			
+			$text_data = file_get_contents('config/weapons.json');
+			return json_decode($text_data, JSON_OBJECT_AS_ARRAY)['data'];
 		}
 	}
 ?>
