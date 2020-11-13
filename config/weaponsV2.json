@@ -1,0 +1,562 @@
+{
+    "Hands" : {
+        "Name" : {
+            "en":"Hands",
+            "fr":"Mains",
+            "es":"Manos",
+            "de":"Hände"
+        },
+        "BaseDamage": 5,
+        "Interval": 120,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 20, // Accuracy against Evasion
+        "Evasion": 10,
+        "AccuracyB": 0, //  Accuracy against Blocking
+        "Block": -25,
+        "Disarm": 5,
+        "Combo": 0,
+        "Activation": 10, // Variable shared with Supers so it might have something to do with that
+        "WeaponType": 0 // 0= Bare-handed, 1= Sharp, 2= Long, 3= Hatchet, 4= Heavy, 5= Fan, 6= Thrown, 7= Whip
+    },
+    "Knife" : {
+        "Name" : {
+            "en": "Knife",
+            "fr": "Couteau",
+            "es": "Cuchillo",
+            "de": "Messer"
+        },
+        "BaseDamage": 7,
+        "Interval": 60,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 50,
+        "Evasion": 10,
+        "AccuracyB": 0,
+        "Block": 0,
+        "Disarm": 0,
+        "Combo": 30,
+        "Activation": 5,
+        "WeaponType": 1
+    },
+    "Broadsword" : {
+        "Name" : {
+            "en": "Broadsword",
+            "fr": "Glaive",
+            "es": "Espadón",
+            "de": "Breitschwert"
+        },
+        "BaseDamage": 10,
+        "Interval": 120,
+        "Reversal": 10,
+        "Reach": 1,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 15,
+        "Disarm": 15,
+        "Combo": 0,
+        "Activation": 5,
+        "WeaponType": 1
+    },
+    "Lance" : {
+        "Name" : {
+            "en": "Lance",
+            "fr": "Lance",
+            "es": "Lanza",
+            "de": "Lanze"
+        },
+        "Activation": 2,
+        "BaseDamage": 12,
+        "Interval": 120,
+        "Reversal": -10,
+        "Reach": 3,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 0,
+        "Disarm": 10,
+        "Combo": 0,
+        "WeaponType": 2   
+    },
+    "Baton" : {
+        "Name" : {
+            "en": "Baton",
+            "fr": "Bâton",
+            "es": "Bastón",
+            "de": "Stock"
+        },
+        "BaseDamage": 6,
+        "Interval": 100,
+        "Reversal": 30,
+        "Reach": 3,
+        "AccuracyE": 0,
+        "Evasion": 5,
+        "AccuracyB": 0,
+        "Block": 25,
+        "Disarm": 25,
+        "Combo": 10,
+        "Activation": 3,
+        "WeaponType": 2
+    },
+    "Trident" : {
+        "Name" : {
+            "en": "Trident",
+            "fr": "Trident",
+            "es": "Tridente",
+            "de": "Dreizack"
+        },
+        "BaseDamage": 14,
+        "Interval": 140,
+        "Reversal": 5,
+        "Reach": 3,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 0,
+        "Disarm": 20,
+        "Combo": 0,
+        "Activation": 3,
+        "WeaponType": 2
+    },
+    "Hatchet" : {
+        "Name" : {
+            "en": "Hatchet",
+            "fr": "Hache",
+            "es": "Hacha",
+            "de": "Beil"
+        },
+        "BaseDamage": 17,
+        "Interval": 150,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": -10,
+        "Disarm": 0,
+        "Combo": 0,
+        "Activation": 3,
+        "WeaponType": 3
+    },
+    "Scimitar" : {
+        "Name" : {
+            "en": "Scimitar",
+            "fr": "Cimeterre",
+            "es": "Cimitarra",
+            "de": "Krummsäbel"
+        },
+        "BaseDamage": 10,
+        "Interval": 80,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": 20,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 10,
+        "Disarm": 0,
+        "Combo": 15,
+        "Activation": 3,
+        "WeaponType": 1
+    },
+    "Axe" : {
+        "Name" : {
+            "en": "Axe",
+            "fr": "Marteau",
+            "es": "Martillo",
+            "de": "Hammer"
+        },
+        "BaseDamage": 55,
+        "Interval": 230,
+        "Reversal": -20,
+        "Reach": 1,
+        "AccuracyE": -30,
+        "Evasion": -40,
+        "AccuracyB": 50,
+        "Block": -50,
+        "Disarm": 10,
+        "Combo": -40,
+        "Activation": 5,
+        "WeaponType": 4
+    },
+    "Sword" : {
+        "Name" : {
+            "en": "Sword",
+            "fr": "Épée",
+            "es": "Espada",
+            "de": "Schwert"
+        },
+        "BaseDamage": 28,
+        "Interval": 180,
+        "Reversal": 0,
+        "Reach": 2,
+        "AccuracyE": -10,
+        "Evasion": -20,
+        "AccuracyB": -20,
+        "Block": 0,
+        "Disarm": 10,
+        "Combo": 0,
+        "Activation": 5,
+        "WeaponType": 1
+    },
+    "Fan" : {
+        "Name" : {
+            "en": "Fan",
+            "fr": "Éventail",
+            "es": "Abanico",
+            "de": "Fächer"
+        },
+        "BaseDamage": 4,
+        "Interval": 28,
+        "Reversal": 50,
+        "Reach": 0,
+        "AccuracyE": 50,
+        "Evasion": 60,
+        "AccuracyB": 0,
+        "Block": -50,
+        "Disarm": -50,
+        "Combo": 45,
+        "Activation": 5,
+        "WeaponType": 5
+    },
+    "Shuriken" : {
+        "Name" : {
+            "en": "Shuriken",
+            "fr": "Shuriken",
+            "es": "Shuriken",
+            "de": "Shuriken"
+        },
+        "BaseDamage": 3,
+        "Interval": 12,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 0,
+        "Evasion": 15,
+        "AccuracyB": 0,
+        "Block": -10,
+        "Disarm": -50,
+        "Combo": 30,
+        "Activation": 5,
+        "WeaponType": 6
+    },
+    "Fangs" : {
+        "Name" : {
+            "en": "Fangs",
+            "fr": "Crocs",
+            "es": "Colmillos",
+            "de": "Stoßzahn"
+        },
+        "BaseDamage": 3,
+        "Interval": 100,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 0,
+        "Disarm": 0,
+        "Combo": 10,
+        "Activation": 10,
+        "WeaponType": 0
+    },
+    "Bumps" : {
+        "Name" : {
+            "en": "Bumps",
+            "fr": "Massue",
+            "es": "Maza",
+            "de": "Keule"
+        },
+        "BaseDamage": 30,
+        "Interval": 200,
+        "Reversal": -30,
+        "Reach": 1,
+        "AccuracyE": -35,
+        "Evasion": -30,
+        "AccuracyB": 30,
+        "Block": -30,
+        "Disarm": 10,
+        "Combo": -60,
+        "Activation": 5,
+        "WeaponType": 4
+    },
+    "MorningStar" : {
+        "Name" : {
+            "en": "Morning Star",
+            "fr": "Étoile du Matin",
+            "es": "Mamporro",
+            "de": "Morgenstern"
+        },
+        "BaseDamage": 20,
+        "Interval": 150,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": -5,
+        "Evasion": -10,
+        "AccuracyB": 30,
+        "Block": 0,
+        "Disarm": 10,
+        "Combo": 0,
+        "Activation": 5,
+        "WeaponType": 4
+    },
+    "MammothBone" : {
+        "Name" : {
+            "en": "Mammoth Bone",
+            "fr": "Os de Mammouth",
+            "es": "Hueso de Mamut",
+            "de": "Mammutknochen"
+        },
+        "BaseDamage": 14,
+        "Interval": 160,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 50,
+        "Block": 0,
+        "Disarm": 10,
+        "Combo": -10,
+        "Activation": 5,
+        "WeaponType": 4
+    },
+    "Flail" : {
+        "Name" : {
+            "en": "Flail",
+            "fr": "Fléau",
+            "es": "Mangual",
+            "de": "Dreschflegel"
+        },
+        "BaseDamage": 36,
+        "Interval": 220,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": -10,
+        "Evasion": -30,
+        "AccuracyB": 150,
+        "Block": -50,
+        "Disarm": -20,
+        "Combo": 30,
+        "Activation": 5,
+        "WeaponType": 4
+    },
+    "Whip" : {
+        "Name" : {
+            "en": "Whip",
+            "fr": "Fouet",
+            "es": "Látigo",
+            "de": "Peitsche"
+        },
+        "BaseDamage": 10,
+        "Interval": 150,
+        "Reversal": -10,
+        "Reach": 5,
+        "AccuracyE": 30,
+        "Evasion": 30,
+        "AccuracyB": -20,
+        "Block": -20,
+        "Disarm": 30,
+        "Combo": 35,
+        "Activation": 5,
+        "WeaponType": 7
+    },
+    "Sai" : {
+        "Name" : {
+            "en": "Sai",
+            "fr": "Sai",
+            "es": "Sai",
+            "de": "Sai"
+        },
+        "BaseDamage": 8,
+        "Interval": 60,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 25,
+        "Evasion": 10,
+        "AccuracyB": 0,
+        "Block": 30,
+        "Disarm": 100,
+        "Combo": 30,
+        "Activation": 5,
+        "WeaponType": 2
+    },
+    "Leek" : {
+        "Name" : {
+            "en": "Leek",
+            "fr": "Poireau",
+            "es": "Puerro",
+            "de": "Porree"
+        },
+        "BaseDamage": 5,
+        "Interval": 110,
+        "Reversal": 100,
+        "Reach": 1,
+        "AccuracyE": 100,
+        "Evasion": 0,
+        "AccuracyB": 200,
+        "Block": -50,
+        "Disarm": 0,
+        "Combo": 200,
+        "Activation": 2,
+        "WeaponType": 4
+    },
+    "Mug" : {
+        "Name" : {
+            "en": "Mug",
+            "fr": "Mug",
+            "es": "Taza",
+            "de": "Tasse"
+        },
+        "BaseDamage": 8,
+        "Interval": 90,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 30,
+        "Evasion": 15,
+        "AccuracyB": 0,
+        "Block": -10,
+        "Disarm": 0,
+        "Combo": 40,
+        "Activation": 2,
+        "WeaponType": 0
+    },
+    "FryingPan" : {
+        "Name" : {
+            "en": "Frying Pan",
+            "fr": "Poêle",
+            "es": "Sartén",
+            "de": "Pfanne"
+        },
+        "BaseDamage": 17,
+        "Interval": 120,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 40,
+        "Disarm": 0,
+        "Combo": -40,
+        "Activation": 2,
+        "WeaponType": 4
+    },
+    "Piopio" : {
+        "Name" : {
+            "en": "Piopio",
+            "fr": "Piou Piou",
+            "es": "Piopio",
+            "de": "Piou Piou"
+        },
+        "BaseDamage": 5,
+        "Interval": 32,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 0,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": -10,
+        "Disarm": 0,
+        "Combo": 0,
+        "Activation": 2,
+        "WeaponType": 6
+    },
+    "Halbard" : {
+        "Name" : {
+            "en": "Halbard",
+            "fr": "Hallebarde",
+            "es": "Alabarda",
+            "de": "Hallebarde"
+        },
+        "BaseDamage": 24,
+        "Interval": 180,
+        "Reversal": 0,
+        "Reach": 4,
+        "AccuracyE": -40,
+        "Evasion": 0,
+        "AccuracyB": 0,
+        "Block": 0,
+        "Disarm": 10,
+        "Combo": 0,
+        "Activation": 2,
+        "WeaponType": 1
+    },
+    "Trombone" : {
+        "Name" : {
+            "en": "Trombone",
+            "fr": "Trombone",
+            "es": "Trombón",
+            "de": "Posaune"
+        },
+        "BaseDamage": 20,
+        "Interval": 250,
+        "Reversal": 0,
+        "Reach": 2,
+        "AccuracyE": -10,
+        "Evasion": 0,
+        "AccuracyB": 20,
+        "Block": 20,
+        "Disarm": 50,
+        "Combo": 30,
+        "Activation": 2,
+        "WeaponType": 4
+    },
+    "Keyboard" : {
+        "Name" : {
+            "en": "Keyboard",
+            "fr": "Clavier",
+            "es": "Teclado",
+            "de": "Klavier"
+        },
+        "BaseDamage": 7,
+        "Interval": 100,
+        "Reversal": 0,
+        "Reach": 1,
+        "AccuracyE": 20,
+        "Evasion": 10,
+        "AccuracyB": 0,
+        "Block": 0,
+        "Disarm": 0,
+        "Combo": 50,
+        "Activation": 2,
+        "WeaponType": 4
+    },
+    "NoodleBowl" : {
+        "Name" : {
+            "en": "Noodle Bowl",
+            "fr": "Bol De Noodle",
+            "es": "Bol De Ramen",
+            "de": "Nudelschale"
+        },
+        "BaseDamage": 10,
+        "Interval": 45,
+        "Reversal": 0,
+        "Reach": 0,
+        "AccuracyE": 0,
+        "Evasion": 10,
+        "AccuracyB": 0,
+        "Block": -10,
+        "Disarm": 0,
+        "Combo": 30,
+        "Activation": 2,
+        "WeaponType": 6
+    },
+    "Racquet" : {
+        "Name" : {
+            "en": "Racquet",
+            "fr": "Raquette",
+            "es": "Raqueta",
+            "de": "Schläger"
+        },
+        "BaseDamage": 6,
+        "Interval": 80,
+        "Reversal": 100,
+        "Reach": 1,
+        "AccuracyE": 0,
+        "Evasion": 10,
+        "AccuracyB": 0,
+        "Block": 20,
+        "Disarm": 0,
+        "Combo": 0,
+        "Activation": 2,
+        "WeaponType": 4
+    }
+}
