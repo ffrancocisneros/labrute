@@ -22,6 +22,7 @@
 				$rand_key = Random::num(0, count($weapons)-1);
 				$weapon = array_keys($weapons)[$rand_key];
 				$weapon_name = $weapons[$weapon]["name"][$lang];
+				$weapon_img  = '<img src="resources/img/'.$weapon.'.png" alt="'.$weapon.'">';
 				
 				//The attacker hit on even and the attacked on odd
 				if (($hit % 2) != 0) {
@@ -36,7 +37,7 @@
 				$lost_health     = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
 				$target->Health -= $lost_health;
 				
-				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_health.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
+				echo '"'.$origin->Name.'" dio un/a '.$weapon_img.' <em>'.$weapon_name.'</em> a "'.$target->Name.'" restandole '.$lost_health.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
 				echo '<div style="margin:0 0 0.5em 2em;color:grey">'
 					. 'Details: '.$weapon_name.' makes '.$weapon_damage.' damage points '
 					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'
