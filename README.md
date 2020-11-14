@@ -60,6 +60,21 @@ NB: the names with uppercase refers to "characteristics".
 - Thrown weapons (projectiles): can be throwned in illimited amount.
 - Sharp Weapons (tranchantes): high Block Rate ; +50% damages with Weapons Master (passive skill)
 
+### Calculating the damages
+See the english wiki to know how to calculate the damages : https://mybrutemuxxu.fandom.com/wiki/Damage
+- Damages formula (see below)
+- Amount of damages made by each weapon (compare though with the french Twinpedia, which gives ranges: http://twin.tithom.fr/muxxu/labrute/armes/) 
+- Skills that influence damage
+
+*Damages formula:*
+Damage = floor((B + NK) * S * R - A) * H
+B = base damage of weapon (constant for each weapon)
+N = Strength
+K = damage per strength of weapon (constant for each weapon)
+S = skills multiplier (Weapons Master x1.50 / Martial Arts x2.00 / Lead Skeleton x0.70)
+R = random number between 1.00 and 1.50
+A = Armor stat (additive; Armor 5 / Toughened Skin 2)
+H = hammer multiplier (x4.00 if Hammer; x1.00 if not) 
 
 ### Skills tree
 When reaching a new XP level, the player must chose 1 advantage among these 2 choices  :
