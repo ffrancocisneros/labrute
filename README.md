@@ -66,15 +66,15 @@ See the english wiki to know how to calculate the damages : https://mybrutemuxxu
 - Amount of damages made by each weapon (compare though with the french Twinpedia, which gives ranges: http://twin.tithom.fr/muxxu/labrute/armes/) 
 - Skills that influence damage
 
-*Damages formula:*
+**Damages formula:**   
 Damage = floor((B + NK) * S * R - A) * H
-B = base damage of weapon (constant for each weapon)
-N = Strength
-K = damage per strength of weapon (constant for each weapon)
-S = skills multiplier (Weapons Master x1.50 / Martial Arts x2.00 / Lead Skeleton x0.70)
-R = random number between 1.00 and 1.50
-A = Armor stat (additive; Armor 5 / Toughened Skin 2)
-H = hammer multiplier (x4.00 if Hammer; x1.00 if not) 
+- B = base damage of weapon (constant for each weapon)
+- N = Strength
+- K = damage per strength of weapon (constant for each weapon)
+- S = skills multiplier (Weapons Master x1.50 / Martial Arts x2.00 / Lead Skeleton x0.70)
+- R = random number between 1.00 and 1.50
+- A = Armor stat (additive; Armor 5 / Toughened Skin 2)
+- H = hammer multiplier (x4.00 if Hammer; x1.00 if not) 
 
 ### Skills tree
 When reaching a new XP level, the player must chose 1 advantage among these 2 choices  :
