@@ -60,6 +60,8 @@ NB: the names with uppercase refers to "characteristics".
 - Thrown weapons (projectiles): can be throwned in illimited amount.
 - Sharp Weapons (tranchantes): high Block Rate ; +50% damages with Weapons Master (passive skill)
 
+All the charactéristics of the weapons (with numbers) : https://mybrutemuxxu.fandom.com/wiki/Weapons
+
 ### Calculating the damages
 See the english wiki to know how to calculate the damages : https://mybrutemuxxu.fandom.com/wiki/Damage
 - Damages formula (see below)
