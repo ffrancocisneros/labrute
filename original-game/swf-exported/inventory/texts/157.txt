@@ -1,0 +1,16 @@
+[
+xmin -40
+ymin -40
+xmax 2901
+ymax 356
+readonly 1
+noselect 1
+font 156
+height 260
+color #ff733c2f
+align left
+leftmargin 0
+rightmargin 0
+indent 0
+leading 0
+]Titre dynamique

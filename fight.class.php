@@ -5,10 +5,10 @@
 		
 		public static function doFight($attacker, $attacked) {
 			
-			// Chose a language among the avalaible ones in the /config files
+			// Choose a language among the available ones in the /config files
 			$lang = "es";			
 			$weapons = self::getWeapons();			
-			//Prepare the seed for this fight
+			//Prepare the seed for this fight, so the replay will give the same result.
 			$seed = hash('SHA512', $attacker->Name.$attacker->Experience.$attacked->Name.$attacked->Experience);
 			$seed = substr($seed, 0, 15); //More than 16 chars exceed the integer limit on PHP
 			$seed = intval($seed, 16);    //Decode the hexadecimal string to a base 16 integer
@@ -18,10 +18,11 @@
 			$hit = 1;
 			
 			while ($attacker->Health > 0 && $attacked->Health > 0) {
-				// TODO : the class Random() of Scorpio may generate better alea
-				// but it seems to generate always the same result for now ?
-				$weapon = array_rand($weapons);
+				
+				$rand_key = Random::num(0, count($weapons)-1);
+				$weapon = array_keys($weapons)[$rand_key];
 				$weapon_name = $weapons[$weapon]["name"][$lang];
+				$weapon_img  = '<img src="resources/img/'.$weapon.'.png" alt="'.$weapon.'">';
 				
 				//The attacker hit on even and the attacked on odd
 				if (($hit % 2) != 0) {
@@ -32,11 +33,11 @@
 					$target = $attacker;
 				}
 				
-				$weapon_damage   = random_int($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
-				$lost_lifepoints = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
-				$target->Health -= $lost_lifepoints;
+				$weapon_damage   = Random::num($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
+				$lost_health     = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
+				$target->Health -= $lost_health;
 				
-				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
+				echo '"'.$origin->Name.'" dio un/a '.$weapon_img.' <em>'.$weapon_name.'</em> a "'.$target->Name.'" restandole '.$lost_health.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
 				echo '<div style="margin:0 0 0.5em 2em;color:grey">'
 					. 'Details: '.$weapon_name.' makes '.$weapon_damage.' damage points '
 					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'

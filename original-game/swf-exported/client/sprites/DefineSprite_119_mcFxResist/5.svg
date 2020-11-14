@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="68.8px" width="68.6px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 34.05, 34.25)">
+    <use height="54.8" transform="matrix(-0.3271, 0.6269, -0.6269, -0.3271, 25.942, -7.8393)" width="54.2" xlink:href="#sprite0"/>
+    <use height="54.8" transform="matrix(1.1278, 0.0, 0.0, 1.1278, -30.2244, -30.9011)" width="54.2" xlink:href="#sprite0"/>
+  </g>
+  <defs>
+    <g id="sprite0" transform="matrix(1.0, 0.0, 0.0, 1.0, 26.8, 27.4)">
+      <use height="54.8" transform="matrix(1.0, 0.0, 0.0, 1.0, -26.8, -27.4)" width="54.2" xlink:href="#shape0"/>
+    </g>
+    <g id="shape0" transform="matrix(1.0, 0.0, 0.0, 1.0, 26.8, 27.4)">
+      <path d="M19.35 -19.4 Q27.4 -11.35 27.4 0.0 27.4 11.35 19.35 19.35 11.35 27.4 0.0 27.4 -11.35 27.4 -19.4 19.35 -23.15 15.6 -25.1 11.15 -23.55 14.15 -20.95 16.75 -14.2 23.5 -4.65 23.5 4.9 23.5 11.6 16.75 18.35 10.05 18.35 0.5 18.35 -9.05 11.6 -15.8 4.9 -22.5 -4.65 -22.5 -14.2 -22.5 -20.95 -15.8 -25.3 -11.45 -26.8 -5.85 -25.25 -13.5 -19.4 -19.4 -11.35 -27.4 0.0 -27.4 11.35 -27.4 19.35 -19.4" fill="#ffffff" fill-opacity="0.67058825" fill-rule="evenodd" stroke="none"/>
+    </g>
+  </defs>
+</svg>

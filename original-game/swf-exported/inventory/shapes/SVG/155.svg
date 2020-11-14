@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="133.5px" width="234.5px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 0.75, 0.75)">
+    <path d="M233.0 14.55 L233.0 124.7 Q232.95 127.65 230.8 129.8 228.65 131.95 225.7 132.0 L7.3 132.0 Q4.35 131.95 2.2 129.8 0.05 127.65 0.0 124.7 L0.0 7.3 Q0.05 4.35 2.2 2.2 4.35 0.05 7.3 0.0 L225.7 0.0 Q228.65 0.05 230.8 2.2 232.95 4.35 233.0 7.3 L233.0 14.25 233.0 14.55 M227.3 5.75 Q226.55 5.0 225.5 5.0 L7.5 5.0 Q6.45 5.0 5.75 5.75 5.0 6.45 5.0 7.5 L5.0 124.5 Q5.0 125.55 5.75 126.3 6.45 127.0 7.5 127.0 L225.5 127.0 Q226.55 127.0 227.3 126.3 228.0 125.55 228.0 124.5 L228.0 7.5 Q228.0 6.45 227.3 5.75" fill="#ffff99" fill-rule="evenodd" stroke="none"/>
+    <path d="M227.3 5.75 Q228.0 6.45 228.0 7.5 L228.0 124.5 Q228.0 125.55 227.3 126.3 226.55 127.0 225.5 127.0 L7.5 127.0 Q6.45 127.0 5.75 126.3 5.0 125.55 5.0 124.5 L5.0 7.5 Q5.0 6.45 5.75 5.75 6.45 5.0 7.5 5.0 L225.5 5.0 Q226.55 5.0 227.3 5.75" fill="#ffff99" fill-opacity="0.9019608" fill-rule="evenodd" stroke="none"/>
+    <path d="M233.0 14.55 L233.0 124.7 Q232.95 127.65 230.8 129.8 228.65 131.95 225.7 132.0 L7.3 132.0 Q4.35 131.95 2.2 129.8 0.05 127.65 0.0 124.7 L0.0 7.3 Q0.05 4.35 2.2 2.2 4.35 0.05 7.3 0.0 L225.7 0.0 Q228.65 0.05 230.8 2.2 232.95 4.35 233.0 7.3 L233.0 14.25" fill="none" stroke="#735252" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path d="M227.3 5.75 Q228.0 6.45 228.0 7.5 L228.0 124.5 Q228.0 125.55 227.3 126.3 226.55 127.0 225.5 127.0 L7.5 127.0 Q6.45 127.0 5.75 126.3 5.0 125.55 5.0 124.5 L5.0 7.5 Q5.0 6.45 5.75 5.75 6.45 5.0 7.5 5.0 L225.5 5.0 Q226.55 5.0 227.3 5.75" fill="none" stroke="#966a6a" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.3019608" stroke-width="1.0"/>
+    <path d="M219.15 35.95 L84.85 35.95" fill="none" stroke="url(#gradient0)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"/>
+  </g>
+  <defs>
+    <linearGradient gradientTransform="matrix(-0.0864, 0.0, 0.0, 0.0012, 152.05, 35.95)" gradientUnits="userSpaceOnUse" id="gradient0" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#b06a4f" stop-opacity="0.0"/>
+      <stop offset="1.0" stop-color="#b06b4f"/>
+    </linearGradient>
+  </defs>
+</svg>
