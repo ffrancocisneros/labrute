@@ -20,7 +20,7 @@ Listing the variable/textual elements in JSON files :
    - Agility : TODO
    - Speed : TODO
 - Implement the hidden characteristics :
-   - (No english doc?) Endurance (1 endurance point = +6 health points): TODO
+   - [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): TODO
    - Armor (Armure) (lowers the damages): TODO
    - Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
    - Initiative (Initiative) (which brute starts the fight): TODO
@@ -60,7 +60,7 @@ NB: the names with uppercase refers to "characteristics".
 - Thrown weapons (projectiles): can be throwned in illimited amount.
 - Sharp Weapons (tranchantes): high Block Rate ; +50% damages with Weapons Master (passive skill)
 
-All the charactéristics of the weapons (with numbers) : https://mybrutemuxxu.fandom.com/wiki/Weapons
+All the characteristics of the weapons (with numbers) : https://mybrutemuxxu.fandom.com/wiki/Weapons
 
 ### Calculating the damages
 See the english wiki to know how to calculate the damages : https://mybrutemuxxu.fandom.com/wiki/Damage
