@@ -5,17 +5,15 @@ Currently on the repository : a very basic prototype made by Scorpio, modified b
 ### Gathering the data
 Listing the variable/textual elements in JSON files :
 - Listing the weapons : partially done (in the file /config/weapons.json)
-- Listing the skills : 0% done
 - Listing the characteristics (health, accuracy...) : 0% done
 - Listing the pets : 0% done
-- Listing the competences :
+- Listing the skills :
    - Talents (manual) : 0% done
    - Supers (random) : 0% done
    - Specialities (passive) : 0% done
 
 ### Coding
 - Implement the weapons : done ✓
-- Implement the skills : 0% done
 - Implement the visible characteristics :
    - Health : done ✓
    - Strength : partially done
@@ -33,7 +31,7 @@ Listing the variable/textual elements in JSON files :
    - Désarmer : TODO
    - Combo : TODO
    - Toucher, Porter : TODO
-- Implement the competences (ameliorations of the characteristics) :
+- Implement the skills (ameliorations of the characteristics) :
    - Talents (manual activation before the fight; give a wound) : 0% done
    - Supers (randomly triggered during fight) : 0% done
    - Specialities (passive aptitudes) : 0% done
@@ -41,25 +39,24 @@ Listing the variable/textual elements in JSON files :
 - Implement the experience
    - XP gain after a fight : 0% done
    - XP levels : 0% done
-   - Competences tree (specifications below) : 0% done
+   - Skills tree (specifications below) : 0% done
    - Change destiny after reaching a new XP level : 0% done
 - Apply the functionalities to the profiles of the players
    - custom weapons list : TODO
    - custom skills list  : TODO
    - custom characteristics list : TODO
    - custom pets list : TODO
-   - custom competences list : TODO
 
 
 ##  Specifications
-### Competences tree
+### Skills tree
 When reaching a new XP level, the player must chose 1 advantage among these 2 choices  :
 - Choice 1: 
-   - Upgrade a characteristic of +3 points
-   - Upgrade a characteristic of +2 points, and another of +1 point
+   - Upgrade a characteristic of +3 points,
+     or upgrade a characteristic of +2 points and another of +1 point
 - Choice 2: a random element proposed among:
    - 1 weapon
-   - 1 competence
+   - 1 skill
    - 1 pet
 
 Source : http://twin.tithom.fr/muxxu/labrute/experience/#arbre
