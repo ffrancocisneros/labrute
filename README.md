@@ -49,6 +49,15 @@ Listing the variable/textual elements in JSON files :
 
 
 ##  Specifications
+### Weapon types
+NB: the names with uppercase refers to "characteristics".
+- Fast weapons: increased Combo Rate; relatively low Interval. 
+- Heavy weapons (lourdes): high damage but high Interval + lower Accuracy.
+- Long weapons: increased Counter rate (= to strike before the opponent)
+- Thrown weapons (projectiles): can be throwned in illimited amount.
+- Sharp Weapons (tranchantes): high Block Rate ; +50% damages with Weapons Master (passive skill)
+
+
 ### Skills tree
 When reaching a new XP level, the player must chose 1 advantage among these 2 choices  :
 - Choice 1: 
