@@ -20,19 +20,22 @@ Listing the variable/textual elements in JSON files :
    - Agility : TODO
    - Speed : TODO
 - Implement the hidden characteristics :
-   - Endurance : TODO
-   - Armure : TODO
-   - Initiative : TODO
-   - Esquive : TODO
-   - Parade : TODO
-   - Riposte : TODO
-   - Contre : TODO
-   - Contre-attaque : TODO
-   - Désarmer : TODO
-   - Combo : TODO
-   - Toucher, Porter : TODO
+   - (No english doc?) Endurance (1 endurance point = +6 health points): TODO
+   - Armor (Armure) (lowers the damages): TODO
+   - Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
+   - Initiative (Initiative) (which brute starts the fight): TODO
+   - Interval (no french doc ?) (more attacks with high "Speed" or a light weapon): TODO
+   - Combo Rate (Combo) (to hit several times in the same attack): TODO
+   - Block rate (Parade) (to totally block an attack) : TODO
+   - Evasion (Esquive) (to totally escape an attack): TODO
+   - Accuracy (no french doc?) (successful attack against a "Block"): TODO 
+   - Precision (no french doc ?) (successful attack against an "Evasion"): TODO 
+   - (No english doc?) Riposte (to strike again after a "Block" or an "Evasion"): TODO
+   - Counter Rate (Contre) (to strike before the opponent's knock and to abort this knock): TODO
+   - Reversal Rate (Contre-attaque) (to strike after the opponent's knock): TODO
+   - Toucher, Porter (what is this?? From the french Twinpedia): TODO
 - Implement the skills (ameliorations of the characteristics) :
-   - Talents (manual activation before the fight; give a wound) : 0% done
+   - Talents (manual activation before the fight; gives a wound) : 0% done
    - Supers (randomly triggered during fight) : 0% done
    - Specialities (passive aptitudes) : 0% done
 - Implement the pets : 0% done
