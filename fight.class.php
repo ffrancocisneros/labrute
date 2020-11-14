@@ -5,10 +5,10 @@
 		
 		public static function doFight($attacker, $attacked) {
 			
-			// Chose a language among the avalaible ones in the /config files
+			// Choose a language among the available ones in the /config files
 			$lang = "es";			
 			$weapons = self::getWeapons();			
-			//Prepare the seed for this fight
+			//Prepare the seed for this fight, so the replay will give the same result.
 			$seed = hash('SHA512', $attacker->Name.$attacker->Experience.$attacked->Name.$attacked->Experience);
 			$seed = substr($seed, 0, 15); //More than 16 chars exceed the integer limit on PHP
 			$seed = intval($seed, 16);    //Decode the hexadecimal string to a base 16 integer
@@ -18,9 +18,9 @@
 			$hit = 1;
 			
 			while ($attacker->Health > 0 && $attacked->Health > 0) {
-				// TODO : the class Random() of Scorpio may generate better alea
-				// but it seems to generate always the same result for now ?
-				$weapon = array_rand($weapons);
+				
+				$rand_key = Random::num(0, count($weapons)-1);
+				$weapon = array_keys($weapons)[$rand_key];
 				$weapon_name = $weapons[$weapon]["name"][$lang];
 				
 				//The attacker hit on even and the attacked on odd
