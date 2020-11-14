@@ -32,11 +32,11 @@
 					$target = $attacker;
 				}
 				
-				$weapon_damage   = random_int($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
-				$lost_lifepoints = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
-				$target->Health -= $lost_lifepoints;
+				$weapon_damage   = Random::num($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
+				$lost_health     = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
+				$target->Health -= $lost_health;
 				
-				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_lifepoints.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
+				echo '"'.$origin->Name.'" dio un/a "'.$weapon_name.'" a "'.$target->Name.'" restandole '.$lost_health.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
 				echo '<div style="margin:0 0 0.5em 2em;color:grey">'
 					. 'Details: '.$weapon_name.' makes '.$weapon_damage.' damage points '
 					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'
