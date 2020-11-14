@@ -1,0 +1,20 @@
+[
+xmin -40
+ymin -40
+xmax 949
+ymax 431
+wordwrap 1
+multiline 1
+readonly 1
+noselect 1
+useoutlines 1
+font 57
+height 320
+color #ffffffff
+align center
+leftmargin 0
+rightmargin 0
+indent 0
+leading 40
+variablename _parent.(Erk5
+]200

@@ -1,0 +1,17 @@
+[
+xmin -40
+ymin -40
+xmax 2888
+ymax 660
+wordwrap 1
+multiline 1
+readonly 1
+font 158
+height 220
+color #ff733c2f
+align left
+leftmargin 0
+rightmargin 0
+indent 0
+leading 0
+]

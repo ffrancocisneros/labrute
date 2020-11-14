@@ -1,0 +1,12 @@
+[
+xmin 7
+ymin 18
+xmax 492
+ymax 182
+translatex -4
+][
+font 2
+height 160
+color #000000
+y 160
+]Col2
