@@ -5,5 +5,7 @@
 	$Brute1 = new Brute('Scorpio', 4356246, 39673);
 	$Brute2 = new Brute('Destino Planeta', 23452, 39673);
 	
+	echo $Brute1->htmlStats();
+	echo $Brute2->htmlStats();
+	
 	Fight::doFight($Brute1, $Brute2);
-?>

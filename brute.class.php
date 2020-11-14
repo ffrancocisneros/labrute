@@ -65,14 +65,19 @@
 						break;
 				}
 			}
-			
-			echo 'Brute: '.$this->Name.'<br>';
-			echo 'Level: '.$level.'<br>';
-			echo 'Health: '.$this->Health.'<br>';
-			echo 'Strength: '.$this->Strength.'<br>';
-			echo 'Agility: '.$this->Agility.'<br>';
-			echo 'Speed: '.$this->Speed.'<br><br>';
 		}
+		
+		
+		public function htmlStats() {
+			
+			return	'Brute: '.$this->Name.'<br>' .
+					'Level: '.$this->getLevel().'<br>' .
+					'Health: '.$this->Health.'<br>' .
+					'Strength: '.$this->Strength.'<br>' .
+					'Agility: '.$this->Agility.'<br>' .
+					'Speed: '.$this->Speed.'<br><br>';
+		}
+		
 		
 		public function getLevel() {
 			return $this->experienceToLevel($this->Experience);
