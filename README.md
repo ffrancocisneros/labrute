@@ -21,7 +21,7 @@ Listing the variable/textual elements in JSON files :
    - Speed : TODO
 - Implement the hidden characteristics :
    - [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): TODO
-   - Armor (Armure) (lowers the damages): TODO
+   - [Armor stat](https://mybrutemuxxu.fandom.com/wiki/Armor_(stat)) (Armure) (lowers the damages): done ✓
    - Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
    - Initiative (Initiative) (which brute starts the fight): TODO
    - Interval (no french doc ?) (more attacks with high "Speed" or a light weapon): TODO
@@ -38,6 +38,9 @@ Listing the variable/textual elements in JSON files :
    - Talents (manual activation before the fight; gives a wound) : 0% done
    - Supers (randomly triggered during fight) : 0% done
    - Specialities (passive aptitudes) : 0% done
+      - [Armor skill](https://mybrutemuxxu.fandom.com/wiki/Armor): 50% done (increases armor stat: done; decreases speed: TODO)
+      - [Toughened skin](https://mybrutemuxxu.fandom.com/wiki/Toughened_Skin): done ✓ (increase armor stat: done)
+      - (to be completed...)
 - Implement the pets : 0% done
 - Implement the experience
    - XP gain after a fight : 0% done
