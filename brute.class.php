@@ -28,6 +28,10 @@
 			$this->Strength = 2;
 			$this->Agility  = 2;
 			$this->Speed    = 2;
+			$this->Armor    = 2;
+			//For the skills, this is levels, not points
+			$this->SkillArmor         = 0;
+			$this->SkillToughenedSkin = 0;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -44,7 +48,7 @@
 			
 			//Get the current level for this Brute
 			$level = $this->getLevel();
-			
+					
 			//Get the Skills for this brute at the current level
 			for ($i = 1; $i <= $level; $i++) {
 				$this->Health += Random::num(0, 5);
@@ -66,13 +70,35 @@
 				}
 			}
 			
-			echo 'Brute: '.$this->Name.'<br>';
-			echo 'Level: '.$level.'<br>';
-			echo 'Health: '.$this->Health.'<br>';
-			echo 'Strength: '.$this->Strength.'<br>';
-			echo 'Agility: '.$this->Agility.'<br>';
-			echo 'Speed: '.$this->Speed.'<br><br>';
+			// TODO: temporary values to simulate upgrades levels of these skills.
+			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
+			$this->SkillArmor = 2;
+			$this->SkillToughenedSkin = 3;
+			
+			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
+			$this->Armor = $this->Armor + $this->SkillArmor*5;
+			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
+			$this->Armor = $this->Armor + $this->SkillToughenedSkin*2;
 		}
+		
+		
+		public function htmlStats() {
+			
+			return	'Brute: '.$this->Name.'<br>' .
+					'Level: '.$this->getLevel().'<br>' .
+					'<strong>Main stats:</strong><br>'.
+					'• Health: '.$this->Health.' pts<br>' .
+					'• Strength: '.$this->Strength.' pts<br>' .
+					'• Agility: '.$this->Agility.' pts<br>' .
+					'• Speed: '.$this->Speed.' pts<br>' .
+					'<strong>Hidden stats:</strong><br>'.
+					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
+					'<strong>Skills levels:</strong><br>'.
+					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
+					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
+					'<br>';
+		}
+		
 		
 		public function getLevel() {
 			return $this->experienceToLevel($this->Experience);

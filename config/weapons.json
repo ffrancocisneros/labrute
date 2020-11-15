@@ -10,6 +10,7 @@
                 "fr":"mains nues",
                 "es":"puñetazo"
                 },
+            "type": "",
             "damageMin" : 0,
             "damageMax" : 2
             },
@@ -19,6 +20,7 @@
                 "fr":"couteau",
                 "es":"cuchillo"
                 },
+            "type": "fast",
             "damageMin" : 7,
             "damageMax" : 11
             },
@@ -28,15 +30,17 @@
                 "fr":"shuriken",
                 "es":"shuriken"
                 },
+            "type": "thrown",
             "damageMin" : 5,
             "damageMax" : 8
             },
-        "simitar" : {
+        "scimitar" : {
             "name" : {
-                "en":"simitar",
+                "en":"scimitar",
                 "fr":"cimeterre",
                 "es":"cimetro"
                 },
+            "type": "sharp",
             "damageMin" : 10,
             "damageMax" : 12
             },
@@ -46,6 +50,7 @@
                 "fr":"bâton",
                 "es":"palo"
                 },
+            "type": "long",
             "damageMin" : 7,
             "damageMax" : 9
             },
@@ -55,6 +60,7 @@
                 "fr":"épée",
                 "es":"espada"
                 },
+            "type": "sharp",
             "damageMin" : 25,
             "damageMax" : 30
             }

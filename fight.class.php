@@ -3,7 +3,7 @@
 	
 	class Fight {
 		
-		public static function doFight($attacker, $attacked) {
+		public function doFight($attacker, $attacked) {
 			
 			// Choose a language among the available ones in the /config files
 			$lang = "es";			
@@ -33,14 +33,18 @@
 					$target = $attacker;
 				}
 				
+				$armor_bonus = $this->getArmorBonus($attacked->Armor, $weapons[$weapon]['type']);
+				
 				$weapon_damage   = Random::num($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
-				$lost_health     = intval($weapon_damage + ($origin->Strength * ($origin->Strength / 100)));
+				$lost_health     = intval($weapon_damage - $armor_bonus + ($origin->Strength * ($origin->Strength / 100)));
 				$target->Health -= $lost_health;
 				
 				echo '"'.$origin->Name.'" dio un/a '.$weapon_img.' <em>'.$weapon_name.'</em> a "'.$target->Name.'" restandole '.$lost_health.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
 				echo '<div style="margin:0 0 0.5em 2em;color:grey">'
-					. 'Details: '.$weapon_name.' makes '.$weapon_damage.' damage points '
+					. 'Details:<br>'
+					. 'Weapon '.$weapon_name.': '.$weapon_damage.' damages '
 					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'
+					. '<br>Armor bonus: <abbr title="Note: the Armor has no effect against a thrown weapon (shuriken...)">-' . $armor_bonus . ' damages</abbr>'
 					. '</div>';
 				
 				if ($target->Health <= 0) {
@@ -51,6 +55,25 @@
 			}
 			
 			return true;
+		}
+		
+		
+		/**
+		 * Calculates the real armor points for this fight (depends on the weapon type)
+		 * @param int $total_armor The total stat Armor of the defender (including skills bonuses)
+		 * @param int $weapon_type The type of weapon used (thrown, heavy, sharp...)
+		 * @return int
+		 */
+		private function getArmorBonus($total_armor, $weapon_type) {
+			
+			$armor_bonus = 0;
+			
+			// The armor is useless against the thrown weapons
+			if ($weapon_type !== 'thrown') {
+				$armor_bonus = $total_armor;
+			}
+			
+			return $armor_bonus;
 		}
 		
 		
