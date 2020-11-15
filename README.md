@@ -1,4 +1,3 @@
-
 Currently on the repository : a very basic prototype made by Scorpio, modified by Nadawoo.
 
 ## Roadmap
@@ -18,41 +17,41 @@ Listing the variable/textual elements in JSON files :
 - Implement the visible characteristics :
    - ✔️ Health : done
    - ⌛ Strength : partially done
-   - ❌ Agility : TODO
-   - ❌ Speed : TODO
+   - 🧾 Agility : TODO
+   - 🧾 Speed : TODO
 - Implement the hidden characteristics :
-   - ❌ [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): TODO
+   - 🧾 [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): TODO
    - ✔️ [Armor stat](https://mybrutemuxxu.fandom.com/wiki/Armor_(stat)) (Armure) (lowers the damages): 100% done
-   - ❌ Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
-   - ❌ Initiative (Initiative) (which brute starts the fight): TODO
-   - ❌ Interval (no french doc ?) (more attacks with high "Speed" or a light weapon): TODO
-   - ❌ Combo Rate (Combo) (to hit several times in the same attack): TODO
-   - ❌ Block rate (Parade) (to totally block an attack) : TODO
-   - ❌ Evasion (Esquive) (to totally escape an attack): TODO
-   - ❌ Accuracy (no french doc?) (successful attack against a "Block"): TODO 
-   - ❌ Precision (no french doc ?) (successful attack against an "Evasion"): TODO 
-   - ❌ (No english doc?) Riposte (to strike again after a "Block" or an "Evasion"): TODO
-   - ❌ Counter Rate (Contre) (to strike before the opponent's knock and to abort this knock): TODO
-   - ❌ Reversal Rate (Contre-attaque) (to strike after the opponent's knock): TODO
-   - ❌ Toucher, Porter (what is this?? From the french Twinpedia): TODO
+   - 🧾 Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
+   - 🧾 Initiative (Initiative) (which brute starts the fight): TODO
+   - 🧾 Interval (no french doc ?) (more attacks with high "Speed" or a light weapon): TODO
+   - 🧾 Combo Rate (Combo) (to hit several times in the same attack): TODO
+   - 🧾 Block rate (Parade) (to totally block an attack) : TODO
+   - 🧾 Evasion (Esquive) (to totally escape an attack): TODO
+   - 🧾 Accuracy (no french doc?) (successful attack against a "Block"): TODO 
+   - 🧾 Precision (no french doc ?) (successful attack against an "Evasion"): TODO 
+   - 🧾 (No english doc?) Riposte (to strike again after a "Block" or an "Evasion"): TODO
+   - 🧾 Counter Rate (Contre) (to strike before the opponent's knock and to abort this knock): TODO
+   - 🧾 Reversal Rate (Contre-attaque) (to strike after the opponent's knock): TODO
+   - 🧾 Toucher, Porter (what is this?? From the french Twinpedia): TODO
 - Implement the skills (ameliorations of the characteristics) :
-   - ❌ Talents (manual activation before the fight; gives a wound) : 0% done
-   - ❌ Supers (randomly triggered during fight) : 0% done
-   - ❌ Specialities (passive aptitudes) : 0% done
+   - 🧾 Talents (manual activation before the fight; gives a wound) : 0% done
+   - 🧾 Supers (randomly triggered during fight) : 0% done
+   - 🧾 Specialities (passive aptitudes) : 0% done
       - ⌛ [Armor skill](https://mybrutemuxxu.fandom.com/wiki/Armor): 50% done (increases armor stat: done; decreases speed: TODO)
       - ✔️ [Toughened skin](https://mybrutemuxxu.fandom.com/wiki/Toughened_Skin): 100% done ✓ (increase armor stat: done)
       - (to be completed...)
-- ❌ Implement the pets : 0% done
+- 🧾 Implement the pets : 0% done
 - Implement the experience
-   - ❌ XP gain after a fight : 0% done
-   - ❌ XP levels : 0% done
-   - ❌ Skills tree (specifications below) : 0% done
-   - ❌ Change destiny after reaching a new XP level : 0% done
+   - 🧾 XP gain after a fight : 0% done
+   - 🧾 XP levels : 0% done
+   - 🧾 Skills tree (specifications below) : 0% done
+   - 🧾 Change destiny after reaching a new XP level : 0% done
 - Apply the functionalities to the profiles of the players
-   - ❌ custom weapons list : TODO
-   - ❌ custom skills list  : TODO
-   - ❌ custom characteristics list : TODO
-   - ❌ custom pets list : TODO
+   - 🧾 custom weapons list : TODO
+   - 🧾 custom skills list  : TODO
+   - 🧾 custom characteristics list : TODO
+   - 🧾 custom pets list : TODO
 
 
 ##  Specifications
