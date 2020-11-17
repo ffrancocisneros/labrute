@@ -16,12 +16,12 @@ Listing the variable/textual elements in JSON files :
    - ✔️ Fighting with different weapons: done
 - Implement the visible characteristics :
    - ✔️ Standard Health : done
-   - 🧾 Complementary Health (see specifications below): TODO
+   - ✔️ Complementary Health (see specifications below): done
    - ⌛ Strength : partially done
    - 🧾 Agility : TODO
    - 🧾 Speed : TODO
 - Implement the hidden characteristics :
-   - 🧾 [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): TODO
+   - ✔️ [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): done
    - ✔️ [Armor stat](https://mybrutemuxxu.fandom.com/wiki/Armor_(stat)) (Armure) (lowers the damages): 100% done
    - 🧾 Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
    - 🧾 Initiative (Initiative) (which brute starts the fight): TODO
@@ -80,7 +80,7 @@ SHP = (Brute's Level - 1) * 1.5 + 50
 *(and the result is rounded down)*
 
 **Complementary HP**:
-- CHP are gained by revieving Endurance points (+1 CHP for 6 endurance points).
+- CHP are gained with the Endurance stat (+1 CHP for 6 Endurance points).
 - CHP are modified by Skills
 - CHP are reduced by Pets ([see wiki](https://mybrutemuxxu.fandom.com/wiki/Endurance) for the exact values)
 CHP = (Total HP - Standard HP) / 6
@@ -115,6 +115,11 @@ When reaching a new XP level, the player must chose 1 advantage among these 2 ch
    - 1 pet
 
 Source : http://twin.tithom.fr/muxxu/labrute/experience/#arbre
+
+**Restriction for the skills:**  
+A brute can't have more than 3 [Main Stat boosters](https://mybrutemuxxu.fandom.com/wiki/Stat_Boosters)
+among the 4 existing ones (Vitality, Herculean Strength, Feline Agility, Lightning Bolt)
+
 
 ## Resources
 - French wiki : http://twin.tithom.fr/muxxu/labrute/

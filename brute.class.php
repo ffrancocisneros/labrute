@@ -29,6 +29,7 @@
 			$this->Agility  = 2;
 			$this->Speed    = 2;
 			$this->Armor    = 2;
+			$this->Endurance = 0;
 			//For the skills, this is levels, not points
 			$this->SkillArmor         = 0;
 			$this->SkillToughenedSkin = 0;
@@ -73,6 +74,7 @@
 			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
 			$this->SkillArmor = 2;
 			$this->SkillToughenedSkin = 3;
+			$this->Endurance = 15;
 			
 			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
 			$this->Armor = $this->Armor + $this->SkillArmor*5;
@@ -121,7 +123,12 @@
 		 * @return int
 		 */
 		private function getHealth($base_health, $xp_level) {
+			
 			//That's the real formula of the original game (see wiki)
-			return $base_health + ($xp_level - 1) * 1.5;
+			$standard_health = floor($base_health + ($xp_level - 1) * 1.5);
+			//The brute gains +1 health point every 6 Endurance points
+			$complementary_health = floor($this->Endurance/6);
+			
+			return $standard_health + $complementary_health;
 		}
 	}
