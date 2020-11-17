@@ -15,7 +15,8 @@ Listing the variable/textual elements in JSON files :
 - Implement the weapons :
    - ✔️ Fighting with different weapons: done
 - Implement the visible characteristics :
-   - ✔️ Health : done
+   - ✔️ Standard Health : done
+   - 🧾 Complementary Health (see specifications below): TODO
    - ⌛ Strength : partially done
    - 🧾 Agility : TODO
    - 🧾 Speed : TODO
@@ -40,6 +41,8 @@ Listing the variable/textual elements in JSON files :
    - 🧾 Specialities (passive aptitudes) : 0% done
       - ⌛ [Armor skill](https://mybrutemuxxu.fandom.com/wiki/Armor): 50% done (increases armor stat: done; decreases speed: TODO)
       - ✔️ [Toughened skin](https://mybrutemuxxu.fandom.com/wiki/Toughened_Skin): 100% done ✓ (increase armor stat: done)
+      - 🧾 [Vitality] (https://mybrutemuxxu.fandom.com/wiki/Vitality): TODO
+      - 🧾 [Immortality] (https://mybrutemuxxu.fandom.com/wiki/Immortality): TODO
       - (to be completed...)
 - 🧾 Implement the pets : 0% done
 - Implement the experience
@@ -64,6 +67,26 @@ NB: the names with uppercase refers to "characteristics".
 - Sharp Weapons (tranchantes): high Block Rate ; +50% damages with Weapons Master (passive skill)
 
 All the characteristics of the weapons (with numbers) : https://mybrutemuxxu.fandom.com/wiki/Weapons
+
+
+### Calculating the health points
+
+The HP are separated in 2 parts:
+
+**Standard HP**:
+- SHP are gained by reaching new levels
+- SHP are not modified by Skills or Pets.
+SHP = (Brute's Level - 1) * 1.5 + 50
+*(and the result is rounded down)*
+
+**Complementary HP**:
+- CHP are gained by revieving Endurance points (+1 CHP for 6 endurance points).
+- CHP are modified by Skills
+- CHP are reduced by Pets ([see wiki](https://mybrutemuxxu.fandom.com/wiki/Endurance) for the exact values)
+CHP = (Total HP - Standard HP) / 6
+
+Complete doc: https://mybrutemuxxu.fandom.com/wiki/Endurance
+
 
 ### Calculating the damages
 See the english wiki to know how to calculate the damages : https://mybrutemuxxu.fandom.com/wiki/Damage
