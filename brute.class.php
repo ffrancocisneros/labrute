@@ -24,7 +24,7 @@
 			$this->Experience = $experience;
 			
 			//Set the default points for lvl 1
-			$this->Health   = 100;
+			$this->Health   = 50; //Real value of the genuine game (see wiki)
 			$this->Strength = 2;
 			$this->Agility  = 2;
 			$this->Speed    = 2;
@@ -51,7 +51,6 @@
 					
 			//Get the Skills for this brute at the current level
 			for ($i = 1; $i <= $level; $i++) {
-				$this->Health += Random::num(0, 5);
 				
 				$stat = Random::num(0, $oddsOfSpeed);
 				
@@ -79,6 +78,8 @@
 			$this->Armor = $this->Armor + $this->SkillArmor*5;
 			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
 			$this->Armor = $this->Armor + $this->SkillToughenedSkin*2;
+			
+			$this->Health = $this->getHealth($this->Health, $level);
 		}
 		
 		
@@ -111,5 +112,16 @@
 		private function experienceToLevel($experience) {
 			return intval(pow(($experience + 1), (1 / self::LevelExponent)));
 		}
+		
+		
+		/**
+		 * Calculates the total health points of the brute
+		 * @param int $base_health Amount of HP for a rookie brute at level 1
+		 * @param int $xp_level The experience level of the brute
+		 * @return int
+		 */
+		private function getHealth($base_health, $xp_level) {
+			//That's the real formula of the original game (see wiki)
+			return $base_health + ($xp_level - 1) * 1.5;
+		}
 	}
-?>
