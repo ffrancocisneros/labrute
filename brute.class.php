@@ -31,8 +31,8 @@
 			$this->Armor    = 2;
 			$this->Endurance = 3;
 			//For the skills, this is levels, not points
-			$this->SkillArmor         = 0;
-			$this->SkillToughenedSkin = 0;
+			$this->SkillArmor         = false;
+			$this->SkillToughenedSkin = false;
 			$this->SkillVitality      = false;
 			
 			//Prepare the seed for this brute
@@ -73,14 +73,14 @@
 			
 			// TODO: temporary values to simulate upgrades levels of these skills.
 			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
-			$this->SkillArmor = 2;
-			$this->SkillToughenedSkin = 3;
+			$this->SkillArmor = true;
+			$this->SkillToughenedSkin = true;
 			$this->SkillVitality = true;
 			
 			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
-			$this->Armor = $this->Armor + $this->SkillArmor*5;
+			$this->Armor = $this->Armor + (int)$this->SkillArmor*5;
 			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
-			$this->Armor = $this->Armor + $this->SkillToughenedSkin*2;
+			$this->Armor = $this->Armor + (int)$this->SkillToughenedSkin*2;
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
 			$this->Endurance = $this->getEndurance();
