@@ -41,7 +41,7 @@ Listing the variable/textual elements in JSON files :
    - 🧾 Specialities (passive aptitudes) : 0% done
       - ⌛ [Armor skill](https://mybrutemuxxu.fandom.com/wiki/Armor): 50% done (increases armor stat: done; decreases speed: TODO)
       - ✔️ [Toughened skin](https://mybrutemuxxu.fandom.com/wiki/Toughened_Skin): 100% done ✓ (increase armor stat: done)
-      - 🧾 [Vitality] (https://mybrutemuxxu.fandom.com/wiki/Vitality): TODO
+      - ✔️ [Vitality] (https://mybrutemuxxu.fandom.com/wiki/Vitality): done
       - 🧾 [Immortality] (https://mybrutemuxxu.fandom.com/wiki/Immortality): TODO
       - (to be completed...)
 - 🧾 Implement the pets : 0% done

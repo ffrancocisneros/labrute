@@ -29,10 +29,11 @@
 			$this->Agility  = 2;
 			$this->Speed    = 2;
 			$this->Armor    = 2;
-			$this->Endurance = 0;
+			$this->Endurance = 3;
 			//For the skills, this is levels, not points
 			$this->SkillArmor         = 0;
 			$this->SkillToughenedSkin = 0;
+			$this->SkillVitality      = false;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -74,14 +75,17 @@
 			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
 			$this->SkillArmor = 2;
 			$this->SkillToughenedSkin = 3;
-			$this->Endurance = 15;
+			$this->SkillVitality = true;
 			
 			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
 			$this->Armor = $this->Armor + $this->SkillArmor*5;
 			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
 			$this->Armor = $this->Armor + $this->SkillToughenedSkin*2;
 			
+			//Calculate the endurance *before* calculating health, because endurance affects health!
+			$this->Endurance = $this->getEndurance();
 			$this->Health = $this->getHealth($this->Health, $level);
+			
 		}
 		
 		
@@ -95,10 +99,12 @@
 					'• Agility: '.$this->Agility.' pts<br>' .
 					'• Speed: '.$this->Speed.' pts<br>' .
 					'<strong>Hidden stats:</strong><br>'.
+					'• Endurance: '.$this->Endurance.'<br>'.
 					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
 					'<strong>Skills levels:</strong><br>'.
 					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
 					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
+					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
 					'<br>';
 		}
 		
@@ -130,5 +136,15 @@
 			$complementary_health = floor($this->Endurance/6);
 			
 			return $standard_health + $complementary_health;
+		}
+		
+		
+		/**
+		 * Calculates the total health points of the brute
+		 * @return int
+		 */
+		private function getEndurance() {
+			//The skill Vitality gives +3 Endurance and +50% Endurance
+			return $this->Endurance = ($this->SkillVitality === true) ? ($this->Endurance+3)*1.5 : $this->Endurance;
 		}
 	}
