@@ -77,15 +77,10 @@
 			$this->SkillToughenedSkin = true;
 			$this->SkillVitality = true;
 			
-			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
-			$this->Armor = $this->Armor + (int)$this->SkillArmor*5;
-			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
-			$this->Armor = $this->Armor + (int)$this->SkillToughenedSkin*2;
-			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
-			$this->Endurance = $this->getEndurance();
-			$this->Health = $this->getHealth($this->Health, $level);
-			
+			$this->setEndurance();
+			$this->setHealth($this->Health, $level);
+			$this->setArmor();	
 		}
 		
 		
@@ -121,6 +116,18 @@
 			return intval(pow(($experience + 1), (1 / self::LevelExponent)));
 		}
 		
+				
+		/**
+		 * Calculates the total Armor (stat, not skill!) of the brute
+		 * @return int
+		 */
+		private function setArmor() {			
+			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
+			$this->Armor += (int)$this->SkillArmor*5;
+			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
+			$this->Armor += (int)$this->SkillToughenedSkin*2;
+		}
+		
 		
 		/**
 		 * Calculates the total health points of the brute
@@ -128,14 +135,13 @@
 		 * @param int $xp_level The experience level of the brute
 		 * @return int
 		 */
-		private function getHealth($base_health, $xp_level) {
-			
+		private function setHealth($base_health, $xp_level) {			
 			//That's the real formula of the original game (see wiki)
 			$standard_health = floor($base_health + ($xp_level - 1) * 1.5);
 			//The brute gains +1 health point every 6 Endurance points
 			$complementary_health = floor($this->Endurance/6);
 			
-			return $standard_health + $complementary_health;
+			$this->Health = $standard_health + $complementary_health;
 		}
 		
 		
@@ -143,8 +149,8 @@
 		 * Calculates the total health points of the brute
 		 * @return int
 		 */
-		private function getEndurance() {
+		private function setEndurance() {			
 			//The skill Vitality gives +3 Endurance and +50% Endurance
-			return $this->Endurance = ($this->SkillVitality === true) ? ($this->Endurance+3)*1.5 : $this->Endurance;
+			$this->Endurance = ($this->SkillVitality === true) ? ($this->Endurance+3)*1.5 : $this->Endurance;
 		}
 	}
