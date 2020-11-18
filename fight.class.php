@@ -14,7 +14,7 @@
 			$seed = intval($seed, 16);    //Decode the hexadecimal string to a base 16 integer
 			
 			Random::seed($seed);
-			
+						
 			$hit = 1;
 			
 			while ($attacker->Health > 0 && $attacked->Health > 0) {
@@ -37,6 +37,7 @@
 				
 				$weapon_damage   = Random::num($weapons[$weapon]["damageMin"], $weapons[$weapon]["damageMax"]);
 				$lost_health     = intval($weapon_damage - $armor_bonus + ($origin->Strength * ($origin->Strength / 100)));
+				$lost_health     = min($target->MaxReceivableDamages, $lost_health);
 				$target->Health -= $lost_health;
 				
 				echo '"'.$origin->Name.'" dio un/a '.$weapon_img.' <em>'.$weapon_name.'</em> a "'.$target->Name.'" restandole '.$lost_health.' puntos de vida! (Le quedan '.$target->Health.' puntos de vida)'.'<br>';
@@ -45,7 +46,8 @@
 					. 'Weapon '.$weapon_name.': '.$weapon_damage.' damages '
 					. '(randomly taken in the range '.$weapons[$weapon]["damageMin"].'-'.$weapons[$weapon]["damageMax"].')'
 					. '<br>Armor bonus: <abbr title="Note: the Armor has no effect against a thrown weapon (shuriken...)">-' . $armor_bonus . ' damages</abbr>'
-					. '</div>';
+					. '<br>Resistance bonus: max '.$target->MaxReceivableDamages.' HP lost per received hit'
+				    . '</div>';
 				
 				if ($target->Health <= 0) {
 					echo '"'.$origin->Name.'" ha ganado la pelea!'.'<br>';

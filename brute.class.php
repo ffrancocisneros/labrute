@@ -30,11 +30,13 @@
 			$this->Speed    = 2;
 			$this->Armor    = 2;
 			$this->Endurance = 3;
+			$this->MaxReceivableDamages = $this->Health;
 			//For the skills, this is levels, not points
 			$this->SkillArmor         = false;
 			$this->SkillToughenedSkin = false;
 			$this->SkillVitality      = false;
 			$this->SkillImmortality   = false;
+			$this->SkillResistant     = false;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -78,11 +80,14 @@
 			$this->SkillToughenedSkin = true;
 			$this->SkillVitality = true;
 			$this->SkillImmortality = true;
+			$this->SkillResistant = true;
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
 			$this->setEndurance();
 			$this->setHealth($this->Health, $level);
 			$this->setArmor();	
+			//Let this damages ceil after calculating health, because this needs the total health
+			$this->setMaxReceivableDamages($this->Health, $this->SkillResistant);
 		}
 		
 		
@@ -98,10 +103,12 @@
 					'<strong>Hidden stats:</strong><br>'.
 					'• Endurance: '.$this->Endurance.'<br>'.
 					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
+					"• <abbr title=\"If the brute owns the skill 'Resistant' (Increvable), he can't lose more than 20% of his total health per received hit\">Max damages per received hit</abbr>: ".$this->MaxReceivableDamages." HP<br>" .
 					'<strong>Skills levels:</strong><br>'.
 					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
 					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
 					'• Immortality: '.$this->SkillImmortality.' lvl<br>'.
+					'• Resistant: '.$this->SkillResistant.' lvl<br>'.
 					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
 					'<br>';
 		}
@@ -157,5 +164,16 @@
 			$this->Endurance = ($this->SkillVitality === true) ? floor(($this->Endurance+3)*1.5) : $this->Endurance;
 			//The skill Immortality gives +250% Endurance
 			$this->Endurance = ($this->SkillImmortality === true) ? floor($this->Endurance*2.5) : $this->Endurance;
+		}
+		
+		
+		/**
+		 * Calculates the maximum damage points the brute can receive in one hit
+		 * @param int $total_health The total health of the brute when the fights starts
+		 * @param bool $skill_resistant "True" if the brute owns the skill "Resistant"
+		 */
+		private function setMaxReceivableDamages($total_health, $skill_resistant) {
+			//A brute with the skill "Resistant" can't have more than 20% HP damages per hit
+			$this->MaxReceivableDamages = ($skill_resistant === true) ? $total_health*0.2 : $total_health;
 		}
 	}
