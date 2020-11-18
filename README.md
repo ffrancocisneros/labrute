@@ -75,14 +75,14 @@ The HP are separated in 2 parts:
 
 **Standard HP**:
 - SHP are gained by reaching new levels
-- SHP are not modified by Skills or Pets.
+- SHP are not modified by Skills or Pets.  
 SHP = (Brute's Level - 1) * 1.5 + 50
 *(and the result is rounded down)*
 
 **Complementary HP**:
 - CHP are gained with the Endurance stat (+1 CHP for 6 Endurance points).
 - CHP are modified by Skills
-- CHP are reduced by Pets ([see wiki](https://mybrutemuxxu.fandom.com/wiki/Endurance) for the exact values)
+- CHP are reduced by Pets ([see wiki](https://mybrutemuxxu.fandom.com/wiki/Endurance) for the exact values)  
 CHP = (Total HP - Standard HP) / 6
 
 Complete doc: https://mybrutemuxxu.fandom.com/wiki/Endurance
