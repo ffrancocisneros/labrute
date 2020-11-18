@@ -30,9 +30,11 @@
 			$this->Speed    = 2;
 			$this->Armor    = 2;
 			$this->Endurance = 3;
+			$this->Initiative = 0;
 			$this->MaxReceivableDamages = $this->Health;
 			//For the skills, this is levels, not points
 			$this->SkillArmor         = false;
+			$this->SkillFirstStrike   = false;
 			$this->SkillToughenedSkin = false;
 			$this->SkillVitality      = false;
 			$this->SkillImmortality   = false;
@@ -77,6 +79,7 @@
 			// TODO: temporary values to simulate upgrades levels of these skills.
 			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
 			$this->SkillArmor = true;
+			$this->SkillFirstStrike = true;
 			$this->SkillToughenedSkin = true;
 			$this->SkillVitality = true;
 			$this->SkillImmortality = true;
@@ -86,6 +89,7 @@
 			$this->setEndurance();
 			$this->setHealth($this->Health, $level);
 			$this->setArmor();	
+			$this->setInitiative();
 			//Let this damages ceil after calculating health, because this needs the total health
 			$this->setMaxReceivableDamages($this->Health, $this->SkillResistant);
 		}
@@ -101,12 +105,14 @@
 					'• Agility: '.$this->Agility.' pts<br>' .
 					'• Speed: '.$this->Speed.' pts<br>' .
 					'<strong>Hidden stats:</strong><br>'.
-					'• Endurance: '.$this->Endurance.'<br>'.
+					'• Endurance: '.$this->Endurance.' pts<br>'.
+					'• Inititative: '.$this->Initiative.' pts<br>'.
 					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
 					"• <abbr title=\"If the brute owns the skill 'Resistant' (Increvable), he can't lose more than 20% of his total health per received hit\">Max damages per received hit</abbr>: ".$this->MaxReceivableDamages." HP<br>" .
 					'<strong>Skills levels:</strong><br>'.
 					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
 					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
+					'• First strike: '.$this->SkillFirstStrike.' lvl<br>' .
 					'• Immortality: '.$this->SkillImmortality.' lvl<br>'.
 					'• Resistant: '.$this->SkillResistant.' lvl<br>'.
 					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
@@ -124,6 +130,15 @@
 		
 		private function experienceToLevel($experience) {
 			return intval(pow(($experience + 1), (1 / self::LevelExponent)));
+		}
+		
+		
+		/**
+		 * Calculates the Initiative points (aptitude to start the fight)
+		 */
+		private function setInitiative() {
+			//The skill "First strike" gives +200 initiative (real value)
+			$this->Initiative = ($this->SkillFirstStrike === true) ? $this->Initiative+200 : $this->Initiative;
 		}
 		
 				
