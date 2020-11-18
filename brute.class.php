@@ -34,6 +34,7 @@
 			$this->SkillArmor         = false;
 			$this->SkillToughenedSkin = false;
 			$this->SkillVitality      = false;
+			$this->SkillImmortality   = false;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -76,6 +77,7 @@
 			$this->SkillArmor = true;
 			$this->SkillToughenedSkin = true;
 			$this->SkillVitality = true;
+			$this->SkillImmortality = true;
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
 			$this->setEndurance();
@@ -99,6 +101,7 @@
 					'<strong>Skills levels:</strong><br>'.
 					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
 					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
+					'• Immortality: '.$this->SkillImmortality.' lvl<br>'.
 					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
 					'<br>';
 		}
@@ -149,8 +152,10 @@
 		 * Calculates the total health points of the brute
 		 * @return int
 		 */
-		private function setEndurance() {			
+		private function setEndurance() {
 			//The skill Vitality gives +3 Endurance and +50% Endurance
-			$this->Endurance = ($this->SkillVitality === true) ? ($this->Endurance+3)*1.5 : $this->Endurance;
+			$this->Endurance = ($this->SkillVitality === true) ? floor(($this->Endurance+3)*1.5) : $this->Endurance;
+			//The skill Immortality gives +250% Endurance
+			$this->Endurance = ($this->SkillImmortality === true) ? floor($this->Endurance*2.5) : $this->Endurance;
 		}
 	}
