@@ -24,14 +24,16 @@
 			$this->Experience = $experience;
 			
 			//Set the default points for lvl 1
-			$this->Health   = 100;
+			$this->Health   = 50; //Real value of the genuine game (see wiki)
 			$this->Strength = 2;
 			$this->Agility  = 2;
 			$this->Speed    = 2;
 			$this->Armor    = 2;
+			$this->Endurance = 3;
 			//For the skills, this is levels, not points
-			$this->SkillArmor         = 0;
-			$this->SkillToughenedSkin = 0;
+			$this->SkillArmor         = false;
+			$this->SkillToughenedSkin = false;
+			$this->SkillVitality      = false;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -51,7 +53,6 @@
 					
 			//Get the Skills for this brute at the current level
 			for ($i = 1; $i <= $level; $i++) {
-				$this->Health += Random::num(0, 5);
 				
 				$stat = Random::num(0, $oddsOfSpeed);
 				
@@ -72,13 +73,14 @@
 			
 			// TODO: temporary values to simulate upgrades levels of these skills.
 			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
-			$this->SkillArmor = 2;
-			$this->SkillToughenedSkin = 3;
+			$this->SkillArmor = true;
+			$this->SkillToughenedSkin = true;
+			$this->SkillVitality = true;
 			
-			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
-			$this->Armor = $this->Armor + $this->SkillArmor*5;
-			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
-			$this->Armor = $this->Armor + $this->SkillToughenedSkin*2;
+			//Calculate the endurance *before* calculating health, because endurance affects health!
+			$this->setEndurance();
+			$this->setHealth($this->Health, $level);
+			$this->setArmor();	
 		}
 		
 		
@@ -92,10 +94,12 @@
 					'• Agility: '.$this->Agility.' pts<br>' .
 					'• Speed: '.$this->Speed.' pts<br>' .
 					'<strong>Hidden stats:</strong><br>'.
+					'• Endurance: '.$this->Endurance.'<br>'.
 					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
 					'<strong>Skills levels:</strong><br>'.
 					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
 					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
+					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
 					'<br>';
 		}
 		
@@ -111,5 +115,42 @@
 		private function experienceToLevel($experience) {
 			return intval(pow(($experience + 1), (1 / self::LevelExponent)));
 		}
+		
+				
+		/**
+		 * Calculates the total Armor (stat, not skill!) of the brute
+		 * @return int
+		 */
+		private function setArmor() {			
+			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
+			$this->Armor += (int)$this->SkillArmor*5;
+			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
+			$this->Armor += (int)$this->SkillToughenedSkin*2;
+		}
+		
+		
+		/**
+		 * Calculates the total health points of the brute
+		 * @param int $base_health Amount of HP for a rookie brute at level 1
+		 * @param int $xp_level The experience level of the brute
+		 * @return int
+		 */
+		private function setHealth($base_health, $xp_level) {			
+			//That's the real formula of the original game (see wiki)
+			$standard_health = floor($base_health + ($xp_level - 1) * 1.5);
+			//The brute gains +1 health point every 6 Endurance points
+			$complementary_health = floor($this->Endurance/6);
+			
+			$this->Health = $standard_health + $complementary_health;
+		}
+		
+		
+		/**
+		 * Calculates the total health points of the brute
+		 * @return int
+		 */
+		private function setEndurance() {			
+			//The skill Vitality gives +3 Endurance and +50% Endurance
+			$this->Endurance = ($this->SkillVitality === true) ? ($this->Endurance+3)*1.5 : $this->Endurance;
+		}
 	}
-?>

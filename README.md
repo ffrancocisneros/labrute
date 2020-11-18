@@ -15,12 +15,13 @@ Listing the variable/textual elements in JSON files :
 - Implement the weapons :
    - ✔️ Fighting with different weapons: done
 - Implement the visible characteristics :
-   - ✔️ Health : done
+   - ✔️ Standard Health : done
+   - ✔️ Complementary Health (see specifications below): done
    - ⌛ Strength : partially done
    - 🧾 Agility : TODO
    - 🧾 Speed : TODO
 - Implement the hidden characteristics :
-   - 🧾 [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): TODO
+   - ✔️ [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): done
    - ✔️ [Armor stat](https://mybrutemuxxu.fandom.com/wiki/Armor_(stat)) (Armure) (lowers the damages): 100% done
    - 🧾 Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
    - 🧾 Initiative (Initiative) (which brute starts the fight): TODO
@@ -40,6 +41,8 @@ Listing the variable/textual elements in JSON files :
    - 🧾 Specialities (passive aptitudes) : 0% done
       - ⌛ [Armor skill](https://mybrutemuxxu.fandom.com/wiki/Armor): 50% done (increases armor stat: done; decreases speed: TODO)
       - ✔️ [Toughened skin](https://mybrutemuxxu.fandom.com/wiki/Toughened_Skin): 100% done ✓ (increase armor stat: done)
+      - ✔️ [Vitality] (https://mybrutemuxxu.fandom.com/wiki/Vitality): done
+      - 🧾 [Immortality] (https://mybrutemuxxu.fandom.com/wiki/Immortality): TODO
       - (to be completed...)
 - 🧾 Implement the pets : 0% done
 - Implement the experience
@@ -64,6 +67,26 @@ NB: the names with uppercase refers to "characteristics".
 - Sharp Weapons (tranchantes): high Block Rate ; +50% damages with Weapons Master (passive skill)
 
 All the characteristics of the weapons (with numbers) : https://mybrutemuxxu.fandom.com/wiki/Weapons
+
+
+### Calculating the health points
+
+The HP are separated in 2 parts:
+
+**Standard HP**:
+- SHP are gained by reaching new levels
+- SHP are not modified by Skills or Pets.
+SHP = (Brute's Level - 1) * 1.5 + 50
+*(and the result is rounded down)*
+
+**Complementary HP**:
+- CHP are gained with the Endurance stat (+1 CHP for 6 Endurance points).
+- CHP are modified by Skills
+- CHP are reduced by Pets ([see wiki](https://mybrutemuxxu.fandom.com/wiki/Endurance) for the exact values)
+CHP = (Total HP - Standard HP) / 6
+
+Complete doc: https://mybrutemuxxu.fandom.com/wiki/Endurance
+
 
 ### Calculating the damages
 See the english wiki to know how to calculate the damages : https://mybrutemuxxu.fandom.com/wiki/Damage
@@ -92,6 +115,11 @@ When reaching a new XP level, the player must chose 1 advantage among these 2 ch
    - 1 pet
 
 Source : http://twin.tithom.fr/muxxu/labrute/experience/#arbre
+
+**Restriction for the skills:**  
+A brute can't have more than 3 [Main Stat boosters](https://mybrutemuxxu.fandom.com/wiki/Stat_Boosters)
+among the 4 existing ones (Vitality, Herculean Strength, Feline Agility, Lightning Bolt)
+
 
 ## Resources
 - French wiki : http://twin.tithom.fr/muxxu/labrute/
