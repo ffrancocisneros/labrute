@@ -14,6 +14,24 @@ class Skills {
 	
 	
 	/**
+	 * Creates a new property for each available skill (values "false" by default)
+	 * @return object { $Res->Armor = false, $Res->Immortality = false, ... }
+	 */
+	public function getDefaultSkills() {
+		
+		$Result = (object)[];
+		
+		foreach ($this->AvailableSkills as $available_skill) {
+							
+			$property = ucfirst($available_skill);
+			$Result->$property = false;
+		}
+		
+		return $Result;
+	}
+	
+	
+	/**
 	 * Checks that a skill we try to bind to a brute is allowed 
 	 * @param string $skill_alias The alias of the skill (e.g.: "resistant")
 	 * @throws Exception

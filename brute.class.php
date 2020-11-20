@@ -10,6 +10,7 @@
 		public $Strength;
 		public $Agility;
 		public $Speed;
+		public $Skills;
 		
 		private const LevelExponent = 2.3; //Same of MyBrute v1
 		
@@ -33,13 +34,6 @@
 			$this->Endurance = 3;
 			$this->Initiative = 0;
 			$this->MaxReceivableDamages = $this->Health;
-			//For the skills, this is levels, not points
-			$this->SkillArmor         = false;
-			$this->SkillFirstStrike   = false;
-			$this->SkillToughenedSkin = false;
-			$this->SkillVitality      = false;
-			$this->SkillImmortality   = false;
-			$this->SkillResistant     = false;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -77,7 +71,7 @@
 				}
 			}
 			
-			// Activate the skills owed by the brute
+			// Activate the skills owned by the brute
 			$this->bindSkills($brute_skills);
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
@@ -86,7 +80,7 @@
 			$this->setArmor();	
 			$this->setInitiative();
 			//Let this damages ceil after calculating health, because this needs the total health
-			$this->setMaxReceivableDamages($this->Health, $this->SkillResistant);
+			$this->setMaxReceivableDamages($this->Health, $this->Skills->Resistant);
 		}
 		
 		
@@ -105,29 +99,31 @@
 					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
 					"• <abbr title=\"If the brute owns the skill 'Resistant' (Increvable), he can't lose more than 20% of his total health per received hit\">Max damages per received hit</abbr>: ".$this->MaxReceivableDamages." HP<br>" .
 					'<strong>Skills levels:</strong><br>'.
-					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
-					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
-					'• First strike: '.$this->SkillFirstStrike.' lvl<br>' .
-					'• Immortality: '.$this->SkillImmortality.' lvl<br>'.
-					'• Resistant: '.$this->SkillResistant.' lvl<br>'.
-					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
+					'• Armor (skill): '.$this->Skills->Armor.' lvl<br>' .
+					'• Toughened skin: '.$this->Skills->ToughenedSkin.' lvl<br>' .
+					'• First strike: '.$this->Skills->FirstStrike.' lvl<br>' .
+					'• Immortality: '.$this->Skills->Immortality.' lvl<br>'.
+					'• Resistant: '.$this->Skills->Resistant.' lvl<br>'.
+					'• Vitality: '.$this->Skills->Vitality.' lvl<br>'.
 					'<br>';
 		}
 		
 		
 		/**
 		 * Activate the skills owned by the brute
-		 * @param type $brute_skills
+		 * @param array $brute_skills The aliases of the skills owned by the brute
+		 *							  ['resistant', 'skin', ...]
 		 */
 		private function bindSkills($brute_skills) {
 			
 			$Skills = new Skills();
+			$this->Skills = $Skills->getDefaultSkills();
 			
 			foreach ($brute_skills as $brute_skill) {
 				
 				$Skills->checkSkill($brute_skill);				
-				$property = 'Skill'.ucfirst($brute_skill);
-				$this->$property = true;
+				$property = ucfirst($brute_skill);
+				$this->Skills->$property = true;
 			}
 		}
 				
@@ -150,7 +146,7 @@
 		 */
 		private function setInitiative() {
 			//The skill "First strike" gives +200 initiative (real value)
-			$this->Initiative = ($this->SkillFirstStrike === true) ? $this->Initiative+200 : $this->Initiative;
+			$this->Initiative = ($this->Skills->FirstStrike === true) ? $this->Initiative+200 : $this->Initiative;
 		}
 		
 				
@@ -160,9 +156,9 @@
 		 */
 		private function setArmor() {			
 			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
-			$this->Armor += (int)$this->SkillArmor*5;
+			$this->Armor += (int)$this->Skills->Armor*5;
 			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
-			$this->Armor += (int)$this->SkillToughenedSkin*2;
+			$this->Armor += (int)$this->Skills->ToughenedSkin*2;
 		}
 		
 		
@@ -188,9 +184,9 @@
 		 */
 		private function setEndurance() {
 			//The skill Vitality gives +3 Endurance and +50% Endurance
-			$this->Endurance = ($this->SkillVitality === true) ? floor(($this->Endurance+3)*1.5) : $this->Endurance;
+			$this->Endurance = ($this->Skills->Vitality === true) ? floor(($this->Endurance+3)*1.5) : $this->Endurance;
 			//The skill Immortality gives +250% Endurance
-			$this->Endurance = ($this->SkillImmortality === true) ? floor($this->Endurance*2.5) : $this->Endurance;
+			$this->Endurance = ($this->Skills->Immortality === true) ? floor($this->Endurance*2.5) : $this->Endurance;
 		}
 		
 		
