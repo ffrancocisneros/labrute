@@ -54,7 +54,7 @@ Listing the variable/textual elements in JSON files :
    - 🧾 Change destiny after reaching a new XP level : 0% done
 - Apply the functionalities to the profiles of the players
    - 🧾 custom weapons list : TODO
-   - 🧾 custom skills list  : TODO
+   - ✔️ custom skills list  : done
    - 🧾 custom characteristics list : TODO
    - 🧾 custom pets list : TODO
 

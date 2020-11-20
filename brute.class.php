@@ -1,5 +1,6 @@
 <?php
-	require_once('random.class.php');
+	require_once 'random.class.php';
+	require_once 'skills.class.php';
 	
 	class Brute {
 		public $Name;
@@ -12,7 +13,7 @@
 		
 		private const LevelExponent = 2.3; //Same of MyBrute v1
 		
-		public function __construct($name, $identifier = 0, $experience = 1) {
+		public function __construct($name, $brute_skills, $identifier = 0, $experience = 1) {
 			$this->Name = $name;
 			
 			if ($identifier == 0) {
@@ -76,14 +77,8 @@
 				}
 			}
 			
-			// TODO: temporary values to simulate upgrades levels of these skills.
-			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
-			$this->SkillArmor = true;
-			$this->SkillFirstStrike = true;
-			$this->SkillToughenedSkin = true;
-			$this->SkillVitality = true;
-			$this->SkillImmortality = true;
-			$this->SkillResistant = true;
+			// Activate the skills owed by the brute
+			$this->bindSkills($brute_skills);
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
 			$this->setEndurance();
@@ -119,6 +114,23 @@
 					'<br>';
 		}
 		
+		
+		/**
+		 * Activate the skills owned by the brute
+		 * @param type $brute_skills
+		 */
+		private function bindSkills($brute_skills) {
+			
+			$Skills = new Skills();
+			
+			foreach ($brute_skills as $brute_skill) {
+				
+				$Skills->checkSkill($brute_skill);				
+				$property = 'Skill'.ucfirst($brute_skill);
+				$this->$property = true;
+			}
+		}
+				
 		
 		public function getLevel() {
 			return $this->experienceToLevel($this->Experience);
