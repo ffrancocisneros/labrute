@@ -72,7 +72,7 @@
 			}
 			
 			// Activate the skills owned by the brute
-			$this->bindSkills($brute_skills);
+			$this->Skills = $this->getBruteSkills($brute_skills);
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
 			$this->setEndurance();
@@ -111,20 +111,23 @@
 		
 		/**
 		 * Activate the skills owned by the brute
-		 * @param array $brute_skills The aliases of the skills owned by the brute
+		 * @param object $brute_skills The aliases of the skills owned by the brute
 		 *							  ['resistant', 'skin', ...]
+		 * @return object
 		 */
-		private function bindSkills($brute_skills) {
+		private function getBruteSkills($brute_skills) {
 			
 			$Skills = new Skills();
-			$this->Skills = $Skills->getDefaultSkills();
+			$Result = $Skills->getDefaultSkills();
 			
 			foreach ($brute_skills as $brute_skill) {
 				
 				$Skills->checkSkill($brute_skill);				
 				$property = ucfirst($brute_skill);
-				$this->Skills->$property = true;
+				$Result->$property = true;
 			}
+			
+			return $Result;
 		}
 				
 		
