@@ -124,7 +124,7 @@
 		 */
 		private function setInitiative() {
 			//The skill "First strike" gives +200 initiative (real value)
-			$this->Initiative = ($this->Skills->FirstStrike === true) ? $this->Initiative+200 : $this->Initiative;
+			$this->Initiative = $this->Initiative + (int)$this->Skills->FirstStrike*200;
 		}
 		
 				
