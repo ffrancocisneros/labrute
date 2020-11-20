@@ -84,31 +84,6 @@
 		}
 		
 		
-		public function htmlStats() {
-			
-			return	'Brute: '.$this->Name.'<br>' .
-					'Level: '.$this->getLevel().'<br>' .
-					'<strong>Main stats:</strong><br>'.
-					'• Health: '.$this->Health.' pts<br>' .
-					'• Strength: '.$this->Strength.' pts<br>' .
-					'• Agility: '.$this->Agility.' pts<br>' .
-					'• Speed: '.$this->Speed.' pts<br>' .
-					'<strong>Hidden stats:</strong><br>'.
-					'• Endurance: '.$this->Endurance.' pts<br>'.
-					'• Inititative: '.$this->Initiative.' pts<br>'.
-					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
-					"• <abbr title=\"If the brute owns the skill 'Resistant' (Increvable), he can't lose more than 20% of his total health per received hit\">Max damages per received hit</abbr>: ".$this->MaxReceivableDamages." HP<br>" .
-					'<strong>Skills levels:</strong><br>'.
-					'• Armor (skill): '.$this->Skills->Armor.' lvl<br>' .
-					'• Toughened skin: '.$this->Skills->ToughenedSkin.' lvl<br>' .
-					'• First strike: '.$this->Skills->FirstStrike.' lvl<br>' .
-					'• Immortality: '.$this->Skills->Immortality.' lvl<br>'.
-					'• Resistant: '.$this->Skills->Resistant.' lvl<br>'.
-					'• Vitality: '.$this->Skills->Vitality.' lvl<br>'.
-					'<br>';
-		}
-		
-		
 		/**
 		 * Activate the skills owned by the brute
 		 * @param object $brute_skills The aliases of the skills owned by the brute
