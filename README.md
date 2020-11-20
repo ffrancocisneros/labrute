@@ -24,7 +24,7 @@ Listing the variable/textual elements in JSON files :
    - ✔️ [Endurance](https://mybrutemuxxu.fandom.com/wiki/Endurance) (Endurance) (1 endurance point = +6 health points): done
    - ✔️ [Armor stat](https://mybrutemuxxu.fandom.com/wiki/Armor_(stat)) (Armure) (lowers the damages): 100% done
    - 🧾 Disarm Rate (Désarmer) (to disarm weapon or shield): TODO
-   - 🧾 Initiative (Initiative) (which brute starts the fight): TODO
+   - ⌛ Initiative (Initiative) (which brute starts the fight): 30% done (principle: done; skills effect: TODO; pets effect: TODO)
    - 🧾 Interval (no french doc ?) (more attacks with high "Speed" or a light weapon): TODO
    - 🧾 Combo Rate (Combo) (to hit several times in the same attack): TODO
    - 🧾 Block rate (Parade) (to totally block an attack) : TODO
@@ -41,8 +41,10 @@ Listing the variable/textual elements in JSON files :
    - 🧾 Specialities (passive aptitudes) : 0% done
       - ⌛ [Armor skill](https://mybrutemuxxu.fandom.com/wiki/Armor): 50% done (increases armor stat: done; decreases speed: TODO)
       - ✔️ [Toughened skin](https://mybrutemuxxu.fandom.com/wiki/Toughened_Skin): 100% done ✓ (increase armor stat: done)
-      - ✔️ [Vitality] (https://mybrutemuxxu.fandom.com/wiki/Vitality): done
-      - 🧾 [Immortality] (https://mybrutemuxxu.fandom.com/wiki/Immortality): TODO
+      - ✔️ [Vitality](https://mybrutemuxxu.fandom.com/wiki/Vitality): done
+      - ⌛ [Immortality](https://mybrutemuxxu.fandom.com/wiki/Immortality): 50% done (endurance +250%: done; all other stats -25%: TODO)
+      - ⌛ [Initiative](https://mybrutemuxxu.fandom.com/wiki/Initiative): 100% done (Initiative +200)
+      - ✔️ [Resistant](https://mybrutemuxxu.fandom.com/wiki/Resistant)/Increvable: done (max -20%HP per received hit)
       - (to be completed...)
 - 🧾 Implement the pets : 0% done
 - Implement the experience
@@ -52,7 +54,7 @@ Listing the variable/textual elements in JSON files :
    - 🧾 Change destiny after reaching a new XP level : 0% done
 - Apply the functionalities to the profiles of the players
    - 🧾 custom weapons list : TODO
-   - 🧾 custom skills list  : TODO
+   - ✔️ custom skills list  : done
    - 🧾 custom characteristics list : TODO
    - 🧾 custom pets list : TODO
 

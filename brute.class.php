@@ -1,5 +1,6 @@
 <?php
-	require_once('random.class.php');
+	require_once 'random.class.php';
+	require_once 'skills.class.php';
 	
 	class Brute {
 		public $Name;
@@ -9,10 +10,11 @@
 		public $Strength;
 		public $Agility;
 		public $Speed;
+		public $Skills;
 		
 		private const LevelExponent = 2.3; //Same of MyBrute v1
 		
-		public function __construct($name, $identifier = 0, $experience = 1) {
+		public function __construct($name, $brute_skills, $identifier = 0, $experience = 1) {
 			$this->Name = $name;
 			
 			if ($identifier == 0) {
@@ -30,10 +32,8 @@
 			$this->Speed    = 2;
 			$this->Armor    = 2;
 			$this->Endurance = 3;
-			//For the skills, this is levels, not points
-			$this->SkillArmor         = false;
-			$this->SkillToughenedSkin = false;
-			$this->SkillVitality      = false;
+			$this->Initiative = 0;
+			$this->MaxReceivableDamages = $this->Health;
 			
 			//Prepare the seed for this brute
 			$seed = hash('SHA512', $this->Name.$this->Identifier);
@@ -71,38 +71,40 @@
 				}
 			}
 			
-			// TODO: temporary values to simulate upgrades levels of these skills.
-			// This is the *skill* Armor (bonus), not to be confused with the *stat* Armor (total).
-			$this->SkillArmor = true;
-			$this->SkillToughenedSkin = true;
-			$this->SkillVitality = true;
+			// Activate the skills owned by the brute
+			$this->Skills = $this->getBruteSkills($brute_skills);
 			
 			//Calculate the endurance *before* calculating health, because endurance affects health!
 			$this->setEndurance();
 			$this->setHealth($this->Health, $level);
 			$this->setArmor();	
+			$this->setInitiative();
+			//Let this damages ceil after calculating health, because this needs the total health
+			$this->setMaxReceivableDamages($this->Health, $this->Skills->Resistant);
 		}
 		
 		
-		public function htmlStats() {
+		/**
+		 * Activate the skills owned by the brute
+		 * @param object $brute_skills The aliases of the skills owned by the brute
+		 *							  ['resistant', 'skin', ...]
+		 * @return object
+		 */
+		private function getBruteSkills($brute_skills) {
 			
-			return	'Brute: '.$this->Name.'<br>' .
-					'Level: '.$this->getLevel().'<br>' .
-					'<strong>Main stats:</strong><br>'.
-					'• Health: '.$this->Health.' pts<br>' .
-					'• Strength: '.$this->Strength.' pts<br>' .
-					'• Agility: '.$this->Agility.' pts<br>' .
-					'• Speed: '.$this->Speed.' pts<br>' .
-					'<strong>Hidden stats:</strong><br>'.
-					'• Endurance: '.$this->Endurance.'<br>'.
-					"• <abbr title=\"Base armor + skill Armor + skill Toughened Skin\nReduces damages made by contact weapons\nNo effect against thrown weapons (shurikens...)\">Armor (stat)</abbr>: ".$this->Armor." pts<br>" .
-					'<strong>Skills levels:</strong><br>'.
-					'• Armor (skill): '.$this->SkillArmor.' lvl<br>' .
-					'• Toughened skin: '.$this->SkillToughenedSkin.' lvl<br>' .
-					'• Vitality: '.$this->SkillVitality.' lvl<br>'.
-					'<br>';
+			$Skills = new Skills();
+			$Result = $Skills->getDefaultSkills();
+			
+			foreach ($brute_skills as $brute_skill) {
+				
+				$Skills->checkSkill($brute_skill);				
+				$property = ucfirst($brute_skill);
+				$Result->$property = true;
+			}
+			
+			return $Result;
 		}
-		
+				
 		
 		public function getLevel() {
 			return $this->experienceToLevel($this->Experience);
@@ -116,6 +118,15 @@
 			return intval(pow(($experience + 1), (1 / self::LevelExponent)));
 		}
 		
+		
+		/**
+		 * Calculates the Initiative points (aptitude to start the fight)
+		 */
+		private function setInitiative() {
+			//The skill "First strike" gives +200 initiative (real value)
+			$this->Initiative = $this->Initiative + (int)$this->Skills->FirstStrike*200;
+		}
+		
 				
 		/**
 		 * Calculates the total Armor (stat, not skill!) of the brute
@@ -123,9 +134,9 @@
 		 */
 		private function setArmor() {			
 			// The skill Armor increases the stat Armor of +5 (real value, see wiki)
-			$this->Armor += (int)$this->SkillArmor*5;
+			$this->Armor += (int)$this->Skills->Armor*5;
 			// The skill Thoughened Skin increases the stat Armor of +2 (real value, see wiki)
-			$this->Armor += (int)$this->SkillToughenedSkin*2;
+			$this->Armor += (int)$this->Skills->ToughenedSkin*2;
 		}
 		
 		
@@ -149,8 +160,21 @@
 		 * Calculates the total health points of the brute
 		 * @return int
 		 */
-		private function setEndurance() {			
+		private function setEndurance() {
 			//The skill Vitality gives +3 Endurance and +50% Endurance
-			$this->Endurance = ($this->SkillVitality === true) ? ($this->Endurance+3)*1.5 : $this->Endurance;
+			$this->Endurance = ($this->Skills->Vitality === true) ? floor(($this->Endurance+3)*1.5) : $this->Endurance;
+			//The skill Immortality gives +250% Endurance
+			$this->Endurance = ($this->Skills->Immortality === true) ? floor($this->Endurance*2.5) : $this->Endurance;
+		}
+		
+		
+		/**
+		 * Calculates the maximum damage points the brute can receive in one hit
+		 * @param int $total_health The total health of the brute when the fights starts
+		 * @param bool $skill_resistant "True" if the brute owns the skill "Resistant"
+		 */
+		private function setMaxReceivableDamages($total_health, $skill_resistant) {
+			//A brute with the skill "Resistant" can't have more than 20% HP damages per hit
+			$this->MaxReceivableDamages = ($skill_resistant === true) ? $total_health*0.2 : $total_health;
 		}
 	}
