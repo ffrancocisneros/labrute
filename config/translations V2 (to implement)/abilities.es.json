@@ -1,166 +1,170 @@
 {
-  "FierceBrute": {
-    "Ladrón": "Bruto Feroz",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¡Ahora eres más bruto que antes! Tus descargas son aún más violentas durante el combate."
+  "Ladrón": {
+    "Nombre": "Ladrón",
+    "Descripción": "Esta habilidad te permite robar discretamente el arma de tu oponente y luego usarla contra él".
   },
-  "TragicPotion": {
-    "Ladrón": "Poción Trágica",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Beeber un poooquito no haaace daaaño, ¡hip!  Este traguito restaura una parte de tu energía durante el combate."
+  "Fuerzabruta": {
+    "Nombre": "Fuerza bruta",
+    "Descripción": "Ahora eres un verdadero Bruto. Eres más poderoso y violento que nunca durante las peleas".
   },
-  "Net": {
-    "Ladrón": "Red",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Una red clásica. No es tan chula como la de Spiderman, pero al menos podrás inmovilizar a tu adversario hasta que le des un golpe."
+  "Pocióntrágica": {
+    "Nombre": "Poción trágica",
+    "Descripción": "Toma un sorbo de esto. Podría emborracharte un poco. Hic ... hic ... Este jugo de durazno te devuelve parte de la energía perdida durante la pelea"
   },
-  "Bomb": {
-    "Ladrón": "Bomba",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Es como lanzar un globito de agua, pero mucho más divertido."
+  "Red": {
+    "Nombre": "Red",
+    "Descripción": "Una red clásica. No es tan genial como el de Spiderman, pero es lo suficientemente buena para tu oponente ... Tu enemigo quedará inmovilizado hasta que lo golpees de nuevo".
   },
-  "Hammer": {
-    "Ladrón": "Martillo",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Una técnica de catch que consiste en saltar con el adversario y caer encima de él. Puede provocar heridas graves."
+  "Bomba": {
+    "Nombre": "Bomba",
+    "Descripción": "¡Un poco como una bomba de agua, pero mucho más mortal!"
   },
-  "CryOfTheDamned": {
-    "Ladrón": "Grito Maldito",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¿Bestias feroces? ¡Ja!... Pégales un grito y verás como saldrán corriendo."
+  "Martillo": {
+    "Nombre": "Martillo",
+    "Descripción": "Una técnica de captura que consiste en saltar en el aire con tu oponente y luego caer sobre él".
   },
-  "Hypnosis": {
-    "Ladrón": "Hipnosis",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Hueles como un animal, por eso los dominas como si fueran dóciles caniches."
+  "Gritodeloscondenados": {
+    "Nombre": "Grito de los condenados",
+    "Descripción": "¿Bestias feroces? Pfffff ... ¡Solo necesitas gritar y correrán por sus vidas!"
   },
-  "FlashFlood": {
-    "Ladrón": "Diluvio",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Pasearse por la calle con 100 kilos de armas es pesado. Pero has encontrado un modo eficaz de aligerar tu carga."
+  "Hipnosis": {
+    "Nombre": "Hipnosis",
+    "Descripción": "Cuando se trata de adiestrar animales domésticos, nadie se acerca a ti. Siguen todos tus llamados".
   },
-  "Tamer": {
-    "Ladrón": "Cazador",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Nada se desperdicia. Te comes todo lo que cae en la arena."
+  "Inundaciónrepentina": {
+    "Nombre": "Inundación repentina",
+    "Descripción": "Caminar llevando 100 kilos de armas es muy agotador, pero has encontrado una forma inteligente de viajar ligero".
   },
-  "HerculeanStrength": {
-    "Ladrón": "Fuerza de Hércules",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¡Lo sabemos, eres capaz de levantar un tanque de guerra! Pero de momento nada de eso... ¡tienes un adversario que destrozar!"
+  "Domador": {
+    "Nombre": "Domador",
+    "Descripción": "¡Recicla! ¡Hazlo parte de tu ciclo diario! Te devoras todos los cadáveres de la arena".
   },
-  "FelineAgility": {
-    "Ladrón": "Agilidad Felina",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Si estás aburrido, siempre puedes ir a masacrar al Bruto de enfrente."
+  "Fuerzadehercules": {
+    "Nombre": "Fuerza de hercules",
+    "Descripción": "Eres lo suficientemente fuerte para mover montañas, pero primero debes derrotar a tu oponente".
   },
-  "LightningBolt": {
-    "Ladrón": "Golpe del Rayo",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Eres más rápido que tu propia sombra. ¡Si yo fuera tu adversario, empezaría a rezar!"
+  "Agilidadfelina": {
+    "Nombre": "Agilidad felina",
+    "Descripción": "Ni siquiera tienes una bola de cuerda para jugar, pero siempre puedes golpear a un oponente".
   },
-  "Vitality": {
-    "Ladrón": "Vitalidad",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¡Tu esperanza de vida ha aumentado! Ahora podrás resistir más tiempo en pie frente a tu adversario."
+  "Golpe de rayo": {
+    "Nombre": "Golpe de rayo",
+    "Descripción": "Atacas más rápido que tu sombra y muerdes más fuerte que tus oponentes".
   },
-  "Immortality": {
-    "Ladrón": "Inmortal",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Tu salud ha alcanzado un nivel inimaginable. Te has convertido en la peor pesadilla para tus enemigos."
+  "Vitalidad": {
+    "Nombre": "Vitalidad",
+    "Descripción": "¡Tu esperanza de vida ha aumentado! Ahora podrás luchar durante más tiempo en la arena".
   },
-  "WeaponsMaster": {
-    "Ladrón": "Maestro de Armas",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Tu dominio de las armas blancas ha hecho de ti un tipo muy, pero muy peligroso."
+  "Inmortalidad": {
+    "Nombre": "Inmortalidad",
+    "Descripción": "¡Tu salud ha aumentado dramáticamente! Ahora será mucho más difícil para tus oponentes noquearte".
   },
-  "MartialArts": {
-    "Ladrón": "Artes Marciales",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¡Las clases de Chuck Norris han dado sus frutos! Puedes ser feo y tonto... pero nadie se reirá de ti."
+  "Maestrodearmas": {
+    "Nombre": "Maestro de armas",
+    "Descripción": "Después de haber dominado todas las armas filosas, eres una amenaza mucho mayor para tus oponentes".
   },
-  "6thSense": {
-    "Ladrón": "6º Sentido",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¡Tu vista de águila te permite anticipar las intenciones de tu adversario y golpeas antes que él!"
+  "Artesmarciales": {
+    "Nombre": "Artes marciales",
+    "Descripción": "¡El curso de Chuck Norris que tomaste realmente ha dado sus frutos! Ahora puedes caminar a donde quieras ... ¡y la mayoría de las veces estará en la cara fea de tu oponente!"
   },
-  "Hostility": {
-    "Ladrón": "Belicoso",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Después de todo eres un tipo generoso... ¡Cuando te tocan devuelves el golpe enseguida y hasta sin razón!"
+  "Sextosentido": {
+    "Nombre": "Sexto sentido",
+    "Descripción": "Tu vigilancia con ojos de águila te permite anticipar cuándo tus oponentes se acercan sigilosamente a ti. ¡Ahora, cuando ataques, no sabrán qué les golpeó!"
   },
-  "FistsOfFury": {
-    "Ladrón": "Tornado de Golpes",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "... la cucaracha, la cucaracha, ya no puede caminar, porque tu Bruto, porque tu Bruto, tararararará."
+  "Hostilidad": {
+    "Nombre": "Hostilidad",
+    "Descripción": "Eres muy educado cuando luchas en la arena. Siempre que uno de tus oponentes te ataca, devuelves el favor ... ¡gratis!"
   },
-  "Shield": {
-    "Ladrón": "Escudo",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Un escudo te protegerá de los golpes... bueno, a veces."
+  "Puñosdefuria": {
+    "Nombre": "Puños de furia",
+    "Descripción": "... y rascas, garras, muerdes, ¡esa es solo tu pequeña forma de demostrar amor! ¡Eres un torrente loco de amor mal dirigido!"
   },
-  "Armor": {
-    "Ladrón": "Armadura",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Una armadura: mucho mejor que una camiseta limpia. También sirve para frenar los golpes."
+  "Escudo": {
+    "Nombre": "Escudo",
+    "Descripción": "Un escudo. Para detener los golpes ... bueno, al menos algunos".
   },
-  "ToughenedSkin": {
-    "Ladrón": "Piel Reforzada",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "La evolución se hace a base de golpes. Tu Bruto posee ahora una piel más resistente."
+  "Armadura": {
+    "Nombre": "Armadura",
+    "Descripción": "¿Qué es esto? Es una armadura. La idea es que te la pongas encima de la camiseta para que no se ensucie. También ayuda a protegerte de los golpes de tu oponente".
   },
-  "Untouchable": {
-    "Ladrón": "Intocable",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Evitas los golpes fácilmente. Eso puede enojar mucho a tu enemigo."
+  "Pieldura": {
+    "Nombre": "Piel dura",
+    "Descripción": "Todos los golpes que has recibido hasta ahora te han ayudado a desarrollarte. Tu Bruto ahora es mucho más resistente y tiene una piel mucho más gruesa".
   },
-  "Sabotage": {
-    "Ladrón": "Vandalismo",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Algunos Brutos hacen vandalismo en la calle, pero tú  lo haces sobre tu adversario. Cada golpe te permite destruir una de sus armas."
+  "Intocable": {
+    "Nombre": "Intocable",
+    "Descripción": "Ahora puedes evitar los ataques mucho más fácilmente. Esto es realmente molesto ............ ¡pero solo para tus oponentes!"
   },
-  "Shock": {
-    "Ladrón": "Choque",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Tus golpes son tan espectaculares que tu adversario deja caer su propia arma... ¡Es muy útil para ganar nuevos fans!"
+  "Desarmar": {
+    "Nombre": "Desarmar",
+    "Descripción": "Algunos Brutes eligen destrozar las calles, ¡pero tú prefieres destrozar a tus oponentes! Cada golpe destruirá una de las armas de tu oponente".
   },
-  "Bodybuilder": {
-    "Ladrón": "Brazo Fuerte",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Manipulas las armas pesadas como si nada gracias a tus músculos de acero. Eres el Schwarzenegger de la maza."
+  "Conmoción": {
+    "Nombre": "Conmoción",
+    "Descripción": "Tu ataque toma a tu oponente por sorpresa y deja caer su arma. ¡Ahora puedes mostrársela a tus amigos!"
   },
-  "Relentless": {
-    "Ladrón": "Implacable",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Cuando repartes tortas, siempre llegan a su destino y nadie puede pararlas. ¡Tu enemigo puede empezar a sobarse!"
+  "Culturista": {
+    "Nombre": "Culturista",
+    "Descripción": "Gracias a tus enormes bíceps, ahora puedes usar armas pesadas. ¡Bravo Sr. Músculo!"
   },
-  "Survival": {
-    "Ladrón": "Supervivencia",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Los años de lucha te han vuelto casi invencible. Los golpes mortales te dejan con 1 punto de vida en lugar de dejarte fuera de combate."
+  "Implacable": {
+    "Nombre": "Implacable",
+    "Descripción": "Cuando atacas, siempre estás en el objetivo. Nadie puede detenerte. ¡Seguramente no tu oponente!"
   },
-  "LeadSkeleton": {
-    "Ladrón": "Esqueleto de Plomo",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "No es muy fácil de llevar, pero un refuerzo metálico de tu caja toráxica reducirá el impacto de los golpes."
+  "Supervivencia": {
+    "Nombre": "Supervivencia",
+    "Descripción": "Años de lucha te han hecho invencible. Los golpes mortales te han hecho ganar 1 punto de vida en lugar de noquearte".
   },
-  "BalletShoes": {
-    "Ladrón": "Bailarín",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Joaquín Cortés es un calcetín viejo al lado tuyo, te mueves tan bien que tus adversarios no logran ni tocarte."
+  "Esqueletoresistente": {
+    "Nombre": "Esqueleto resistente",
+    "Descripción": "Aunque es extremadamente pesado, un esqueleto de plomo es esencial ya que reduce considerablemente el daño por arma contundente".
   },
-  "Determination": {
-    "Ladrón": "Perseverante",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Nada te desanima, cada derrota te hace más fuerte. Incluso cuando golpeas al aire, le sigues golpeando."
+  "Zapatillasdeballet": {
+    "Nombre": "Zapatillas de ballet",
+    "Descripción": "¡Has dominado el baile del cisne, por lo que es imposible que tu oponente te alcance, siempre que no lo haya dominado también!"
   },
-  "FirstStrike": {
-    "Ladrón": "Sangre caliente",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Eres el más rápido del oeste: Ni bien tus adversarios han entrado en la arena y tu ya les diste un golpe."
+  "Determinación": {
+    "Nombre": "Determinación",
+    "Descripción": "¡Nada puede detenerte! ¡Cada derrota te hace más fuerte, si uno de tus golpes no llega, inmediatamente golpeas de nuevo!"
   },
-  "Resistant": {
-    "Ladrón": "Inagotable",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Dejarte en la lona, no es nada fácil... Se requiere por lo menos cinco buenas bofetadas."
+  "Primergolpe": {
+    "Nombre": "Primer golpe",
+    "Descripción": "Tus oponentes entran en la arena lentamente, tú prefieres llegar de inmediato! ¡Siempre eres el primero en atacar!"
   },
-  "Reconnaissance": {
-    "Ladrón": "Meditación",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Te tomas tu tiempo para analizar los puntos débiles de tu adversario, ¡pobre de él si se cruza en tu camino!"
+  "Resistente": {
+    "Nombre": "Resistente",
+    "Descripción": "Tus oponentes necesitan golpes interminables para noquearte. Se necesitan al menos 5 golpes antes de que sientas algo".
   },
-  "Counter-Attack": {
-    "Ladrón": "Contra",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "¿Intentaron golpearte? ¡Eso no se puede quedar así! Por cada golpe evitado, respondes al instante."
+  "Reconocimiento": {
+    "Nombre": "Reconocimiento",
+    "Descripción": "Estás preparado para tomarte tu tiempo para analizar las debilidades de tu oponente, pero una vez que comienzas a luchar, nada te detendrá".
   },
-  "IronHead": {
-    "Ladrón": "Cabeza de Acero",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Cuando tu adversario piensa en lanzar un golpe, debe prepararse a recibir uno."
+  "Contraataque": {
+    "Nombre": "Contraataque",
+    "Descripción": "¿Cuál es la mejor forma de ataque? ¡Defensa, por supuesto! Contraatacarás inmediatamente después de bloquear el golpe de tu oponente".
   },
-  "Regeneration": {
-    "Ladrón": "Regeneración",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Gracias a tu extraordinaria capacidad de cicatrización no te pierdes ningún combate"
+  "CabezadeHierro": {
+    "Nombre": "Cabeza de hierro",
+    "Descripción": "¡Tu oponente será dañado por sus propios golpes!"
+  },
+  "Regeneración": {
+    "Nombre": "Regeneración",
+    "Descripción": "¡Debido a tu extraordinaria habilidad para curarte a ti mismo, nunca pierdes una pelea!"
   },
   "Chef": {
-    "Ladrón": "Jefe",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Todos los Brutos lo saben, el combate empieza antes de entrar a la arena. Y terminan... en la cantina."
+    "Nombre": "Chef",
+    "Descripción": "¡Todos los brutos saben que la pelea más grande es en la taberna, no en la arena!"
   },
-  "Spy": {
-    "Ladrón": "Espía",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Unos guiños de ojo y una buena fuente de información pueden evitarte una larga estadía en el hospital."
+  "Espía": {
+    "Nombre": "Espía",
+    "Descripción": "Al realizar algunas de nuestras misiones de reconocimiento antes de la pelea, evitará largas visitas al hospital".
   },
-  "Saboteur": {
-    "Ladrón": "Saboteador",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Desde pequeño ya les sacabas la lengua a tus amigos, hoy eres un verdadero carnicero."
+  "Saboteador": {
+    "Nombre": "Saboteador",
+    "Descripción": "Desde martillos de espuma hasta espadas de plástico, ¡eres el rey de las armas falsas! Tus oponentes no se darán cuenta hasta que sea demasiado tarde".
   },
-  "Backup": {
-    "Ladrón": "Refuerzos",
-    "Esta competencia te permite tomar discretamente el arma de tu adversario y usarla sobre él.": "Porque los amigos de tus amigos también son tus amigos, repartes bofetadas en los combates de tus compañeros."
+  "Compartir": {
+    "Nombre": "Compartir",
+    "Descripción": "La amistad se trata de compartir. Por suerte para ti, has aprendido a compartir tus golpes con tus oponentes para que ellos también puedan tener algunos".
   }
 }
