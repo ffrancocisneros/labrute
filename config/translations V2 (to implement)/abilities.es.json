@@ -1,0 +1,170 @@
+{
+  "Ladrón": {
+    "Nombre": "Ladrón",
+    "Descripción": "Esta habilidad te permite robar discretamente el arma de tu oponente y luego usarla contra él".
+  },
+  "Fuerzabruta": {
+    "Nombre": "Fuerza bruta",
+    "Descripción": "Ahora eres un verdadero Bruto. Eres más poderoso y violento que nunca durante las peleas".
+  },
+  "Pocióntrágica": {
+    "Nombre": "Poción trágica",
+    "Descripción": "Toma un sorbo de esto. Podría emborracharte un poco. Hic ... hic ... Este jugo de durazno te devuelve parte de la energía perdida durante la pelea"
+  },
+  "Red": {
+    "Nombre": "Red",
+    "Descripción": "Una red clásica. No es tan genial como la de Spiderman, pero es lo suficientemente buena para tu oponente ... Tu enemigo quedará inmovilizado hasta que lo golpees de nuevo".
+  },
+  "Bomba": {
+    "Nombre": "Bomba",
+    "Descripción": "¡Es como una bomba de agua, pero mucho más mortal!"
+  },
+  "Martillo": {
+    "Nombre": "Martillo",
+    "Descripción": "Una técnica de captura que consiste en saltar en el aire con tu oponente y luego caer sobre él".
+  },
+  "Gritodeloscondenados": {
+    "Nombre": "Grito de los condenados",
+    "Descripción": "¿Bestias feroces? Pfffff ... ¡Solo necesitas gritar y correrán por sus vidas!"
+  },
+  "Hipnosis": {
+    "Nombre": "Hipnosis",
+    "Descripción": "Cuando se trata de adiestrar animales domésticos, nadie se acerca a ti. Siguen todos tus llamados".
+  },
+  "Inundaciónrepentina": {
+    "Nombre": "Inundación repentina",
+    "Descripción": "Caminar llevando 100 kilos de armas es muy agotador, pero has encontrado una forma inteligente de viajar ligero".
+  },
+  "Cazador": {
+    "Nombre": "Cazador",
+    "Descripción": "¡Nada se despercicia. Te comes todo lo que cae en la arena, incluso animales".
+  },
+  "Fuerzadehercules": {
+    "Nombre": "Fuerza de hercules",
+    "Descripción": "Eres lo suficientemente fuerte para mover montañas, pero primero debes derrotar a tu oponente".
+  },
+  "Agilidadfelina": {
+    "Nombre": "Agilidad felina",
+    "Descripción": "No tienes una bola de estambre para jugar, pero si a tus oponentes".
+  },
+  "Golpe de rayo": {
+    "Nombre": "Golpe de rayo",
+    "Descripción": "Atacas más rápido que tu sombra y muerdes más fuerte que tus oponentes".
+  },
+  "Vitalidad": {
+    "Nombre": "Vitalidad",
+    "Descripción": "¡Tu esperanza de vida ha aumentado! Ahora podrás luchar durante más tiempo en la arena".
+  },
+  "Inmortalidad": {
+    "Nombre": "Inmortalidad",
+    "Descripción": "¡Tu salud ha aumentado dramáticamente! Ahora será mucho más difícil para tus oponentes noquearte".
+  },
+  "Maestrodearmas": {
+    "Nombre": "Maestro de armas",
+    "Descripción": "Después de haber dominado todas las armas filosas, eres una amenaza mucho mayor para tus oponentes".
+  },
+  "Artesmarciales": {
+    "Nombre": "Artes marciales",
+    "Descripción": "¡El curso de Chuck Norris que tomaste realmente ha dado sus frutos! Ahora puedes caminar a donde quieras ... ¡y la mayoría de las veces estará en la cara fea de tu oponente!"
+  },
+  "Sextosentido": {
+    "Nombre": "Sexto sentido",
+    "Descripción": "Tus ojos de águila te permite anticipar cuándo tus oponentes se acercan sigilosamente a ti. ¡Ahora, cuando ataques, no sabrán qué les golpeó!"
+  },
+  "Belicoso": {
+    "Nombre": "Belicoso",
+    "Descripción": "Eres muy educado cuando luchas en la arena. Siempre que uno de tus oponentes te ataca, devuelves el favor ... ¡gratis!"
+  },
+  "Puñosdefuria": {
+    "Nombre": "Puños de furia",
+    "Descripción": "... rascas, garras y muerdes, ¡esa es solo tu pequeña forma de demostrar amor! ¡Eres un torrente loco de amor mal dirigido!"
+  },
+  "Escudo": {
+    "Nombre": "Escudo",
+    "Descripción": "Un escudo. Para detener los golpes ... bueno, al menos algunos".
+  },
+  "Armadura": {
+    "Nombre": "Armadura",
+    "Descripción": "¿Qué es esto? Es una armadura. La idea es que te la pongas encima de la camiseta para que no se ensucie. También ayuda a protegerte de los golpes de tu oponente".
+  },
+  "Pieldura": {
+    "Nombre": "Piel dura",
+    "Descripción": "Todos los golpes que has recibido hasta ahora te han ayudado a desarrollarte. Tu Bruto ahora es mucho más resistente y tiene una piel mucho más gruesa".
+  },
+  "Intocable": {
+    "Nombre": "Intocable",
+    "Descripción": "Ahora puedes evitar los ataques mucho más fácilmente. Esto es realmente molesto ............ ¡pero solo para tus oponentes!"
+  },
+  "Desarmar": {
+    "Nombre": "Desarmar",
+    "Descripción": "Algunos Brutos eligen destrozar las calles, ¡pero tú prefieres destrozar a tus oponentes! Cada golpe destruirá una de las armas de tu oponente".
+  },
+  "Conmoción": {
+    "Nombre": "Conmoción",
+    "Descripción": "Tu ataque toma a tu oponente por sorpresa y deja caer su arma."
+  },
+  "Culturista": {
+    "Nombre": "Culturista",
+    "Descripción": "Gracias a tus enormes bíceps, ahora puedes usar armas pesadas. ¡Bravo Mr. Músculo!"
+  },
+  "Implacable": {
+    "Nombre": "Implacable",
+    "Descripción": "Cuando atacas, siempre estás pegado al objetivo. Nadie puede detenerte. ¡Seguramente no tu oponente!"
+  },
+  "Supervivencia": {
+    "Nombre": "Supervivencia",
+    "Descripción": "Años de lucha te han hecho invencible. Los golpes mortales te han hecho ganar 1 punto de vida en lugar de noquearte".
+  },
+  "Esqueletoresistente": {
+    "Nombre": "Esqueleto resistente",
+    "Descripción": "Aunque es extremadamente pesado, un esqueleto de plomo es esencial ya que reduce considerablemente el daño por arma contundente".
+  },
+  "Zapatillasdeballet": {
+    "Nombre": "Zapatillas de ballet",
+    "Descripción": "¡Has dominado el baile del cisne, por lo que es imposible que tu oponente te alcance, siempre que no lo haya dominado también!"
+  },
+  "Determinación": {
+    "Nombre": "Determinación",
+    "Descripción": "¡Nada puede detenerte! ¡Cada derrota te hace más fuerte, si uno de tus golpes no llega, inmediatamente golpeas de nuevo!"
+  },
+  "Primergolpe": {
+    "Nombre": "Primer golpe",
+    "Descripción": "Tus oponentes entran en la arena lentamente, tú prefieres llegar de inmediato! ¡Siempre eres el primero en atacar!"
+  },
+  "Resistente": {
+    "Nombre": "Resistente",
+    "Descripción": "Tus oponentes necesitan golpes interminables para noquearte. Se necesitan al menos 5 golpes antes de que sientas algo".
+  },
+  "Reconocimiento": {
+    "Nombre": "Reconocimiento",
+    "Descripción": "Estás preparado para tomarte tu tiempo para analizar las debilidades de tu oponente, pero una vez que comienzas a luchar, nada te detendrá".
+  },
+  "Contraataque": {
+    "Nombre": "Contraataque",
+    "Descripción": "¿Cuál es la mejor forma de ataque? ¡Defensa, por supuesto! Contraatacarás inmediatamente después de bloquear el golpe de tu oponente".
+  },
+  "CabezadeHierro": {
+    "Nombre": "Cabeza de hierro",
+    "Descripción": "¡Tu oponente será dañado por sus propios golpes!"
+  },
+  "Regeneración": {
+    "Nombre": "Regeneración",
+    "Descripción": "¡Debido a tu extraordinaria habilidad para curarte a ti mismo, nunca pierdes una pelea!"
+  },
+  "Chef": {
+    "Nombre": "Chef",
+    "Descripción": "¡Todos los brutos saben que la pelea más grande es en la taberna, no en la arena!"
+  },
+  "Espía": {
+    "Nombre": "Espía",
+    "Descripción": "Al realizar algunas de nuestras misiones de reconocimiento antes de la pelea, evitará largas visitas al hospital".
+  },
+  "Saboteador": {
+    "Nombre": "Saboteador",
+    "Descripción": "Desde martillos de espuma hasta espadas de plástico, ¡eres el rey de las armas falsas! Tus oponentes no se darán cuenta hasta que sea demasiado tarde".
+  },
+  "Compartir": {
+    "Nombre": "Compartir",
+    "Descripción": "La amistad se trata de compartir. Por suerte para ti, has aprendido a compartir tus golpes con tus oponentes para que ellos también puedan tener algunos".
+  }
+}
