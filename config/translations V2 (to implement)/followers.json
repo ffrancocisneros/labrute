@@ -1,0 +1,82 @@
+{
+  "DogA": {
+    "Name": {
+      "en": "Dog A",
+      "fr": "Chien A",
+      "es": "Perro A",
+      "de": "Hund A"
+    },
+    "Strength": 6,
+    "Agility": 5,
+    "Speed": 3,
+    "Endurance": -6,
+    "Combo": 10,
+    "Evasion": 0,
+    "Initiative": 10,
+    "Weapon": "Fangs"
+  },
+  "DogB": {
+    "Name": {
+      "en": "Dog B",
+      "fr": "Chien B",
+      "es": "Perro B",
+      "de": "Hund B"
+    },
+    "Strength": 6,
+    "Agility": 5,
+    "Speed": 3,
+    "Endurance": -6,
+    "Combo": 10,
+    "Evasion": 0,
+    "Initiative": 10,
+    "Weapon": "Fangs"
+  },
+  "DogC": {
+    "Name": {
+      "en": "Dog C",
+      "fr": "Chien C",
+      "es": "Perro C",
+      "de": "Hund C"
+    },
+    "Strength": 6,
+    "Agility": 5,
+    "Speed": 3,
+    "Endurance": -6,
+    "Combo": 10,
+    "Evasion": 0,
+    "Initiative": 10,
+    "Weapon": "Fangs"
+  },
+  "Panther": {
+    "Name": {
+      "en": "Panther",
+      "fr": "Panthère",
+      "es": "Pantera",
+      "de": "Panther"
+    },
+    "Strength": 23,
+    "Agility": 16,
+    "Speed": 24,
+    "Endurance": -4,
+    "Combo": 60,
+    "Evasion": 20,
+    "Initiative": 60,
+    "Weapon": "Fangs"
+  },
+  "Bear": {
+    "Name": {
+      "en": "Bear",
+      "fr": "Ours",
+      "es": "Oso",
+      "de": "Bär"
+    },
+    "Strength": 40,
+    "Agility": 2,
+    "Speed": 1,
+    "Endurance": 10,
+    "Combo": -20,
+    "Evasion": 0,
+    "Initiative": 360,
+    "Weapon": "Hands"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "Thief": {
+    "Name": "Dieb",
+    "Description": "Mit dieser Fähigkeit kannst du dir die Waffe deines Gegners ausleihen und sie an ihm ausprobieren."
+  },
+  "FierceBrute": {
+    "Name": "Wilde Bestie",
+    "Description": "Du bist jetzt ein richtiger Brutalo! Noch viel brutaler und grausamer als vorher. In deinen Kämpfen lässt du richtig dicke Schlagladungen von dir."
+  },
+  "TragicPotion": {
+    "Name": "Tragischer Trank",
+    "Description": "Komm her, ich schenk dir ein! Austeilen macht dir so richtig Spaß! Jupp, das weckt Lebenskräfte."
+  },
+  "Net": {
+    "Name": "Netz",
+    "Description": "Ein Kampfnetz - ist zwar nicht ganz so cool wie das von Spiderman, aber es hilft: Dein Gegner verheddert sich und kann dann von dir vermöbelt werden."
+  },
+  "Bomb": {
+    "Name": "Bombe",
+    "Description": "Das Ding hier ist 'ne Art Wasserbombe - nur noch fieser."
+  },
+  "Hammer": {
+    "Name": "Dampfhammer",
+    "Description": "Der Dampfhammer! Wer kennt ihn nicht? Eine klassische Catchtechnik. Spring mit deinem Gegner in die Luft und fall mit ihm danach auf den Boden!"
+  },
+  "CryOfTheDamned": {
+    "Name": "Höllenschrei",
+    "Description": "Wilde Bestien?! Das da? Pffff... Du musst nur ein wenig schreien, dann ergreifen sie schon die Flucht! Dass ich nicht lache!"
+  },
+  "Hypnosis": {
+    "Name": "Hypnose",
+    "Description": "Im Haustiere zähmen macht dir keiner so schnell was vor. Die Viecher gehorchen dir aufs Wort."
+  },
+  "FlashFlood": {
+    "Name": "Sintflut",
+    "Description": "100 Kilo Waffen mit sich herumzuschleppen ist auf die Dauer etwa mühsam... aber du hast dir etwas Geniales einfallen lassen."
+  },
+  "Tamer": {
+    "Name": "Dompteur",
+    "Description": "Recycling! Mach es zum Teil deines Lebens! Du sammelst alle Leichen in der Arena ein."
+  },
+  "HerculeanStrength": {
+    "Name": "Herkulische Kräfte",
+    "Description": "Du bist so stark, du kannst sogar Berge verschieben! Im Moment hast du aber noch einen Gegner vor dir."
+  },
+  "FelineAgility": {
+    "Name": "Katzenflinkheit",
+    "Description": "Du hast gerade keinen Wollknäuel zum Spielen, aber vielleicht willst du ja den Brutalo vor dir ärgern."
+  },
+  "LightningBolt": {
+    "Name": "Blitzschlag",
+    "Description": "Deine Schläge landen schneller bei deinem Gegner als dieser überhaupt blinzeln kann."
+  },
+  "Vitality": {
+    "Name": "Vitalität",
+    "Description": "Deine Lebenserwartung ist soeben gestiegen! Du wirst ab sofort länger in der Arena durchhalten."
+  },
+  "Immortality": {
+    "Name": "Unsterblichkeit",
+    "Description": "Du bist so gesund wie noch nie zuvor! Wer soll DICH jetzt im Kampf noch schlagen?!"
+  },
+  "WeaponsMaster": {
+    "Name": "Waffenmeister",
+    "Description": "Du hast deine Waffenkunst perfektioniert. Ab sofort fügst du deinem Gegner mit deinen Hieb- und Stichwaffen noch mehr Schaden zu."
+  },
+  "MartialArts": {
+    "Name": "Kampfkunst",
+    "Description": "Chuck Norris' Nachhilfestunden zahlen sich so langsam aus! Deine Schläge landen dort, wo du sie haben willst - im Gesicht deines Gegners!"
+  },
+  "6thSense": {
+    "Name": "Sechster Sinn",
+    "Description": "Dank deines geschärften Kampfsinns bist du in der Lage, die miesen Tricks deines Gegners zu erahnen und ihm zuvorzukommen."
+  },
+  "Hostility": {
+    "Name": "Kämpfernatur",
+    "Description": "Du bist in der Arena nicht gerade zimperlich... Sobald du einsteckst, teilst du sofort wieder aus - und das nicht zu knapp!"
+  },
+  "FistsOfFury": {
+    "Name": "Schlaggewitter",
+    "Description": "... du drischst, drischst, drischst und drischst auf deinen Gegner ein und vergisst alles um dich herum. Hurrikan Katrina ist ein Witz gegen dich!"
+  },
+  "Shield": {
+    "Name": "Schild",
+    "Description": "Mit einem Schild kannst du Schläge abwehren. Na, wer's braucht..."
+  },
+  "Armor": {
+    "Name": "Rüstung",
+    "Description": "Das ist eine Rüstung, Kleiner. So'n Ding ziehst du dir übers T-Shirt, damit es nicht schmutzig wird. Außerdem hilft es dir, Angriffe abzuwehren."
+  },
+  "ToughenedSkin": {
+    "Name": "Elefantenhaut",
+    "Description": "Durch das ganze Prügeln wirst du zwangsläufig irgendwann mal stärker. Dein Brutalo hat sich eine lederne dicke Haut angekämpft!"
+  },
+  "Untouchable": {
+    "Name": "Unberührbarkeit",
+    "Description": "Es fällt dir immer einfacher, den Schlägen deines Gegners auszuweichen. Das geht dem mächtig auf den Senkel."
+  },
+  "Sabotage": {
+    "Name": "Sabotage",
+    "Description": "Manche Brutalos lieben es, Straßenzüge zu verwüsten, doch du verwüstet lieber die Waffen deines Gegners. He he!"
+  },
+  "Shock": {
+    "Name": "Schock",
+    "Description": "Deine Schläge kommen derart überraschend, dass dein Gegner vor lauter Schreck seine Waffe fallen lässt... Nutze diese Gelegenheit!"
+  },
+  "Bodybuilder": {
+    "Name": "Mächtiger Arm",
+    "Description": "Deine kräftigen Oberarme schwingen deine Waffen so kinderleicht wie ein Mikro. Du bist der Thomas Gottschalk der Keulenschwinger!"
+  },
+  "Relentless": {
+    "Name": "Gnadenlos",
+    "Description": "Keine Ahnung wie du das machst, aber deine Ohrfeigen finden immer ihr Ziel. Niemand kann sich ihnen entziehen. Dein Gegner schon mal gar nicht."
+  },
+  "Survival": {
+    "Name": "Überleben",
+    "Description": "Zahlreiche Jahre harter Kämpfe haben dich fast unverwundbar gemacht. Selbst nach normalerweise tödlichen Schlägen bleibt dir noch ein Lebenspunkt übrig."
+  },
+  "LeadSkeleton": {
+    "Name": "Bleiskelett",
+    "Description": "Auch wenn es extrem viel wiegt, ein Bleiskelett ist nötig, es schwächt Schaden durch stumpfe Waffen erheblich ab."
+  },
+  "BalletShoes": {
+    "Name": "Ballettschuhe",
+    "Description": "Du hast den Tanz des Schwans erlernt. Solange dein Gegner ihn nicht ebenfalls beherrscht, kann er nicht nahe an dich rankommen."
+  },
+  "Determination": {
+    "Name": "Entschlossenheit",
+    "Description": "Nichts kann dich aufhalten! Jede Niederlage macht dich nur stärker. Geht einer deiner Schläge mal daneben, haust du sofort erneut zu."
+  },
+  "FirstStrike": {
+    "Name": "Erstschlag",
+    "Description": "Deine Gegner betreten gemächlich die Arena. Aber du kommst lieber direkt zur Sache! Der erste Angriff gehört immer dir!"
+  },
+  "Resistant": {
+    "Name": "Resistenz",
+    "Description": "Dein Gegner muss endlos auf dich einschlagen, um dich k.o. zu hauen. Du musst mindestens 5 Schläge einstecken, ehe du überhaupt etwas spürst."
+  },
+  "Reconnaissance": {
+    "Name": "Kampfsinn",
+    "Description": "Du nimmst dir von nun an die Zeit, die Schwachstellen deines Gegners herauszufinden. Wenn du dann loslegst, wird dich nichts aufhalten können."
+  },
+  "Counter-Attack": {
+    "Name": "Konterangriff",
+    "Description": "Die beste Art anzugreifen? Durch Verteidigung natürlich! Du schlägst sofort zurück, sobald du einen Schlag deines Gegners abgeblockt hast."
+  },
+  "IronHead": {
+    "Name": "Eisenschädel",
+    "Description": "Dein Gegner wird durch seine eigenen Schläge verletzt!"
+  },
+  "Regeneration": {
+    "Name": "Regeneration",
+    "Description": "Dank deiner außergewöhnlichen Selbstheilungskräfte verlierst du nie einen Kampf!"
+  },
+  "Chef": {
+    "Name": "Chef",
+    "Description": "Jeder Brutalo weiß - die größten Kämpfe werden nicht in der Arena ausgetragen, sondern in der Kantine."
+  },
+  "Spy": {
+    "Name": "Spion",
+    "Description": "Durch Schärfen deiner Sinne vor dem Kampf vermeidest du lange Krankenhausaufenthalte."
+  },
+  "Saboteur": {
+    "Name": "Saboteur",
+    "Description": "Von Schwamm-Hämmern bis zu Plastik-Schwertern, du bist der König der Waffen-Attrappen! Bis deine Gegner das merken, ist es schon zu spät für sie."
+  },
+  "Backup": {
+    "Name": "Backup",
+    "Description": "Bei Freundschaft geht es um's Teilen. Gut dass du gelernt hast, Schläge auszuteilen. So haben deine Gegner auch was davon."
+  }
+}

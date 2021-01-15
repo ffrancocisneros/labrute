@@ -1,0 +1,170 @@
+{
+  "Thief": {
+    "Name": "Thief",
+    "Description": "This skill allows you to discreetly steal your opponent's weapon and then use it against him."
+  },
+  "FierceBrute": {
+    "Name": "Fierce Brute",
+    "Description": "Now you're a real Brute. You're more powerful and violent than ever during fights."
+  },
+  "TragicPotion": {
+    "Name": "Tragic Potion",
+    "Description": "Have a little sip of this. It could make you a bit drunk. Hic... hic... This peach juice restores some of your energy lost during the fight"
+  },
+  "Net": {
+    "Name": "Net",
+    "Description": "A classic net. Not as cool as Spiderman's, but it's good enough for your opponent... Your enemy will be immobilised until you hit him again."
+  },
+  "Bomb": {
+    "Name": "Bomb",
+    "Description": "A bit like a water bomb, but far more deadly!"
+  },
+  "Hammer": {
+    "Name": "Hammer",
+    "Description": "A catching technique which consists of jumping into the air with your opponent, and then falling on top of him."
+  },
+  "CryOfTheDamned": {
+    "Name": "Cry of the Damned",
+    "Description": "Fierce beasts? Pfffff... You only need to scream and they'll run for their lives!"
+  },
+  "Hypnosis": {
+    "Name": "Hypnosis",
+    "Description": "When it comes to training domestic animals, no one comes close to you. They follow your every beck and call."
+  },
+  "FlashFlood": {
+    "Name": "Flash Flood",
+    "Description": "Walking around carrying 100 kilos of weapons is very tiring but you have found a clever way of travelling light."
+  },
+  "Tamer": {
+    "Name": "Tamer",
+    "Description": "Recycle! Make it part of your everyday cycle! You gobble up all the dead bodies in the arena."
+  },
+  "HerculeanStrength": {
+    "Name": "Herculean Strength",
+    "Description": "You're strong enough to move mountains, but first you must defeat your opponent."
+  },
+  "FelineAgility": {
+    "Name": "Feline Agility",
+    "Description": "You don't even have a ball of string to play with, but you can always thump an opponent."
+  },
+  "LightningBolt": {
+    "Name": "Lightning Bolt",
+    "Description": "You strike faster than your shadow and bite harder than your opponents."
+  },
+  "Vitality": {
+    "Name": "Vitality",
+    "Description": "Your life expectancy has increased! You'll now be able to fight for longer in the arena."
+  },
+  "Immortality": {
+    "Name": "Immortality",
+    "Description": "Your health has increased dramatically! Now it'll be much harder for your opponents to knock you out."
+  },
+  "WeaponsMaster": {
+    "Name": "Weapons Master",
+    "Description": "After having mastered all edged weapons, you're a much bigger threat to your opponents."
+  },
+  "MartialArts": {
+    "Name": "Martial Arts",
+    "Description": "The Chuck Norris course you took has really paid off! Now you can walk wherever you want... and more often than not it'll be all over your opponent's ugly face!"
+  },
+  "6thSense": {
+    "Name": "6th Sense",
+    "Description": "Your eagle-eyed vigilance allows you to anticipate when your opponents are sneaking up on you. Now when you attack they won't know what hit them!"
+  },
+  "Hostility": {
+    "Name": "Hostility",
+    "Description": "You're very polite when you're fighting in the arena. Whenever one of your opponents attacks you, you return the favour......for free!"
+  },
+  "FistsOfFury": {
+    "Name": "Fists of Fury",
+    "Description": "... and you scratch, claw, bite, that's just your little way of showing love! You're a mad torrent of misdirected love!"
+  },
+  "Shield": {
+    "Name": "Shield",
+    "Description": "A shield. To stop the blows...well, some of them at least."
+  },
+  "Armor": {
+    "Name": "Armor",
+    "Description": "What's this? It's a coat of armour. The idea is that you put it on over your t-shirt so that it doesn't get dirty. It also helps to protect you from your opponent's blows."
+  },
+  "ToughenedSkin": {
+    "Name": "Toughened Skin",
+    "Description": "All the knocks you've taken up until now have actually helped you to develop. Your Brute is now much tougher and has a much thicker skin."
+  },
+  "Untouchable": {
+    "Name": "Untouchable",
+    "Description": "You can now avoid attacks much more easily. This is really annoying............but only for your opponents!"
+  },
+  "Sabotage": {
+    "Name": "Sabotage",
+    "Description": "Some Brutes choose to vandalise the streets, but you prefer to vandalise your opponents! Each blow will destroy one of your opponent's weapons."
+  },
+  "Shock": {
+    "Name": "Shock",
+    "Description": "Your attack takes your opponent by surprise and he drops his weapon. Now you can show it off to your friends!"
+  },
+  "Bodybuilder": {
+    "Name": "Bodybuilder",
+    "Description": "Thanks to your huge biceps you can now use heavy weapons. Bravo Mr Muscle!"
+  },
+  "Relentless": {
+    "Name": "Relentless",
+    "Description": "When you attack, you're always on target. Nobody can stop you. Most certainly not your opponent!"
+  },
+  "Survival": {
+    "Name": "Survival",
+    "Description": "Years of fighting have made you invincible. Mortal blows have gained you 1 life point instead of knocking you out."
+  },
+  "LeadSkeleton": {
+    "Name": "Lead Skeleton",
+    "Description": "Although it's extremely heavy, a lead skeleton is essential as it considerably reduces blunt weapon damage."
+  },
+  "BalletShoes": {
+    "Name": "Ballet Shoes",
+    "Description": "You've mastered the swan dance, making it impossible for your opponent to reach you, as long as he hasn't mastered it too!"
+  },
+  "Determination": {
+    "Name": "Determination",
+    "Description": "Nothing can stop you! Each defeat makes you stronger, if one of your blows fails to land, you immediately strike again!"
+  },
+  "FirstStrike": {
+    "Name": "First Strike",
+    "Description": "Your opponents enter the arena slowly, but you prefer to get stuck in straight away! You're always the first to attack!"
+  },
+  "Resistant": {
+    "Name": "Resistant",
+    "Description": "It takes your opponents endless blows to knock you out. It takes at least 5 blows before you feel anything."
+  },
+  "Reconnaissance": {
+    "Name": "Reconnaissance",
+    "Description": "You're prepared to take your time in order to analyse your opponent's weaknesses, but once you start fighting, nothing will stop you."
+  },
+  "Counter-Attack": {
+    "Name": "Counter-Attack",
+    "Description": "What's the best form of attack? Defense of course! You'll immediately strike back after blocking your opponent's blow."
+  },
+  "IronHead": {
+    "Name": "Iron Head",
+    "Description": "Your opponent will be damaged by his own blows!"
+  },
+  "Regeneration": {
+    "Name": "Regeneration",
+    "Description": "Due to your extraordinary ability to heal yourself, you never lose a fight!"
+  },
+  "Chef": {
+    "Name": "Chef",
+    "Description": "All brutes know that the biggest fight is in the canteen, not the arena!"
+  },
+  "Spy": {
+    "Name": "Spy",
+    "Description": "By carrying our some reconnaissance missions before your fight, you’ll avoid long hospital visits."
+  },
+  "Saboteur": {
+    "Name": "Saboteur",
+    "Description": "From foam hammers to plastic swords, you’re fake weapon king! Your opponents won’t notice until it’s too late."
+  },
+  "Backup": {
+    "Name": "Backup",
+    "Description": "Friendship is all about sharing. Luckily for you, you’ve learnt to share your blows with your opponents so that they can have some too!"
+  }
+}

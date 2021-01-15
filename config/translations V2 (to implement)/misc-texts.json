@@ -1,0 +1,98 @@
+[
+  {
+    "en": "Strength",
+    "fr": "Force",
+    "es": "Fuerza",
+    "de": "Kraft"
+  },
+  {
+    "en": "Agility",
+    "fr": "Agilité",
+    "es": "Agilidad",
+    "de": "Flinkheit"
+  },
+  {
+    "en": "Speed",
+    "fr": "Rapidité",
+    "es": "Velocidad",
+    "de": "Geschwindigkeit"
+  },
+  {
+    "en": "Endurance",
+    "fr": "Endurance",
+    "es": "Resistencia",
+    "de": "Ausdauer"
+  },
+  {
+    "en": "TYPE HERE",
+    "fr": "TAPE ICI",
+    "es": "Teclea aqui",
+    "de": "HIER EINGEBEN"
+  },
+  {
+    "en": "Change appearance",
+    "fr": "Changer l 'apparence",
+    "es": "Cambiar la apariencia",
+    "de": "Das Aussehen ändern"
+  },
+  {
+    "en": "Change colours",
+    "fr": "Changer les couleurs",
+    "es": "Cambiar los colores",
+    "de": "Die Farben ändern"
+  },
+  {
+    "en": "An error has occured, please try again.",
+    "fr": "Une erreur est survenue, veuillez réessayer.",
+    "es": "Ha ocurrido un error. Vuelve a intentarlo, por favor.",
+    "de": "Es ist ein Fehler aufgetreten, versuche es bitte noch einmal."
+  },
+  {
+    "en": "Choose a name to generate a Brute",
+    "fr": "Choisi un nom pour générer une Brute",
+    "es": "Elige un nombre para generar un Bruto",
+    "de": "Wähle bitte einen Namen für deinen Brutalo."
+  },
+  {
+    "en": "Life",
+    "fr": "Vie",
+    "es": "Vida",
+    "de": "Leben"
+  },
+  {
+    "en": "Super",
+    "fr": "Supers",
+    "es": "Super",
+    "de": "Super"
+  },
+  {
+    "en": "Specialities",
+    "fr": "Spécialités",
+    "es": "Especialidades",
+    "de": "Spezialfähigkeiten"
+  },
+  {
+    "en": "wins the fight!",
+    "fr": "gagne le match !",
+    "es": "gana el combate",
+    "de": "hat gewonnen!"
+  },
+  {
+    "en": "Type in the characters you see below here",
+    "fr": "Copie ici les 4 caractères affichés en dessous",
+    "es": "Escribe aqui los caracteres que ves aqui.",
+    "de": "Trage hier die unten angezeigten Zeichen ein."
+  },
+  {
+    "en": "The characters don't match. Please try again.",
+    "fr": "Les caractères sont incorrects. Essaye à nouveau !",
+    "es": "Los caracteres que has escrito no coinciden. Vuelve a intentarlo.",
+    "de": "Deine Eingabe war nicht korrekt. Versuche es bitte noch einmal!"
+  },
+  {
+    "en": "Please wait...",
+    "fr": "Veuillez patienter...",
+    "es": "Espera por favor...",
+    "de": "Habe bitte etwas Geduld..."
+  }
+]

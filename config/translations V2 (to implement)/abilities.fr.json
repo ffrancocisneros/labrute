@@ -1,0 +1,170 @@
+{
+  "Thief": {
+    "Name": "Voleur",
+    "Description": "Cette compétence te permet d'emprunter discrétement l'arme de ton adversaire et de l'essayer sur lui."
+  },
+  "FierceBrute": {
+    "Name": "Brute Féroce",
+    "Description": "Maintenant, t'es une vraie brute. Encore plus qu'avant. Tu peux effectuer une charge puissante pendant un combat."
+  },
+  "TragicPotion": {
+    "Name": "Potion Tragique",
+    "Description": "Boooooire un p'tit coup c'est agréaaableuuu ! Oui, mais pas pour tout le monde.... Ce jus de pêche restaure une partie de ton énergie au cours du combat."
+  },
+  "Net": {
+    "Name": "Filet",
+    "Description": "Un filet classique. Pas aussi cool que la toile de Spiderman, mais faudra faire avec... Ton adversaire sera immobilisé jusqu'à ce que tu lui portes un coup."
+  },
+  "Bomb": {
+    "Name": "Bombe",
+    "Description": "Un peu comme une bombe à eau, mais en plus méchant."
+  },
+  "Hammer": {
+    "Name": "Marteau-pilon",
+    "Description": "Une technique de catch qui consiste à sauter avec l'adversaire, et retomber dessus."
+  },
+  "CryOfTheDamned": {
+    "Name": "Cri-qui-poutre",
+    "Description": "Des bêtes féroces, ça ? Pfffff... Il suffit de crier un peu pour les faire fuir..."
+  },
+  "Hypnosis": {
+    "Name": "Hypnose",
+    "Description": "Lorsqu'il s'agit de faire du charme aux animaux domestiques, personne ne t'égale. Ils te suivent au doigt et à l'oeil."
+  },
+  "FlashFlood": {
+    "Name": "Déluge",
+    "Description": "Puisque se ballader avec 100 kilos d'armes t'es devenu insupportable, tu as trouvé un astucieux stratagème pour voyager léger."
+  },
+  "Tamer": {
+    "Name": "Trappeur",
+    "Description": "Rien ne se perd, tout se transforme. Tu consommes toutes les viandes mortes de l'arène."
+  },
+  "HerculeanStrength": {
+    "Name": "Force Herculéenne",
+    "Description": "Avec ta force, tu es capable de déplacer des montagnes ! Mais pour l'instant, t'as un adversaire à cogner."
+  },
+  "FelineAgility": {
+    "Name": "Agilité du Félin",
+    "Description": "Tu n'as pas de pelote de laine pour t'amuser, mais tu peux toujours embêter la brute en face."
+  },
+  "LightningBolt": {
+    "Name": "Frappe Éclair",
+    "Description": "Tu distribues des coups plus vite que ton ombre et plus vite que les dents de ton adversaire."
+  },
+  "Vitality": {
+    "Name": "Vitalité",
+    "Description": "Ton espérance de vie a augmenté ! Désormais tu tiendras debout plus longtemps dans l'arène."
+  },
+  "Immortality": {
+    "Name": "Immortel",
+    "Description": "Ta santé a atteint un niveau inimaginable ! Il est devenu très difficle de te terrasser lors d'un combat."
+  },
+  "WeaponsMaster": {
+    "Name": "Maître d'Armes",
+    "Description": "Grâce à ta maîtrise, tu causes plus de dégâts à ton adversaire avec les armes tranchantes."
+  },
+  "MartialArts": {
+    "Name": "Arts Martiaux",
+    "Description": "Les cours de Chuck Norris ont porté leurs fruits ! Maintenant tu mets les pieds où tu veux... et c'est souvent dans la tronche."
+  },
+  "6thSense": {
+    "Name": "6ème Sens",
+    "Description": "Ta vigilance aiguisée te permet d'anticiper les fourberies de ton adversaire et de frapper avant lui !"
+  },
+  "Hostility": {
+    "Name": "Pugnace",
+    "Description": "Dans l'arène tu n'es vraiment pas ingrat... Quand on te donne un coup, tu le rends aussitôt, et gratuitement !"
+  },
+  "FistsOfFury": {
+    "Name": "Tornade de Coups",
+    "Description": "... et tu tapes tapes tapes, c'est ta façon d'aimer, ce rythme qui t'entraîne jusqu'au bout de la nuit, éveille en toi le tourbillon d'un vent de foliiiiiie !"
+  },
+  "Shield": {
+    "Name": "Bouclier",
+    "Description": "Un bouclier. Pour parer les coups... des fois."
+  },
+  "Armor": {
+    "Name": "Armure",
+    "Description": "Ca, c'est une armure. Un truc qu'on met par dessus son t-shirt pour pas le salir. En même temps, ça permet de mieux résister aux attaques."
+  },
+  "ToughenedSkin": {
+    "Name": "Peau Renforcée",
+    "Description": "A force de se faire taper, on finit par évoluer. Ta brute possède maintenant une peau plus résistante."
+  },
+  "Untouchable": {
+    "Name": "Intouchable",
+    "Description": "Tu évites les coups plus facilement. C'est très énervant, surtout pour ton adversaire."
+  },
+  "Sabotage": {
+    "Name": "Vandalisme",
+    "Description": "Certaines brutes font du vandalisme dans la rue, mais toi tu préfères vandaliser ton adversaire. Chaque coup te permet de détruire une de ses armes."
+  },
+  "Shock": {
+    "Name": "Choc",
+    "Description": "Tes coups sont tellement surprenants que ton adversaire en laisse tomber son arme... Profites-en pour lui en montrer d'autres !"
+  },
+  "Bodybuilder": {
+    "Name": "Gros-Bras",
+    "Description": "Grâce à tes gros bras, tu manipules les armes lourdes aussi facilement qu'un micro. Tu es le Philippe Risoli de la massue."
+  },
+  "Relentless": {
+    "Name": "Implacable",
+    "Description": "Lorsque tu colles des baffes, elles arrivent toujours à destination. Personne ne peut les arrêter. En tout cas pas ton adversaire."
+  },
+  "Survival": {
+    "Name": "Survie",
+    "Description": "Les années de lutte t'ont rendu increvable. Les coups mortels te laissent 1 point de vie au lieu de t'abattre."
+  },
+  "LeadSkeleton": {
+    "Name": "Squelette Plomb",
+    "Description": "Pas toujours pratique pour se déplacer, le plombage intégral de la cage thoracique permet néanmoins de réduire considerablement les dégâts des armes contondantes."
+  },
+  "BalletShoes": {
+    "Name": "Ballerines",
+    "Description": "La danse des cygnes n'a aucun secret pour toi, impossible que ton adversaire t'atteigne, enfin, tant qu'il pige pas le truc."
+  },
+  "Determination": {
+    "Name": "Persévérant",
+    "Description": "Rien ne te décourage, chaque échec te rend plus fort. Lorsqu'un coup ne porte pas, tu en lances un autre."
+  },
+  "FirstStrike": {
+    "Name": "Sang-Chaud",
+    "Description": "Tes adversaires entrent dans l'arène, mais toi tu préferes rentrer dans tes adversaires, tu es toujours le premier à frapper."
+  },
+  "Resistant": {
+    "Name": "Increvable",
+    "Description": "Pour te mettre au tapis, il faut s'y prendre à plusieurs fois... C'est cinq beignes minimum, sinon rien."
+  },
+  "Reconnaissance": {
+    "Name": "Méditation",
+    "Description": "Pour analyser les failles de ton adversaire, tu es prêt à prendre ton temps, mais lorsque tu démarres rien ne t'arrete."
+  },
+  "Counter-Attack": {
+    "Name": "Contre",
+    "Description": "La meilleur attaque ? C'est la défense bien entendu ! Pour chaque coup paré, tu ripostes automatiquement."
+  },
+  "IronHead": {
+    "Name": "Tête-de-Fer",
+    "Description": "Lorsque tu prends un coup, c'est ton adversaire qui doit résister à l'impact !"
+  },
+  "Regeneration": {
+    "Name": "Régénération",
+    "Description": "Grâce à ta capacité de cicatrisation hors-normes, tu ne rates jamais un combat !"
+  },
+  "Chef": {
+    "Name": "Cuisinier",
+    "Description": "Toutes les brutes le savent, le gros du combat se joue avant l'arène. Le plus souvent, du coté de la cantine..."
+  },
+  "Spy": {
+    "Name": "Espion",
+    "Description": "Un coup d'oeil et quelques renseignements permettent souvent d'éviter les longs séjours à l'hopital."
+  },
+  "Saboteur": {
+    "Name": "Saboteur",
+    "Description": "Du marteau en mousse à l'épee en plastique, tu es le roi de l'imitation, tes adversaires n'y voient que du feu."
+  },
+  "Backup": {
+    "Name": "Renforts",
+    "Description": "Parceque l'amitié c'est le partage, tu as appris à partager tes baffes pour que les adversaires de tes collègues profitent aussi un peu."
+  }
+}
