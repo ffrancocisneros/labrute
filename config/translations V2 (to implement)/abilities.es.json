@@ -13,11 +13,11 @@
   },
   "Red": {
     "Nombre": "Red",
-    "Descripción": "Una red clásica. No es tan genial como el de Spiderman, pero es lo suficientemente buena para tu oponente ... Tu enemigo quedará inmovilizado hasta que lo golpees de nuevo".
+    "Descripción": "Una red clásica. No es tan genial como la de Spiderman, pero es lo suficientemente buena para tu oponente ... Tu enemigo quedará inmovilizado hasta que lo golpees de nuevo".
   },
   "Bomba": {
     "Nombre": "Bomba",
-    "Descripción": "¡Un poco como una bomba de agua, pero mucho más mortal!"
+    "Descripción": "¡Es como una bomba de agua, pero mucho más mortal!"
   },
   "Martillo": {
     "Nombre": "Martillo",
@@ -35,9 +35,9 @@
     "Nombre": "Inundación repentina",
     "Descripción": "Caminar llevando 100 kilos de armas es muy agotador, pero has encontrado una forma inteligente de viajar ligero".
   },
-  "Domador": {
-    "Nombre": "Domador",
-    "Descripción": "¡Recicla! ¡Hazlo parte de tu ciclo diario! Te devoras todos los cadáveres de la arena".
+  "Cazador": {
+    "Nombre": "Cazador",
+    "Descripción": "¡Nada se despercicia. Te comes todo lo que cae en la arena, incluso animales".
   },
   "Fuerzadehercules": {
     "Nombre": "Fuerza de hercules",
@@ -45,7 +45,7 @@
   },
   "Agilidadfelina": {
     "Nombre": "Agilidad felina",
-    "Descripción": "Ni siquiera tienes una bola de cuerda para jugar, pero siempre puedes golpear a un oponente".
+    "Descripción": "No tienes una bola de estambre para jugar, pero si a tus oponentes".
   },
   "Golpe de rayo": {
     "Nombre": "Golpe de rayo",
@@ -69,15 +69,15 @@
   },
   "Sextosentido": {
     "Nombre": "Sexto sentido",
-    "Descripción": "Tu vigilancia con ojos de águila te permite anticipar cuándo tus oponentes se acercan sigilosamente a ti. ¡Ahora, cuando ataques, no sabrán qué les golpeó!"
+    "Descripción": "Tus ojos de águila te permite anticipar cuándo tus oponentes se acercan sigilosamente a ti. ¡Ahora, cuando ataques, no sabrán qué les golpeó!"
   },
-  "Hostilidad": {
-    "Nombre": "Hostilidad",
+  "Belicoso": {
+    "Nombre": "Belicoso",
     "Descripción": "Eres muy educado cuando luchas en la arena. Siempre que uno de tus oponentes te ataca, devuelves el favor ... ¡gratis!"
   },
   "Puñosdefuria": {
     "Nombre": "Puños de furia",
-    "Descripción": "... y rascas, garras, muerdes, ¡esa es solo tu pequeña forma de demostrar amor! ¡Eres un torrente loco de amor mal dirigido!"
+    "Descripción": "... rascas, garras y muerdes, ¡esa es solo tu pequeña forma de demostrar amor! ¡Eres un torrente loco de amor mal dirigido!"
   },
   "Escudo": {
     "Nombre": "Escudo",
@@ -97,19 +97,19 @@
   },
   "Desarmar": {
     "Nombre": "Desarmar",
-    "Descripción": "Algunos Brutes eligen destrozar las calles, ¡pero tú prefieres destrozar a tus oponentes! Cada golpe destruirá una de las armas de tu oponente".
+    "Descripción": "Algunos Brutos eligen destrozar las calles, ¡pero tú prefieres destrozar a tus oponentes! Cada golpe destruirá una de las armas de tu oponente".
   },
   "Conmoción": {
     "Nombre": "Conmoción",
-    "Descripción": "Tu ataque toma a tu oponente por sorpresa y deja caer su arma. ¡Ahora puedes mostrársela a tus amigos!"
+    "Descripción": "Tu ataque toma a tu oponente por sorpresa y deja caer su arma."
   },
   "Culturista": {
     "Nombre": "Culturista",
-    "Descripción": "Gracias a tus enormes bíceps, ahora puedes usar armas pesadas. ¡Bravo Sr. Músculo!"
+    "Descripción": "Gracias a tus enormes bíceps, ahora puedes usar armas pesadas. ¡Bravo Mr. Músculo!"
   },
   "Implacable": {
     "Nombre": "Implacable",
-    "Descripción": "Cuando atacas, siempre estás en el objetivo. Nadie puede detenerte. ¡Seguramente no tu oponente!"
+    "Descripción": "Cuando atacas, siempre estás pegado al objetivo. Nadie puede detenerte. ¡Seguramente no tu oponente!"
   },
   "Supervivencia": {
     "Nombre": "Supervivencia",
