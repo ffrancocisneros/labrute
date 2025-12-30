@@ -1,36 +1,80 @@
-# Dockerfile para Railway/Render
-# Usa PHP 8.2 con extensiones PostgreSQL
+# Multi-stage build for LaBrute (Node.js + React)
 
-FROM php:8.2-cli
+# Stage 1: Build backend
+FROM node:20-alpine AS backend-builder
 
-# Instalar dependencias del sistema para PostgreSQL
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app/backend
 
-# Instalar extensiones necesarias
-RUN docker-php-ext-install pdo pdo_pgsql
+# Copy backend package files
+COPY backend/package*.json ./
 
-# Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install dependencies
+RUN npm ci --only=production
 
-# Establecer directorio de trabajo
+# Copy backend source
+COPY backend/ ./
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Build TypeScript
+RUN npm run build
+
+# Stage 2: Build frontend
+FROM node:20-alpine AS frontend-builder
+
+WORKDIR /app/frontend
+
+# Copy frontend package files
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy frontend source
+COPY frontend/ ./
+
+# Build React app
+RUN npm run build
+
+# Stage 3: Production image
+FROM node:20-alpine AS production
+
 WORKDIR /app
 
-# Copiar archivos del proyecto
-COPY . .
+# Install dumb-init for proper process handling
+RUN apk add --no-cache dumb-init
 
-# Instalar dependencias
-RUN composer install --no-dev --optimize-autoloader || true
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
 
-# Copiar y hacer ejecutable el script de inicio
-COPY start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
+# Copy backend build
+COPY --from=backend-builder /app/backend/dist ./dist
+COPY --from=backend-builder /app/backend/node_modules ./node_modules
+COPY --from=backend-builder /app/backend/package*.json ./
+COPY --from=backend-builder /app/backend/prisma ./prisma
 
-# Exponer puerto (Railway/Render lo configuran automáticamente)
-EXPOSE 8080
+# Copy frontend build to serve as static files
+COPY --from=frontend-builder /app/frontend/dist ./public
 
-# Comando de inicio
-CMD ["/usr/local/bin/start.sh"]
+# Set ownership
+RUN chown -R nodejs:nodejs /app
 
+# Switch to non-root user
+USER nodejs
+
+# Expose port
+EXPOSE 3001
+
+# Set environment
+ENV NODE_ENV=production
+ENV PORT=3001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3001/api/health || exit 1
+
+# Start with dumb-init
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["node", "dist/index.js"]
