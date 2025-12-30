@@ -52,7 +52,7 @@ try {
     echo "<span class='success'>✓ Connected to database</span>\n";
     
     // Read migration file
-    $migrationFile = __DIR__ . '/migrations.sql';
+    $migrationFile = __DIR__ . '/database/migrations.sql';
     if (!file_exists($migrationFile)) {
         die("<span class='error'>✗ Migration file not found: {$migrationFile}</span>\n");
     }
