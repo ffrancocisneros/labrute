@@ -70,13 +70,54 @@ Railway comenzará a hacer deploy automáticamente. Puedes ver el progreso en la
 
 Una vez que el deploy esté completo (verás un check verde ✅):
 
-1. Ve a la pestaña **"Deployments"** → click en el deployment más reciente
-2. O ve a **Settings** → busca **"Open Shell"** o **"Connect"**
-3. En la terminal, ejecuta:
+#### Método 1: Terminal en Railway (Recomendado)
+
+1. Click en tu servicio web (no en PostgreSQL)
+2. Busca en la parte superior o en las pestañas:
+   - **"Terminal"** o **"Shell"** o **"Console"**
+   - O un ícono de terminal (🖥️ o `>_`)
+3. Si no lo ves, busca un menú de tres puntos (**...**) o **"More"** → **"Open Terminal"**
+4. En la terminal que se abre, ejecuta:
 
 ```bash
 php database/migrate.php
 ```
+
+#### Método 2: Railway CLI (Alternativa)
+
+Si no encuentras la terminal en la web, usa Railway CLI desde tu computadora:
+
+1. Instala Railway CLI (si no lo tienes):
+   ```bash
+   npm i -g @railway/cli
+   ```
+
+2. Inicia sesión:
+   ```bash
+   railway login
+   ```
+
+3. Conecta tu proyecto:
+   ```bash
+   railway link
+   ```
+   (Selecciona tu proyecto cuando te pregunte)
+
+4. Ejecuta las migraciones:
+   ```bash
+   railway run php database/migrate.php
+   ```
+
+#### Método 3: Ejecutar SQL directamente
+
+Si ninguna de las opciones anteriores funciona:
+
+1. Ve a tu servicio **PostgreSQL** (no el web)
+2. Click en la pestaña **"Data"** o **"Query"**
+3. Abre el archivo `database/migrations.sql` de tu proyecto local
+4. Copia todo el contenido SQL
+5. Pégalo en el editor de queries de Railway
+6. Click en **"Run"** o **"Execute"**
 
 Deberías ver:
 ```
