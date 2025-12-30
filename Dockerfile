@@ -8,8 +8,8 @@ WORKDIR /app/backend
 # Copy backend package files
 COPY backend/package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install ALL dependencies (including dev for building)
+RUN npm ci
 
 # Copy backend source
 COPY backend/ ./
@@ -49,11 +49,16 @@ RUN apk add --no-cache dumb-init
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nodejs -u 1001
 
-# Copy backend build
+# Copy backend build and production dependencies
 COPY --from=backend-builder /app/backend/dist ./dist
-COPY --from=backend-builder /app/backend/node_modules ./node_modules
 COPY --from=backend-builder /app/backend/package*.json ./
 COPY --from=backend-builder /app/backend/prisma ./prisma
+
+# Install only production dependencies
+RUN npm ci --only=production
+
+# Generate Prisma client in production
+RUN npx prisma generate
 
 # Copy frontend build to serve as static files
 COPY --from=frontend-builder /app/frontend/dist ./public
