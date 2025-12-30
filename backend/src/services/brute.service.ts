@@ -24,8 +24,8 @@ export class BruteService {
       throw new Error('You already have a brute with this name');
     }
     
-    // Generate random identifier
-    const identifier = Random.identifier();
+    // Generate random identifier (as regular number for JSON compatibility)
+    const identifier = Math.floor(Math.random() * 999999999);
     
     // Calculate initial stats
     const stats = this.calculateBaseStats(skillIds || []);

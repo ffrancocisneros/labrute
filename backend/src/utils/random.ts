@@ -107,8 +107,8 @@ export const Random = {
   /**
    * Generate random identifier
    */
-  identifier(): bigint {
-    return BigInt(Math.floor(Math.random() * 999999999));
+  identifier(): number {
+    return Math.floor(Math.random() * 999999999);
   },
   
   /**
@@ -121,8 +121,8 @@ export const Random = {
   /**
    * Generate random seed
    */
-  seed(): bigint {
-    return BigInt(Math.floor(Math.random() * 2147483647));
+  seed(): number {
+    return Math.floor(Math.random() * 2147483647);
   },
 };
 

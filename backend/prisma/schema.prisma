@@ -32,7 +32,7 @@ model Brute {
   id                    Int       @id @default(autoincrement())
   userId                Int       @map("user_id")
   name                  String    @db.VarChar(50)
-  identifier            BigInt
+  identifier            Int
   experience            Int       @default(1)
   level                 Int       @default(1)
   
@@ -190,7 +190,7 @@ model Fight {
   defenderId      Int         @map("defender_id")
   winnerId        Int?        @map("winner_id")
   fightLog        Json        @map("fight_log")
-  fightSeed       BigInt      @map("fight_seed")
+  fightSeed       Int         @map("fight_seed")
   durationHits    Int         @default(0) @map("duration_hits")
   winnerExpGained Int         @default(0) @map("winner_exp_gained")
   loserExpGained  Int         @default(0) @map("loser_exp_gained")
