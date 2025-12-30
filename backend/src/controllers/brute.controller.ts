@@ -17,8 +17,12 @@ export class BruteController {
         });
       }
       
+      console.log('Creating brute with data:', req.body);
       const validatedData = createBruteSchema.parse(req.body);
+      console.log('Validated data:', validatedData);
+      
       const brute = await BruteService.create(req.user.id, validatedData);
+      console.log('Brute created:', brute.id);
       
       const response: ApiResponse = {
         success: true,
@@ -28,10 +32,17 @@ export class BruteController {
       
       res.status(201).json(response);
     } catch (error: any) {
+      console.error('Error creating brute:', error);
+      
       const response: ApiResponse = {
         success: false,
         error: error.message || 'Failed to create brute',
       };
+      
+      // Zod validation errors
+      if (error.errors) {
+        response.error = error.errors.map((e: any) => e.message).join(', ');
+      }
       
       res.status(400).json(response);
     }

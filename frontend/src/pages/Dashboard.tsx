@@ -203,7 +203,7 @@ const BruteCard = ({ brute, onClick }: BruteCardProps) => (
         height: 150,
         mx: 'auto',
         mb: 2,
-        backgroundImage: `url(/images/game/misc/brute-${(brute.id % 5) + 1}.png)`,
+        backgroundImage: `url(/images/header/left/0${(brute.id % 10) + 1}.png)`,
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',

@@ -66,7 +66,7 @@ const BruteDetail = () => {
               sx={{
                 width: '100%',
                 height: 250,
-                backgroundImage: `url(/images/game/misc/brute-${(brute.id % 5) + 1}.png)`,
+                backgroundImage: `url(/images/header/left/0${(brute.id % 10) + 1}.png)`,
                 backgroundSize: 'contain',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',

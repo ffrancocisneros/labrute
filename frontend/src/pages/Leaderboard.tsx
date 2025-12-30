@@ -209,7 +209,7 @@ const Leaderboard = () => {
                             sx={{
                               width: 50,
                               height: 60,
-                              backgroundImage: `url(/images/game/misc/brute-${(entry.id % 5) + 1}.png)`,
+                              backgroundImage: `url(/images/header/left/0${(entry.id % 10) + 1}.png)`,
                               backgroundSize: 'contain',
                               backgroundRepeat: 'no-repeat',
                               backgroundPosition: 'center',
