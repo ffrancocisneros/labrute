@@ -27,6 +27,6 @@ RUN composer install --no-dev --optimize-autoloader || true
 # Exponer puerto (Railway/Render lo configuran automáticamente)
 EXPOSE 8080
 
-# Comando de inicio
-CMD ["php", "-S", "0.0.0.0:${PORT:-8080}", "router.php"]
+# Comando de inicio (usar shell para expandir variables de entorno)
+CMD php -S 0.0.0.0:${PORT:-8080} router.php
 
