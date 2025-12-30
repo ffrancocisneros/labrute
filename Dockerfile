@@ -24,9 +24,13 @@ COPY . .
 # Instalar dependencias
 RUN composer install --no-dev --optimize-autoloader || true
 
+# Copiar y hacer ejecutable el script de inicio
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # Exponer puerto (Railway/Render lo configuran automáticamente)
 EXPOSE 8080
 
-# Comando de inicio (usar shell para expandir variables de entorno)
-CMD php -S 0.0.0.0:${PORT:-8080} router.php
+# Comando de inicio
+CMD ["/usr/local/bin/start.sh"]
 
