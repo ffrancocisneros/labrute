@@ -4,7 +4,7 @@ interface FantasyButtonProps extends ButtonProps {
   fantasy?: 'primary' | 'secondary' | 'success' | 'error';
 }
 
-const StyledButton = styled(Button)<{ fantasy: string }>(({ theme, fantasy }) => {
+const StyledButton = styled(Button)<{ fantasy: string }>(({ fantasy }) => {
   const colors: Record<string, { bg: string; border: string; text: string }> = {
     primary: {
       bg: '#dbbf95',

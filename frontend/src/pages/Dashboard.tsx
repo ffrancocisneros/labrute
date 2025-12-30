@@ -1,25 +1,22 @@
 import { Box, Container, Grid, Typography, CircularProgress, Alert } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { PaperBox, FantasyButton } from '../components/UI';
+import { PaperBox } from '../components/UI';
 import { useAuth } from '../hooks/useAuth';
-import { useBrute } from '../hooks/useBrute';
+import { useMyBrutes } from '../hooks/useBrute';
+import { Brute } from '../types';
 import AddIcon from '@mui/icons-material/Add';
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const { brutes, loading, error, fetchBrutes, createBrute } = useBrute();
+  const { brutes, loading, error, createBrute } = useMyBrutes();
   const navigate = useNavigate();
   const location = useLocation();
-  const [creating, setCreating] = useState(false);
-
-  useEffect(() => {
-    fetchBrutes();
-  }, []);
+  const [createError, setCreateError] = useState<string | null>(null);
 
   // Handle new brute creation from Home page
   useEffect(() => {
-    const state = location.state as any;
+    const state = location.state as { newBruteName?: string } | null;
     if (state?.newBruteName && user) {
       handleCreateBrute(state.newBruteName);
       // Clear the state
@@ -28,16 +25,15 @@ const Dashboard = () => {
   }, [location.state, user]);
 
   const handleCreateBrute = async (name: string) => {
-    setCreating(true);
+    setCreateError(null);
     try {
-      const newBrute = await createBrute(name);
+      const newBrute = await createBrute({ name });
       if (newBrute) {
         navigate(`/brute/${newBrute.id}`);
       }
-    } catch (err) {
-      console.error('Error creating brute:', err);
-    } finally {
-      setCreating(false);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error creating brute';
+      setCreateError(message);
     }
   };
 
@@ -76,15 +72,15 @@ const Dashboard = () => {
         </Typography>
       </Box>
 
-      {error && (
+      {(error || createError) && (
         <Alert severity="error" sx={{ mb: 3 }}>
-          {error}
+          {error || createError}
         </Alert>
       )}
 
       <Grid container spacing={3}>
         {/* Brute Cards */}
-        {brutes.map((brute) => (
+        {brutes.map((brute: Brute) => (
           <Grid item xs={12} sm={6} md={4} key={brute.id}>
             <BruteCard brute={brute} onClick={() => navigate(`/brute/${brute.id}`)} />
           </Grid>
@@ -158,21 +154,21 @@ const Dashboard = () => {
             <Grid item xs={6} sm={3}>
               <StatBox 
                 label="Victorias" 
-                value={brutes.reduce((sum, b) => sum + b.wins, 0)} 
+                value={brutes.reduce((sum: number, b: Brute) => sum + b.wins, 0)} 
                 icon="🏆" 
               />
             </Grid>
             <Grid item xs={6} sm={3}>
               <StatBox 
                 label="Derrotas" 
-                value={brutes.reduce((sum, b) => sum + b.losses, 0)} 
+                value={brutes.reduce((sum: number, b: Brute) => sum + b.losses, 0)} 
                 icon="💀" 
               />
             </Grid>
             <Grid item xs={6} sm={3}>
               <StatBox 
                 label="Nivel Total" 
-                value={brutes.reduce((sum, b) => sum + b.level, 0)} 
+                value={brutes.reduce((sum: number, b: Brute) => sum + b.level, 0)} 
                 icon="⭐" 
               />
             </Grid>
@@ -185,7 +181,7 @@ const Dashboard = () => {
 
 // Brute Card Component
 interface BruteCardProps {
-  brute: any;
+  brute: Brute;
   onClick: () => void;
 }
 

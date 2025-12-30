@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/useAuth';
 
 const Register = () => {
   const location = useLocation();
-  const initialBruteName = (location.state as any)?.bruteName || '';
+  const initialBruteName = (location.state as { bruteName?: string })?.bruteName || '';
   
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -35,10 +35,11 @@ const Register = () => {
     setLoading(true);
 
     try {
-      await register(username, email, password);
+      await register({ username, email, password });
       navigate('/dashboard', { state: { newBruteName: bruteName } });
-    } catch (err: any) {
-      setError(err.message || 'Error al registrarse');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al registrarse';
+      setError(message);
     } finally {
       setLoading(false);
     }

@@ -18,10 +18,11 @@ const Login = () => {
     setLoading(true);
 
     try {
-      await login(email, password);
+      await login({ email, password });
       navigate('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Error al iniciar sesión');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al iniciar sesión';
+      setError(message);
     } finally {
       setLoading(false);
     }

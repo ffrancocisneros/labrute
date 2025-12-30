@@ -1,37 +1,26 @@
 import { Box, Container, Grid, Typography, CircularProgress, Alert, LinearProgress } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PaperBox, FantasyButton } from '../components/UI';
-import { useBrute } from '../hooks/useBrute';
+import { useBrute, useOpponents } from '../hooks/useBrute';
 import { useFight } from '../hooks/useFight';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const BruteDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { getBrute, loading: bruteLoading, error: bruteError } = useBrute();
-  const { startFight, loading: fightLoading, fightResult } = useFight();
-  const [brute, setBrute] = useState<any>(null);
-  const [opponents, setOpponents] = useState<any[]>([]);
-
-  useEffect(() => {
-    if (id) {
-      loadBrute();
-    }
-  }, [id]);
-
-  const loadBrute = async () => {
-    if (id) {
-      const data = await getBrute(parseInt(id));
-      setBrute(data);
-      // TODO: Load opponents
-    }
-  };
+  const bruteId = id ? parseInt(id) : undefined;
+  const { brute, loading: bruteLoading, error: bruteError } = useBrute(bruteId);
+  const { opponents } = useOpponents(bruteId);
+  const { startFight, loading: fightLoading } = useFight();
 
   const handleFight = async (opponentId: number) => {
     if (brute) {
-      const result = await startFight(brute.id, opponentId);
-      // Handle fight result
+      try {
+        await startFight(brute.id, opponentId);
+        // TODO: Navigate to fight view or show result
+      } catch (err) {
+        console.error('Fight error:', err);
+      }
     }
   };
 
@@ -265,9 +254,24 @@ const BruteDetail = () => {
                 ¡Elige un oponente y demuestra tu valía!
               </Typography>
 
-              <FantasyButton fantasy="error" disabled={fightLoading}>
-                {fightLoading ? 'Buscando oponente...' : '⚔️ ¡Buscar Pelea!'}
-              </FantasyButton>
+              {opponents.length > 0 ? (
+                <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+                  {opponents.slice(0, 3).map((opponent) => (
+                    <FantasyButton
+                      key={opponent.id}
+                      fantasy="error"
+                      onClick={() => handleFight(opponent.id)}
+                      disabled={fightLoading}
+                    >
+                      ⚔️ {opponent.name}
+                    </FantasyButton>
+                  ))}
+                </Box>
+              ) : (
+                <FantasyButton fantasy="error" disabled={fightLoading}>
+                  {fightLoading ? 'Buscando oponente...' : '⚔️ ¡Buscar Pelea!'}
+                </FantasyButton>
+              )}
             </Box>
           </PaperBox>
 
@@ -285,9 +289,9 @@ const BruteDetail = () => {
                 >
                   Habilidades
                 </Typography>
-                {brute.skills?.length > 0 ? (
+                {brute.skills && brute.skills.length > 0 ? (
                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {brute.skills.map((skill: any) => (
+                    {brute.skills.map((skill) => (
                       <SkillBadge key={skill.id} name={skill.name} />
                     ))}
                   </Box>
@@ -318,9 +322,9 @@ const BruteDetail = () => {
                 >
                   Armas
                 </Typography>
-                {brute.weapons?.length > 0 ? (
+                {brute.weapons && brute.weapons.length > 0 ? (
                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {brute.weapons.map((weapon: any) => (
+                    {brute.weapons.map((weapon) => (
                       <WeaponBadge key={weapon.id} name={weapon.name} />
                     ))}
                   </Box>

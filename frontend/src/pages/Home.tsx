@@ -266,13 +266,12 @@ const Home = () => {
 
 // Helper Components
 interface HowToPlayItemProps {
-  number: number;
   title: string;
   description: string;
   icon: string;
 }
 
-const HowToPlayItem = ({ number, title, description, icon }: HowToPlayItemProps) => (
+const HowToPlayItem = ({ title, description, icon }: HowToPlayItemProps) => (
   <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
     <Box
       sx={{
