@@ -1,196 +1,333 @@
-# LaBrute - Guía de Deployment
+# LaBrute - Guía de Deployment en Railway
 
-Esta guía explica cómo deployar LaBrute en servicios gratuitos de hosting.
+Esta guía explica cómo deployar LaBrute en Railway.app paso a paso, basada en la experiencia real del deployment.
 
-## 📚 Tutoriales Detallados
+## 📚 Tutorial Detallado
 
-- **[TUTORIAL_RAILWAY.md](./TUTORIAL_RAILWAY.md)** - Tutorial paso a paso completo para deployar en Railway.app (recomendado para principiantes)
-
----
-
-Esta guía es una referencia rápida. Para instrucciones detalladas paso a paso, consulta el tutorial específico arriba.
-
-## Opción 1: Railway.app (Recomendado)
-
-Railway ofrece un tier gratuito con PostgreSQL incluido. El proyecto incluye `railway.json` y `nixpacks.toml` para configuración automática.
-
-### Pasos:
-
-1. **Crear cuenta en Railway**
-   - Ve a [railway.app](https://railway.app)
-   - Regístrate con tu cuenta de GitHub
-
-2. **Crear nuevo proyecto**
-   - Click en "New Project"
-   - Selecciona "Deploy from GitHub repo"
-   - Conecta tu repositorio
-   - Railway detectará automáticamente la configuración de `railway.json`
-
-3. **Agregar PostgreSQL**
-   - En tu proyecto, click en "+ New"
-   - Selecciona "Database" → "PostgreSQL"
-   - Railway configurará `DATABASE_URL` automáticamente
-
-4. **Configurar variables de entorno**
-   - Ve a Settings → Variables
-   - Agrega:
-     ```
-     APP_ENV=production
-     APP_DEBUG=false
-     APP_URL=https://tu-proyecto.up.railway.app
-     ```
-   - Railway ya configurará `DATABASE_URL` automáticamente
-
-5. **Ejecutar migraciones**
-   - Ve a la terminal de Railway o conéctate via CLI:
-     ```bash
-     railway run php database/migrate.php
-     ```
-   - O ejecuta manualmente después del primer deploy
-
-6. **¡Listo!**
-   - Tu app estará disponible en `https://tu-proyecto.up.railway.app`
-   - Railway usará automáticamente el comando de inicio definido en `railway.json`
+Para una guía paso a paso más completa con capturas de pantalla y explicaciones detalladas, consulta:
+- **[TUTORIAL_RAILWAY.md](./TUTORIAL_RAILWAY.md)** - Tutorial completo para principiantes
 
 ---
 
-## Opción 2: Render.com
+## 🚀 Deployment en Railway.app
 
-El proyecto incluye `render.yaml` para configuración automática. Render puede detectar este archivo y configurar el servicio automáticamente.
+Railway ofrece un tier gratuito con PostgreSQL incluido. El proyecto está configurado con Dockerfile y scripts de inicio para funcionar correctamente.
 
-### Pasos (Método Automático con render.yaml):
+### Requisitos Previos
 
-1. **Crear cuenta en Render**
-   - Ve a [render.com](https://render.com)
-   - Regístrate con GitHub
-
-2. **Crear nuevo servicio desde repositorio**
-   - Click en "New" → "Blueprint"
-   - Conecta tu repositorio
-   - Render detectará automáticamente `render.yaml` y configurará todo
-
-3. **¡Listo!**
-   - Render creará automáticamente el Web Service y la base de datos PostgreSQL
-   - Las variables de entorno se configurarán automáticamente
-   - Ejecuta las migraciones manualmente desde la shell de Render:
-     ```bash
-     php database/migrate.php
-     ```
-
-### Pasos (Método Manual):
-
-1. **Crear cuenta en Render**
-   - Ve a [render.com](https://render.com)
-   - Regístrate con GitHub
-
-2. **Crear Web Service**
-   - Click en "New" → "Web Service"
-   - Conecta tu repositorio
-   - Configuración:
-     - Environment: `PHP`
-     - Build Command: `composer install --no-dev --optimize-autoloader`
-     - Start Command: `php -S 0.0.0.0:$PORT router.php`
-
-3. **Crear base de datos PostgreSQL**
-   - Click en "New" → "PostgreSQL"
-   - Copia la URL de conexión
-
-4. **Configurar variables de entorno**
-   - En tu Web Service, ve a "Environment"
-   - Agrega:
-     ```
-     DATABASE_URL=<tu-url-de-postgresql>
-     APP_ENV=production
-     APP_DEBUG=false
-     APP_URL=https://tu-servicio.onrender.com
-     ```
-
-5. **Ejecutar migraciones**
-   - Usa la shell de Render o conéctate por SSH:
-     ```bash
-     php database/migrate.php
-     ```
+- ✅ Cuenta de GitHub con el código subido
+- ✅ Cuenta en Railway (se crea durante el proceso)
+- ⏱️ Aproximadamente 15-20 minutos
 
 ---
 
-## Opción 3: Desarrollo Local
+## 📋 Pasos para Deployment
 
-### Requisitos:
-- PHP 8.0+
-- PostgreSQL
-- Extensiones: pdo, pdo_pgsql
+### Paso 1: Crear Cuenta y Proyecto en Railway
 
-### Pasos:
+1. Ve a [railway.app](https://railway.app) e inicia sesión con GitHub
+2. Click en **"+ New Project"**
+3. Selecciona **"Deploy from GitHub repo"**
+4. Conecta tu repositorio `labrute` (o el nombre que hayas usado)
+5. Railway detectará automáticamente el `Dockerfile` y `railway.json`
 
-1. **Clonar repositorio**
-   ```bash
-   git clone https://tu-repositorio.git
-   cd labrute
+### Paso 2: Agregar Base de Datos PostgreSQL
+
+1. En tu proyecto de Railway, click en **"+ New"**
+2. Selecciona **"Database"** → **"Add PostgreSQL"**
+3. Railway creará automáticamente la base de datos y configurará `DATABASE_URL`
+
+**Nota**: No necesitas configurar nada manualmente, Railway lo hace automáticamente.
+
+### Paso 3: Configurar Variables de Entorno
+
+1. Click en tu servicio web (no en PostgreSQL)
+2. Ve a la pestaña **"Variables"**
+3. Agrega las siguientes variables:
+
+```
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://tu-proyecto.up.railway.app
+```
+
+**Importante**: 
+- `DATABASE_URL` se configura automáticamente cuando agregas PostgreSQL
+- `APP_URL` puedes actualizarlo después con la URL real que Railway te asigne
+- Para ver la URL, ve a **Settings** → **Domains** después del deploy
+
+### Paso 4: Esperar el Primer Deploy
+
+Railway comenzará a hacer deploy automáticamente. Puedes ver el progreso en la pestaña **"Deployments"**.
+
+**El build incluye**:
+- ✅ Instalación de PHP 8.2 con extensiones PostgreSQL
+- ✅ Instalación de Composer y dependencias
+- ✅ Configuración del script de inicio (`start.sh`)
+- ✅ Healthcheck endpoint en `/health`
+
+### Paso 5: Ejecutar Migraciones de Base de Datos
+
+Una vez que el deploy esté completo (verás un check verde ✅):
+
+1. Ve a la pestaña **"Deployments"** → click en el deployment más reciente
+2. O ve a **Settings** → busca **"Open Shell"** o **"Connect"**
+3. En la terminal, ejecuta:
+
+```bash
+php database/migrate.php
+```
+
+Deberías ver:
+```
+=== LaBrute Database Migration ===
+✓ Connected to database
+✓ Loaded migration file
+  Running migrations...
+✓ Migrations completed successfully!
+Tables created:
+  - users
+  - brutes
+  - skills
+  - weapons
+  - fights
+  - sessions
+=== Migration Complete ===
+```
+
+### Paso 6: Verificar que Todo Funciona
+
+1. Obtén la URL de tu aplicación:
+   - Ve a **Settings** → **Domains**
+   - Verás una URL como: `https://labrute-production-xxxx.up.railway.app`
+2. Abre la URL en tu navegador
+3. Deberías ver la página de inicio de LaBrute
+4. Prueba:
+   - ✅ Ver la página principal
+   - ✅ Hacer clic en "Registrarse"
+   - ✅ Crear una cuenta de prueba
+   - ✅ Iniciar sesión
+
+---
+
+## 🔧 Archivos de Configuración
+
+El proyecto incluye los siguientes archivos para el deployment:
+
+### Archivos Principales
+
+- **`Dockerfile`**: Configuración de Docker con PHP 8.2 y extensiones PostgreSQL
+- **`railway.json`**: Configuración de Railway (builder, healthcheck, start command)
+- **`start.sh`**: Script de inicio que maneja correctamente la variable `PORT`
+- **`health.php`**: Endpoint de healthcheck que no requiere base de datos
+- **`router.php`**: Router para el servidor PHP integrado
+
+### Archivos de Configuración Adicionales
+
+- **`composer.json`**: Dependencias PHP (PHP 8.2+, extensiones PostgreSQL)
+- **`nixpacks.toml`**: Configuración alternativa para Nixpacks (no se usa actualmente)
+- **`env.example.txt`**: Plantilla de variables de entorno
+- **`.railwayignore`**: Archivos a ignorar en Railway
+
+### Estructura del Deployment
+
+```
+┌─────────────────────────────────────┐
+│  Railway Project                    │
+│  ┌──────────────┐  ┌──────────────┐ │
+│  │ Web Service  │  │ PostgreSQL   │ │
+│  │ (Dockerfile) │  │ (Automático) │ │
+│  └──────┬───────┘  └──────┬───────┘ │
+│         │                 │          │
+│         └────────┬────────┘          │
+│                  │                   │
+│         DATABASE_URL (auto)          │
+└─────────────────────────────────────┘
+```
+
+---
+
+## 🐛 Solución de Problemas
+
+### Problema: "Build failed - php80 has been dropped"
+
+**Causa**: Railway intentaba usar PHP 8.0 que ya no está disponible.
+
+**Solución**: ✅ Ya resuelto. El proyecto usa PHP 8.2 en el Dockerfile.
+
+---
+
+### Problema: "Cannot find libpq-fe.h"
+
+**Causa**: Faltaban las librerías de desarrollo de PostgreSQL.
+
+**Solución**: ✅ Ya resuelto. El Dockerfile instala `libpq-dev` y `postgresql-client`.
+
+---
+
+### Problema: "Healthcheck failed" o "Invalid address: 0.0.0.0:$PORT"
+
+**Causa**: La variable `$PORT` no se expandía correctamente.
+
+**Solución**: ✅ Ya resuelto. Se creó `start.sh` que maneja correctamente la variable PORT.
+
+Si aún tienes este problema:
+1. Verifica que `start.sh` esté en el repositorio
+2. Verifica que el Dockerfile copie y haga ejecutable `start.sh`
+3. Verifica que `railway.json` use `/usr/local/bin/start.sh` como startCommand
+
+---
+
+### Problema: "Error 500" o página en blanco
+
+**Solución**:
+1. Ve a **Variables** y temporalmente cambia:
    ```
+   APP_DEBUG=true
+   ```
+2. Recarga la página y verás el error detallado
+3. Revisa los logs en **Deployments** → click en el deployment → **Logs**
+4. Una vez solucionado, vuelve a poner `APP_DEBUG=false`
 
-2. **Configurar base de datos**
-   - Crea una base de datos PostgreSQL llamada `labrute`
-   - Copia `env.example.txt` a `.env` y edita los valores
-   - O configura las variables de entorno directamente
+---
 
-3. **Ejecutar migraciones**
+### Problema: "Error de conexión a la base de datos"
+
+**Solución**:
+1. Verifica que `DATABASE_URL` esté configurada en **Variables**
+   - Railway la configura automáticamente cuando agregas PostgreSQL
+   - Si no está, verifica que PostgreSQL esté conectado al servicio web
+2. Verifica que el servicio PostgreSQL esté corriendo (debe tener un check verde ✅)
+3. Ejecuta las migraciones nuevamente:
    ```bash
    php database/migrate.php
    ```
 
-4. **Iniciar servidor**
+---
+
+### Problema: "Las migraciones no funcionan"
+
+**Solución**:
+1. Verifica que estás en el servicio web (no en PostgreSQL)
+2. Asegúrate de que `DATABASE_URL` esté configurada
+3. Intenta ejecutar manualmente el SQL:
+   - Ve a tu servicio PostgreSQL → **"Data"** → **"Query"**
+   - Copia el contenido de `database/migrations.sql`
+   - Pégalo y ejecuta
+
+---
+
+### Problema: "No se cargan las imágenes/estilos"
+
+**Solución**:
+1. Verifica que los archivos estáticos estén en el repositorio
+2. Verifica los logs para ver si hay errores 404
+3. Asegúrate de que `router.php` esté sirviendo archivos estáticos correctamente (ya está configurado)
+
+---
+
+### Problema: "El servidor no inicia"
+
+**Solución**:
+1. Revisa los logs del deployment
+2. Verifica que `start.sh` tenga permisos de ejecución (el Dockerfile lo hace automáticamente)
+3. Verifica que el Dockerfile esté correcto
+4. Intenta hacer un redeploy manual
+
+---
+
+## 📊 Límites del Plan Gratuito de Railway
+
+Railway ofrece un tier gratuito generoso:
+
+- **$5 de crédito gratis por mes** (suficiente para uso personal/grupo de amigos)
+- **512 MB de RAM** por servicio
+- **1 GB de almacenamiento** para base de datos
+- **100 GB de transferencia** por mes
+- **Sin límite de tiempo** (no se suspende después de X tiempo de inactividad)
+
+**Consejo**: Para un grupo pequeño de amigos, el plan gratuito es más que suficiente.
+
+---
+
+## ✅ Checklist de Deployment
+
+Antes de considerar el deployment completo, verifica:
+
+- [ ] El código está en GitHub
+- [ ] El proyecto está creado en Railway
+- [ ] PostgreSQL está agregado y conectado
+- [ ] Las variables de entorno están configuradas (`APP_ENV`, `APP_DEBUG`, `APP_URL`)
+- [ ] El build se completó exitosamente
+- [ ] Las migraciones se ejecutaron correctamente
+- [ ] La aplicación carga en el navegador (healthcheck funciona)
+- [ ] Puedes registrarte e iniciar sesión
+- [ ] Puedes crear un brute
+- [ ] El dashboard funciona correctamente
+
+---
+
+## 🔄 Actualizaciones y Redeploy
+
+Cada vez que hagas cambios en el código:
+
+1. Haz commit y push a GitHub:
    ```bash
-   php -S localhost:8080 router.php
+   git add .
+   git commit -m "Descripción de los cambios"
+   git push
    ```
 
-5. **Abrir en navegador**
-   - Ve a `http://localhost:8080`
+2. Railway detectará automáticamente los cambios y hará un nuevo deploy
+
+3. Si necesitas hacer un redeploy manual:
+   - Ve a **Deployments**
+   - Click en **"Redeploy"** en el deployment más reciente
 
 ---
 
-## Archivos de Configuración
+## 🌐 Dominio Personalizado (Opcional)
 
-El proyecto incluye varios archivos para facilitar el deployment:
+Si quieres usar tu propio dominio:
 
-- **`railway.json`**: Configuración automática para Railway.app
-- **`nixpacks.toml`**: Configuración de build para Railway (usando Nixpacks)
-- **`render.yaml`**: Configuración automática para Render.com
-- **`Procfile`**: Configuración para Heroku/Render (método alternativo)
-- **`env.example.txt`**: Plantilla de variables de entorno (copia a `.env` para desarrollo local)
-- **`.railwayignore`**: Archivos a ignorar en Railway
-- **`.renderignore`**: Archivos a ignorar en Render
-- **`scripts/post-deploy.sh`**: Script opcional para ejecutar después del deployment
-
-## Variables de Entorno
-
-| Variable | Descripción | Requerido | Ejemplo |
-|----------|-------------|-----------|---------|
-| `DATABASE_URL` | URL completa de PostgreSQL | Sí* | `postgres://user:pass@host:5432/db` |
-| `DB_HOST` | Host de la base de datos | Sí* | `localhost` |
-| `DB_PORT` | Puerto de PostgreSQL | Sí* | `5432` |
-| `DB_NAME` | Nombre de la base de datos | Sí* | `labrute` |
-| `DB_USER` | Usuario de PostgreSQL | Sí* | `postgres` |
-| `DB_PASS` | Contraseña | Sí* | `secreto` |
-| `APP_ENV` | Entorno de la app | No | `production` o `development` |
-| `APP_DEBUG` | Mostrar errores detallados | No | `true` o `false` |
-| `APP_URL` | URL pública de la app | No | `https://miapp.railway.app` |
-
-\* Usa `DATABASE_URL` O las variables individuales (`DB_HOST`, `DB_PORT`, etc.). Railway y Render suelen proporcionar `DATABASE_URL` automáticamente.
+1. En **Settings** → **Domains**, click en **"+ Custom Domain"**
+2. Ingresa tu dominio (ej: `labrute.tudominio.com`)
+3. Railway te dará instrucciones para configurar los DNS
+4. Agrega los registros CNAME que Railway te indique en tu proveedor de DNS
 
 ---
 
-## Solución de Problemas
+## 📚 Recursos Adicionales
 
-### Error de conexión a la base de datos
-- Verifica que `DATABASE_URL` esté configurado correctamente
-- Asegúrate de que las extensiones `pdo_pgsql` estén habilitadas
+- [Documentación oficial de Railway](https://docs.railway.app)
+- [Railway Discord](https://discord.gg/railway) - Para soporte de la comunidad
+- [TUTORIAL_RAILWAY.md](./TUTORIAL_RAILWAY.md) - Tutorial detallado paso a paso
 
-### Error 500
-- Activa `APP_DEBUG=true` temporalmente para ver el error
-- Revisa los logs en Railway/Render
+---
 
-### Las migraciones no funcionan
-- Conecta directamente a PostgreSQL y ejecuta el contenido de `database/migrations.sql`
+## 💡 Tips y Mejores Prácticas
+
+1. **Mantén tus variables de entorno seguras**: Nunca compartas `DATABASE_URL` públicamente
+2. **Monitorea el uso**: Revisa periódicamente el dashboard de Railway para ver el consumo
+3. **Haz backups**: Railway hace backups automáticos de PostgreSQL, pero considera hacer backups manuales importantes
+4. **Revisa los logs**: Si algo no funciona, los logs son tu mejor amigo (Deployments → Logs)
+5. **Usa APP_DEBUG con cuidado**: Solo en desarrollo, nunca en producción con datos reales
+
+---
+
+## 🎉 ¡Listo!
+
+Tu aplicación LaBrute está ahora deployada en Railway y lista para que tus amigos jueguen.
+
+**URL de tu aplicación**: `https://tu-proyecto.up.railway.app`
+
+### Próximos pasos sugeridos:
+
+1. Comparte la URL con tus amigos
+2. Crea algunas cuentas de prueba
+3. Prueba el sistema de peleas
+4. Monitorea el uso en Railway dashboard
+5. Considera agregar un dominio personalizado si lo deseas
 
 ---
 
@@ -198,4 +335,3 @@ El proyecto incluye varios archivos para facilitar el deployment:
 
 Este proyecto está bajo licencia AGPL-3.0. Los assets están bajo CC-BY-NC-SA-4.0.
 Basado en el trabajo de [Eternaltwin](https://gitlab.com/eternaltwin/labrute/labrute).
-
