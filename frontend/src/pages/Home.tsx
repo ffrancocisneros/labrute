@@ -206,25 +206,21 @@ const Home = () => {
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               <HowToPlayItem
-                number={1}
                 title="Crea tu Brute"
                 description="Dale un nombre épico a tu guerrero y personaliza su apariencia."
                 icon="⚔️"
               />
               <HowToPlayItem
-                number={2}
                 title="Pelea"
                 description="Enfréntate a otros Brutes en combates automáticos llenos de acción."
                 icon="🏆"
               />
               <HowToPlayItem
-                number={3}
                 title="Sube de Nivel"
                 description="Gana experiencia, mejora tus estadísticas y desbloquea nuevas habilidades."
                 icon="📈"
               />
               <HowToPlayItem
-                number={4}
                 title="Domina la Arena"
                 description="Sé el mejor gladiador y presume tu récord de victorias."
                 icon="👑"

@@ -291,8 +291,8 @@ const BruteDetail = () => {
                 </Typography>
                 {brute.skills && brute.skills.length > 0 ? (
                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {brute.skills.map((skill) => (
-                      <SkillBadge key={skill.id} name={skill.name} />
+                    {brute.skills.map((s) => (
+                      <SkillBadge key={s.skill.id} name={s.skill.nameEs || s.skill.nameEn} />
                     ))}
                   </Box>
                 ) : (
@@ -324,8 +324,8 @@ const BruteDetail = () => {
                 </Typography>
                 {brute.weapons && brute.weapons.length > 0 ? (
                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {brute.weapons.map((weapon) => (
-                      <WeaponBadge key={weapon.id} name={weapon.name} />
+                    {brute.weapons.map((w) => (
+                      <WeaponBadge key={w.weapon.id} name={w.weapon.nameEs || w.weapon.nameEn} />
                     ))}
                   </Box>
                 ) : (
