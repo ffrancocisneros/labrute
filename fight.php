@@ -64,7 +64,7 @@ echo View::header('Pelear', true, $user['username']);
 <?php echo View::flashMessage($error, 'error'); ?>
 
 <?php if ($fightResult): ?>
-    <!-- Fight Result -->
+    <!-- Fight Result with Animation -->
     <section class="card" style="margin-bottom: 2rem;">
         <h2 style="text-align: center; margin-bottom: 1rem;">
             <?php if ($fightResult['winner']['id'] === $myBrute->Id): ?>
@@ -73,6 +73,21 @@ echo View::header('Pelear', true, $user['username']);
                 💀 Derrota
             <?php endif; ?>
         </h2>
+        
+        <!-- Fight Animation Canvas -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <canvas id="fightCanvas" style="border: 2px solid var(--color-gold); background: #1a1410; max-width: 100%;"></canvas>
+            <div style="margin-top: 1rem;">
+                <button id="playBtn" class="btn btn-primary">▶️ Reproducir Pelea</button>
+                <button id="pauseBtn" class="btn btn-secondary" style="display: none;">⏸️ Pausar</button>
+                <button id="resetBtn" class="btn btn-secondary">🔄 Reiniciar</button>
+                <label style="margin-left: 1rem; color: var(--color-text);">
+                    Velocidad: 
+                    <input type="range" id="speedSlider" min="50" max="500" value="100" style="vertical-align: middle;">
+                    <span id="speedValue">1x</span>
+                </label>
+            </div>
+        </div>
         
         <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
             <div style="text-align: center;">
@@ -118,6 +133,48 @@ echo View::header('Pelear', true, $user['username']);
             <a href="/dashboard.php" class="btn btn-secondary">🏠 Volver al Arena</a>
         </div>
     </section>
+    
+    <script src="/public/js/fight-animator.js"></script>
+    <script>
+        // Initialize fight animator
+        const fightData = {
+            brute1_name: '<?= htmlspecialchars($fightResult['brute1']['name'] ?? $myBrute->Name) ?>',
+            brute2_name: '<?= htmlspecialchars($fightResult['brute2']['name'] ?? ($opponent->Name ?? '')) ?>',
+            brute1_initial_health: <?= $fightResult['brute1']['initial_health'] ?? 100 ?>,
+            brute2_initial_health: <?= $fightResult['brute2']['initial_health'] ?? 100 ?>,
+            log: <?= json_encode($fightResult['log'] ?? []) ?>
+        };
+        
+        const animator = new FightAnimator('fightCanvas', fightData);
+        
+        // Control buttons
+        document.getElementById('playBtn').addEventListener('click', () => {
+            animator.play();
+            document.getElementById('playBtn').style.display = 'none';
+            document.getElementById('pauseBtn').style.display = 'inline-block';
+        });
+        
+        document.getElementById('pauseBtn').addEventListener('click', () => {
+            animator.pause();
+            document.getElementById('playBtn').style.display = 'inline-block';
+            document.getElementById('pauseBtn').style.display = 'none';
+        });
+        
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            animator.reset();
+            document.getElementById('playBtn').style.display = 'inline-block';
+            document.getElementById('pauseBtn').style.display = 'none';
+        });
+        
+        // Speed control
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+        speedSlider.addEventListener('input', (e) => {
+            const speed = parseInt(e.target.value);
+            animator.setSpeed(speed);
+            speedValue.textContent = (500 / speed).toFixed(1) + 'x';
+        });
+    </script>
 
 <?php else: ?>
     

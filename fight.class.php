@@ -43,6 +43,10 @@ class Fight {
         $fighter1 = clone $attacker;
         $fighter2 = clone $attacked;
         
+        // Store initial health for animation
+        $fighter1InitialHealth = $fighter1->Health;
+        $fighter2InitialHealth = $fighter2->Health;
+        
         // Prepare the seed for this fight
         $seed = hash('SHA512', $attacker->Name . $attacker->Experience . $attacked->Name . $attacked->Experience . time());
         $seed = substr($seed, 0, 15);
@@ -243,18 +247,43 @@ class Fight {
      * Get fight result as array
      */
     public function getResult(): array {
+        // Get initial health from stored values or reconstruct from log
+        $brute1InitialHealth = $this->Brute1->Health ?? 100;
+        $brute2InitialHealth = $this->Brute2->Health ?? 100;
+        
+        if (!empty($this->FightLog)) {
+            // Reconstruct initial health from first hit
+            $firstHit = $this->FightLog[0];
+            if ($firstHit['attacker'] === $this->Brute1->Name) {
+                $brute2InitialHealth = $firstHit['defender_health_remaining'] + $firstHit['damage'];
+            } else {
+                $brute1InitialHealth = $firstHit['defender_health_remaining'] + $firstHit['damage'];
+            }
+        }
+        
         return [
             'id' => $this->Id,
             'winner' => $this->Winner ? [
                 'id' => $this->Winner->Id,
-                'name' => $this->Winner->Name
+                'name' => $this->Winner->Name,
+                'initial_health' => $this->Winner === $this->Brute1 ? $brute1InitialHealth : $brute2InitialHealth
             ] : null,
             'loser' => $this->Winner === $this->Brute1 ? [
                 'id' => $this->Brute2->Id,
-                'name' => $this->Brute2->Name
+                'name' => $this->Brute2->Name,
+                'initial_health' => $brute2InitialHealth
             ] : [
                 'id' => $this->Brute1->Id,
-                'name' => $this->Brute1->Name
+                'name' => $this->Brute1->Name,
+                'initial_health' => $brute1InitialHealth
+            ],
+            'brute1' => [
+                'name' => $this->Brute1->Name,
+                'initial_health' => $brute1InitialHealth
+            ],
+            'brute2' => [
+                'name' => $this->Brute2->Name,
+                'initial_health' => $brute2InitialHealth
             ],
             'duration_hits' => $this->DurationHits,
             'winner_exp_gained' => $this->WinnerExpGained,

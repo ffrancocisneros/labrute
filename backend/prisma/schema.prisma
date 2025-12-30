@@ -1,0 +1,220 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Users table for authentication
+model User {
+  id           Int       @id @default(autoincrement())
+  username     String    @unique @db.VarChar(50)
+  email        String?   @unique @db.VarChar(100)
+  passwordHash String    @map("password_hash") @db.VarChar(255)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  lastLogin    DateTime? @map("last_login")
+  isActive     Boolean   @default(true) @map("is_active")
+  
+  brutes       Brute[]
+  sessions     Session[]
+  
+  @@index([username])
+  @@map("users")
+}
+
+// Brutes table (the fighters)
+model Brute {
+  id                    Int       @id @default(autoincrement())
+  userId                Int       @map("user_id")
+  name                  String    @db.VarChar(50)
+  identifier            BigInt
+  experience            Int       @default(1)
+  level                 Int       @default(1)
+  
+  // Base stats
+  health                Int       @default(50)
+  strength              Int       @default(2)
+  agility               Int       @default(2)
+  speed                 Int       @default(2)
+  armor                 Int       @default(2)
+  endurance             Int       @default(3)
+  initiative            Int       @default(0)
+  
+  // Calculated values
+  maxReceivableDamages  Int       @default(50) @map("max_receivable_damages")
+  
+  // Appearance (for rendering)
+  gender                String    @default("male") @db.VarChar(10)
+  bodyType              Int       @default(0) @map("body_type")
+  headType              Int       @default(0) @map("head_type")
+  hairType              Int       @default(0) @map("hair_type")
+  hairColor             String    @default("#8B4513") @map("hair_color") @db.VarChar(10)
+  skinColor             String    @default("#DEB887") @map("skin_color") @db.VarChar(10)
+  clothingColor         String    @default("#4169E1") @map("clothing_color") @db.VarChar(10)
+  
+  // Metadata
+  wins                  Int       @default(0)
+  losses                Int       @default(0)
+  fightsToday           Int       @default(0) @map("fights_today")
+  lastFightDate         DateTime? @map("last_fight_date") @db.Date
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+  
+  // Relations
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skills                BruteSkill[]
+  weapons               BruteWeapon[]
+  pets                  BrutePet[]
+  fightsAsAttacker      Fight[]   @relation("FightAttacker")
+  fightsAsDefender      Fight[]   @relation("FightDefender")
+  
+  @@unique([userId, name])
+  @@index([userId])
+  @@index([name])
+  @@map("brutes")
+}
+
+// Skills available in the game
+model Skill {
+  id          Int           @id @default(autoincrement())
+  alias       String        @unique @db.VarChar(50)
+  nameEn      String        @map("name_en") @db.VarChar(100)
+  nameEs      String?       @map("name_es") @db.VarChar(100)
+  nameFr      String?       @map("name_fr") @db.VarChar(100)
+  description String?       @db.Text
+  effectType  String?       @map("effect_type") @db.VarChar(50) // passive, active, talent, super
+  
+  // Stat modifiers
+  healthMod   Int           @default(0) @map("health_mod")
+  strengthMod Int           @default(0) @map("strength_mod")
+  agilityMod  Int           @default(0) @map("agility_mod")
+  speedMod    Int           @default(0) @map("speed_mod")
+  armorMod    Int           @default(0) @map("armor_mod")
+  enduranceMod Int          @default(0) @map("endurance_mod")
+  initiativeMod Int         @default(0) @map("initiative_mod")
+  
+  createdAt   DateTime      @default(now()) @map("created_at")
+  
+  brutes      BruteSkill[]
+  
+  @@map("skills")
+}
+
+// Many-to-many: Brutes and Skills
+model BruteSkill {
+  id        Int      @id @default(autoincrement())
+  bruteId   Int      @map("brute_id")
+  skillId   Int      @map("skill_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  brute     Brute    @relation(fields: [bruteId], references: [id], onDelete: Cascade)
+  skill     Skill    @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  
+  @@unique([bruteId, skillId])
+  @@map("brute_skills")
+}
+
+// Weapons available in the game
+model Weapon {
+  id         Int           @id @default(autoincrement())
+  alias      String        @unique @db.VarChar(50)
+  nameEn     String        @map("name_en") @db.VarChar(100)
+  nameEs     String?       @map("name_es") @db.VarChar(100)
+  nameFr     String?       @map("name_fr") @db.VarChar(100)
+  type       String        @db.VarChar(30) // fast, heavy, long, thrown, sharp
+  damageMin  Int           @map("damage_min")
+  damageMax  Int           @map("damage_max")
+  sprite     String?       @db.VarChar(100)
+  createdAt  DateTime      @default(now()) @map("created_at")
+  
+  brutes     BruteWeapon[]
+  
+  @@map("weapons")
+}
+
+// Many-to-many: Brutes and Weapons
+model BruteWeapon {
+  id        Int      @id @default(autoincrement())
+  bruteId   Int      @map("brute_id")
+  weaponId  Int      @map("weapon_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  brute     Brute    @relation(fields: [bruteId], references: [id], onDelete: Cascade)
+  weapon    Weapon   @relation(fields: [weaponId], references: [id], onDelete: Cascade)
+  
+  @@unique([bruteId, weaponId])
+  @@map("brute_weapons")
+}
+
+// Pets available in the game
+model Pet {
+  id          Int         @id @default(autoincrement())
+  alias       String      @unique @db.VarChar(50)
+  nameEn      String      @map("name_en") @db.VarChar(100)
+  nameEs      String?     @map("name_es") @db.VarChar(100)
+  nameFr      String?     @map("name_fr") @db.VarChar(100)
+  description String?     @db.Text
+  healthMod   Int         @default(0) @map("health_mod")
+  damageMod   Int         @default(0) @map("damage_mod")
+  sprite      String?     @db.VarChar(100)
+  createdAt   DateTime    @default(now()) @map("created_at")
+  
+  brutes      BrutePet[]
+  
+  @@map("pets")
+}
+
+// Many-to-many: Brutes and Pets
+model BrutePet {
+  id        Int      @id @default(autoincrement())
+  bruteId   Int      @map("brute_id")
+  petId     Int      @map("pet_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  brute     Brute    @relation(fields: [bruteId], references: [id], onDelete: Cascade)
+  pet       Pet      @relation(fields: [petId], references: [id], onDelete: Cascade)
+  
+  @@unique([bruteId, petId])
+  @@map("brute_pets")
+}
+
+// Fights between brutes
+model Fight {
+  id              Int         @id @default(autoincrement())
+  attackerId      Int         @map("attacker_id")
+  defenderId      Int         @map("defender_id")
+  winnerId        Int?        @map("winner_id")
+  fightLog        Json        @map("fight_log")
+  fightSeed       BigInt      @map("fight_seed")
+  durationHits    Int         @default(0) @map("duration_hits")
+  winnerExpGained Int         @default(0) @map("winner_exp_gained")
+  loserExpGained  Int         @default(0) @map("loser_exp_gained")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  
+  attacker        Brute       @relation("FightAttacker", fields: [attackerId], references: [id], onDelete: Cascade)
+  defender        Brute       @relation("FightDefender", fields: [defenderId], references: [id], onDelete: Cascade)
+  
+  @@index([attackerId])
+  @@index([defenderId])
+  @@map("fights")
+}
+
+// User sessions
+model Session {
+  id        String   @id @default(uuid())
+  userId    Int      @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([token])
+  @@map("sessions")
+}
+
