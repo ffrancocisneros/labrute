@@ -66,58 +66,67 @@ Railway comenzará a hacer deploy automáticamente. Puedes ver el progreso en la
 - ✅ Configuración del script de inicio (`start.sh`)
 - ✅ Healthcheck endpoint en `/health`
 
-### Paso 5: Ejecutar Migraciones de Base de Datos
+### Paso 5: Configurar DATABASE_URL
 
-Una vez que el deploy esté completo (verás un check verde ✅):
+**IMPORTANTE**: Antes de ejecutar las migraciones, necesitas configurar la variable `DATABASE_URL` en tu servicio web.
 
-#### Método 1: Terminal en Railway (Recomendado)
+1. Ve a tu servicio **web** (no PostgreSQL)
+2. Ve a **Settings** → **Variables**
+3. Agrega una nueva variable:
+   - **VARIABLE_NAME**: `DATABASE_URL`
+   - **VALUE**: `${{ Postgres.DATABASE_PUBLIC_URL }}`
+   
+   (Esto conecta automáticamente tu servicio web con PostgreSQL)
 
-1. Click en tu servicio web (no en PostgreSQL)
-2. Busca en la parte superior o en las pestañas:
-   - **"Terminal"** o **"Shell"** o **"Console"**
-   - O un ícono de terminal (🖥️ o `>_`)
-3. Si no lo ves, busca un menú de tres puntos (**...**) o **"More"** → **"Open Terminal"**
-4. En la terminal que se abre, ejecuta:
+4. Railway hará un redeploy automático después de agregar la variable
 
-```bash
-php database/migrate.php
-```
+### Paso 6: Ejecutar Migraciones de Base de Datos
 
-#### Método 2: Railway CLI (Alternativa)
+Una vez que `DATABASE_URL` esté configurada y el redeploy haya terminado:
 
-Si no encuentras la terminal en la web, usa Railway CLI desde tu computadora:
+#### Método Recomendado: Usar un Cliente SQL
 
-1. Instala Railway CLI (si no lo tienes):
+1. Instala un cliente SQL gratuito:
+   - **DBeaver**: https://dbeaver.io/download/ (Recomendado)
+   - **pgAdmin**: https://www.pgadmin.org/download/
+
+2. Obtén la información de conexión:
+   - Ve a tu servicio **PostgreSQL** en Railway
+   - Click en **"Connect"**
+   - Copia la información de conexión:
+     - **Host**: `shortline.proxy.rlwy.net` (o el que te muestre)
+     - **Port**: `59788` (o el que te muestre)
+     - **Database**: `railway`
+     - **User**: `postgres`
+     - **Password**: (la contraseña que te muestre)
+
+3. Conéctate desde el cliente SQL
+
+4. Abre el archivo `database/migrations.sql` de tu proyecto local
+
+5. Copia todo el contenido SQL y ejecútalo en el cliente
+
+#### Método Alternativo: Railway CLI
+
+Si prefieres usar Railway CLI:
+
+1. Instala Railway CLI:
    ```bash
    npm i -g @railway/cli
    ```
 
-2. Inicia sesión:
+2. Inicia sesión y conecta:
    ```bash
    railway login
-   ```
-
-3. Conecta tu proyecto:
-   ```bash
    railway link
    ```
-   (Selecciona tu proyecto cuando te pregunte)
 
-4. Ejecuta las migraciones:
+3. Ejecuta las migraciones (nota: puede requerir que PHP esté instalado localmente):
    ```bash
-   railway run php database/migrate.php
+   railway run --service web php database/migrate.php
    ```
 
-#### Método 3: Ejecutar SQL directamente
-
-Si ninguna de las opciones anteriores funciona:
-
-1. Ve a tu servicio **PostgreSQL** (no el web)
-2. Click en la pestaña **"Data"** o **"Query"**
-3. Abre el archivo `database/migrations.sql` de tu proyecto local
-4. Copia todo el contenido SQL
-5. Pégalo en el editor de queries de Railway
-6. Click en **"Run"** o **"Execute"**
+**Nota**: Railway no tiene un editor SQL integrado en su interfaz web, por lo que necesitas usar un cliente SQL externo o Railway CLI.
 
 Deberías ver:
 ```
