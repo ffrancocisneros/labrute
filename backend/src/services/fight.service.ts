@@ -85,7 +85,7 @@ export class FightService {
         defenderId,
         winnerId: result.winnerId,
         fightLog: result.log as any,
-        fightSeed: BigInt(seed),
+        fightSeed: seed,
         durationHits: result.durationHits,
         winnerExpGained,
         loserExpGained,
