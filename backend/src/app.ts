@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 import config from './config/env';
 import routes from './routes';
 
@@ -26,21 +27,23 @@ if (config.isDev) {
 // API routes
 app.use('/api', routes);
 
-// Root route
-app.get('/', (req, res) => {
-  res.json({
-    name: 'LaBrute API',
-    version: '1.0.0',
-    status: 'running',
-    documentation: '/api/health',
-  });
-});
+// Serve static files from React build (in production)
+const publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Route not found',
+// Handle React routing - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  const indexPath = path.join(publicPath, 'index.html');
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      // Fallback to API info if frontend not found
+      res.json({
+        name: 'LaBrute API',
+        version: '1.0.0',
+        status: 'running',
+        documentation: '/api/health',
+      });
+    }
   });
 });
 
