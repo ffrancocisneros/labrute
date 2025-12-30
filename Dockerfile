@@ -3,8 +3,14 @@
 
 FROM php:8.2-cli
 
+# Instalar dependencias del sistema para PostgreSQL
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
 # Instalar extensiones necesarias
-RUN docker-php-ext-install pdo pdo_pgsql pgsql
+RUN docker-php-ext-install pdo pdo_pgsql
 
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
