@@ -1,0 +1,28 @@
+# Render.com configuration for LaBrute
+# This file allows Render to automatically configure your service
+
+services:
+  - type: web
+    name: labrute
+    env: php
+    buildCommand: composer install --no-dev --optimize-autoloader
+    startCommand: php -S 0.0.0.0:$PORT router.php
+    healthCheckPath: /
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: labrute-db
+          property: connectionString
+      - key: APP_URL
+        generateValue: true
+
+databases:
+  - name: labrute-db
+    databaseName: labrute
+    user: labrute_user
+    plan: free
+

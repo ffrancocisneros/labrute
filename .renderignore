@@ -1,0 +1,13 @@
+# Files to ignore when deploying to Render
+.env
+.env.local
+*.log
+.git
+.gitignore
+README.md
+README_DEPLOYMENT.md
+LICENSE.md
+original-game/
+*.md
+!.renderignore
+
