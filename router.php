@@ -37,6 +37,12 @@ if (in_array(strtolower($extension), $staticExtensions)) {
 // Route to PHP files
 $phpFile = __DIR__ . $uri;
 
+// Handle health check endpoint (for Railway/Render)
+if ($uri === '/health' || $uri === '/health.php') {
+    require __DIR__ . '/health.php';
+    return true;
+}
+
 // Handle root URL
 if ($uri === '/') {
     require __DIR__ . '/index.php';
