@@ -1,92 +1,69 @@
-/* Global styles */
+@font-face {
+  font-family: LaBrute;
+  src: url(./assets/fonts/labrute.ttf) format("truetype"),
+    url(./assets/fonts/labrute.woff) format("woff");
+}
+
+@font-face {
+  font-family: Pixelized;
+  src: url(./assets/fonts/BarcadeBrawlRegular.ttf) format("truetype"),
+    url(./assets/fonts/BarcadeBrawlRegular.woff) format("woff");
+}
+
+@font-face {
+  font-family: GameFont;
+  src: url(./assets/fonts/Movavi_Grotesque_Black.ttf) format("truetype"),
+    url(./assets/fonts/Movavi_Grotesque_Black.woff) format("woff");
+}
+
+@font-face {
+  font-family: Handwritten;
+  src: url(./assets/fonts/acmesa.ttf) format("truetype"),
+    url(./assets/fonts/acmesa.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Blocky";
+  src: url(./assets/fonts/Blocky.ttf) format("truetype"),
+    url(./assets/fonts/Blocky.woff) format("woff");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html {
   height: 100%;
-  font-family: 'Cinzel', serif;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: arial, sans-serif;
+  background: linear-gradient(180deg, rgba(247, 225, 183, 1) 0%, rgb(235, 173, 112) 160px);
+  min-height: 100vh;
 }
 
 #root {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Custom scrollbar */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #f6ee90;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a4a6a;
+  background: #733d2c;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6a6a8a;
+  background: #5a2d1f;
 }
-
-/* Selection color */
-::selection {
-  background: #d4af37;
-  color: #1a1a2e;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { 
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-out;
-}
-
-.slide-up {
-  animation: slideUp 0.5s ease-out;
-}
-
-/* Arena background pattern */
-.arena-pattern {
-  background-image: 
-    radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-

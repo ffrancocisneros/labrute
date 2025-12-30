@@ -1,70 +1,59 @@
-import React from 'react';
-import { Box, Container, Typography, Link, Divider } from '@mui/material';
-import { GitHub } from '@mui/icons-material';
+import { Box, Container, Typography, Link as MuiLink } from '@mui/material';
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <Box
       component="footer"
       sx={{
-        mt: 'auto',
         py: 3,
-        px: 2,
-        background: 'linear-gradient(180deg, transparent 0%, rgba(15, 52, 96, 0.5) 100%)',
-        borderTop: '1px solid rgba(212, 175, 55, 0.2)',
+        mt: 'auto',
+        backgroundColor: '#733d2c',
+        backgroundImage: 'linear-gradient(180deg, #5a2d1f 0%, #4a231a 100%)',
+        borderTop: '4px solid #f6ee90',
       }}
     >
       <Container maxWidth="lg">
-        <Divider sx={{ mb: 3, borderColor: 'rgba(212, 175, 55, 0.2)' }} />
-        
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
             gap: 2,
+            flexWrap: 'wrap',
           }}
         >
           <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ textAlign: { xs: 'center', md: 'left' } }}
+            sx={{
+              fontFamily: 'Handwritten, arial',
+              color: '#fbf2af',
+              fontSize: 14,
+            }}
           >
-            © {new Date().getFullYear()} LaBrute - Un clon de código abierto
+            LaBrute Clone - Basado en el juego original de Motion Twin
           </Typography>
-          
-          <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-            <Link
-              href="https://gitlab.com/eternaltwin/labrute/labrute-react"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="text.secondary"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 0.5,
-                textDecoration: 'none',
-                '&:hover': { color: 'primary.main' },
-              }}
-            >
-              <GitHub fontSize="small" />
-              <Typography variant="body2">Basado en Eternaltwin</Typography>
-            </Link>
-          </Box>
+          <Box
+            component="img"
+            src="/images/motiontwin.gif"
+            alt="Motion Twin"
+            sx={{
+              height: 24,
+              opacity: 0.8,
+            }}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
         </Box>
-        
         <Typography
-          variant="caption"
-          color="text.secondary"
           sx={{
-            display: 'block',
+            fontFamily: 'arial',
+            color: 'rgba(251, 242, 175, 0.6)',
+            fontSize: 11,
             textAlign: 'center',
-            mt: 2,
-            fontStyle: 'italic',
+            mt: 1,
           }}
         >
-          LaBrute es un tributo al juego original. Todos los derechos del juego original pertenecen a sus creadores.
+          Este proyecto es un tributo al juego original. No está afiliado con Motion Twin.
         </Typography>
       </Container>
     </Box>
@@ -72,4 +61,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-

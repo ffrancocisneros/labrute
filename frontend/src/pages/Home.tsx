@@ -1,207 +1,367 @@
-import React from 'react';
+import { Box, Container, Grid, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Button,
-  Grid,
-  Card,
-  CardContent,
-  Container,
-} from '@mui/material';
-import {
-  SportsMma,
-  EmojiEvents,
-  TrendingUp,
-  Groups,
-} from '@mui/icons-material';
-import { Layout } from '../components/Layout';
+import { PaperBox, FantasyButton } from '../components/UI';
 import { useAuth } from '../hooks/useAuth';
 
-const features = [
-  {
-    icon: <SportsMma sx={{ fontSize: 48 }} />,
-    title: 'Crea tu Brute',
-    description: 'Dale un nombre épico a tu guerrero y elige sus habilidades iniciales.',
-  },
-  {
-    icon: <EmojiEvents sx={{ fontSize: 48 }} />,
-    title: 'Pelea',
-    description: 'Enfréntate a otros brutes en combates automáticos llenos de acción.',
-  },
-  {
-    icon: <TrendingUp sx={{ fontSize: 48 }} />,
-    title: 'Sube de Nivel',
-    description: 'Gana experiencia, mejora tus estadísticas y desbloquea nuevas habilidades.',
-  },
-  {
-    icon: <Groups sx={{ fontSize: 48 }} />,
-    title: 'Domina la Arena',
-    description: 'Sé el mejor gladiador y presume tu récord de victorias.',
-  },
-];
+// Character decorations
+const CharacterLeft = () => (
+  <Box
+    sx={{
+      position: 'absolute',
+      left: { xs: -20, md: -100 },
+      bottom: 0,
+      width: { xs: 120, md: 180 },
+      height: { xs: 180, md: 280 },
+      backgroundImage: 'url(/images/header/left-brute.png)',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom left',
+      display: { xs: 'none', sm: 'block' },
+      zIndex: 1,
+    }}
+  />
+);
 
-const Home: React.FC = () => {
+const CharacterRight = () => (
+  <Box
+    sx={{
+      position: 'absolute',
+      right: { xs: -20, md: -100 },
+      bottom: 0,
+      width: { xs: 120, md: 180 },
+      height: { xs: 180, md: 280 },
+      backgroundImage: 'url(/images/header/right-brute.png)',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+      display: { xs: 'none', sm: 'block' },
+      zIndex: 1,
+    }}
+  />
+);
+
+const Home = () => {
+  const [bruteName, setBruteName] = useState('');
+  const { user } = useAuth();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
-  
+
+  const handleCreateBrute = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (bruteName.trim()) {
+      if (user) {
+        navigate('/dashboard', { state: { newBruteName: bruteName.trim() } });
+      } else {
+        navigate('/register', { state: { bruteName: bruteName.trim() } });
+      }
+    }
+  };
+
   return (
-    <Layout fullWidth>
+    <Container maxWidth="lg">
       {/* Hero Section */}
       <Box
         sx={{
-          py: { xs: 8, md: 12 },
+          position: 'relative',
           textAlign: 'center',
-          background: 'radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+          py: { xs: 4, md: 6 },
+          mb: 4,
         }}
       >
-        <Container maxWidth="md">
+        <CharacterLeft />
+        <CharacterRight />
+
+        {/* Logo */}
+        <Box
+          sx={{
+            position: 'relative',
+            zIndex: 2,
+          }}
+        >
           <Typography
-            variant="h1"
             sx={{
-              fontSize: { xs: '3rem', md: '4.5rem' },
-              mb: 2,
-              background: 'linear-gradient(135deg, #d4af37 0%, #f5d77a 50%, #d4af37 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textShadow: 'none',
+              fontFamily: 'LaBrute, GameFont, arial',
+              fontSize: { xs: 48, md: 72 },
+              color: '#733d2c',
+              textShadow: `
+                3px 3px 0 #f6ee90,
+                -1px -1px 0 #f6ee90,
+                1px -1px 0 #f6ee90,
+                -1px 1px 0 #f6ee90,
+                4px 4px 0 rgba(0,0,0,0.2)
+              `,
+              letterSpacing: 4,
+              mb: 1,
             }}
           >
-            ⚔️ LaBrute
+            LA BRUTE
           </Typography>
-          
           <Typography
-            variant="h4"
-            color="primary.main"
-            sx={{ mb: 3, fontFamily: '"Cinzel", serif' }}
+            sx={{
+              fontFamily: 'Handwritten, arial',
+              fontSize: { xs: 18, md: 24 },
+              color: 'rgb(176, 107, 79)',
+              mb: 4,
+            }}
           >
-            Arena de Gladiadores
+            ¡Arregla cuentas en la arena!
           </Typography>
-          
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}
-          >
-            Crea tu guerrero, entrénalo y enfréntate a otros jugadores en épicas batallas por la gloria.
-            ¡Demuestra que eres el mejor gladiador de la arena!
-          </Typography>
-          
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {isAuthenticated ? (
-              <>
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={() => navigate('/dashboard')}
-                  sx={{ px: 4, py: 1.5, fontSize: '1.1rem' }}
-                >
-                  🏟️ Mi Arena
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  onClick={() => navigate('/leaderboard')}
-                  sx={{ px: 4, py: 1.5, fontSize: '1.1rem' }}
-                >
-                  🏆 Ranking
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={() => navigate('/register')}
-                  sx={{ px: 4, py: 1.5, fontSize: '1.1rem' }}
-                >
-                  ✨ Comenzar Ahora
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  onClick={() => navigate('/login')}
-                  sx={{ px: 4, py: 1.5, fontSize: '1.1rem' }}
-                >
-                  🔑 Ya tengo cuenta
-                </Button>
-              </>
-            )}
-          </Box>
-        </Container>
+        </Box>
       </Box>
-      
-      {/* Features Section */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Typography
-          variant="h3"
-          align="center"
-          sx={{ mb: 6, color: 'primary.main' }}
-        >
-          🎮 Cómo Jugar
-        </Typography>
-        
-        <Grid container spacing={4}>
-          {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card
+
+      {/* Main Content */}
+      <Grid container spacing={4} justifyContent="center">
+        {/* Create Brute Section */}
+        <Grid item xs={12} md={6}>
+          <PaperBox
+            sx={{
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'visible',
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontFamily: 'GameFont, LaBrute, arial',
+                color: '#733d2c',
+                mb: 3,
+              }}
+            >
+              ¡Crea tu Brute!
+            </Typography>
+
+            {/* Brute Preview */}
+            <Box
+              sx={{
+                width: 150,
+                height: 200,
+                mx: 'auto',
+                mb: 3,
+                backgroundImage: 'url(/images/creation/brute-preview.png)',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))',
+              }}
+            />
+
+            <Box component="form" onSubmit={handleCreateBrute}>
+              <Typography
                 sx={{
-                  height: '100%',
-                  textAlign: 'center',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                  },
+                  fontFamily: 'Handwritten, arial',
+                  fontSize: 16,
+                  color: 'rgb(176, 107, 79)',
+                  mb: 2,
                 }}
               >
-                <CardContent>
-                  <Box sx={{ color: 'primary.main', mb: 2 }}>
-                    {feature.icon}
-                  </Box>
-                  <Typography variant="h5" gutterBottom>
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {feature.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-      
-      {/* CTA Section */}
-      <Box
-        sx={{
-          py: 8,
-          background: 'linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.05) 100%)',
-        }}
-      >
-        <Container maxWidth="md">
-          <Card sx={{ p: 4, textAlign: 'center' }}>
-            <Typography variant="h4" gutterBottom color="primary.main">
-              ¿Listo para la batalla?
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              Únete a miles de gladiadores y demuestra tu valía en la arena.
-            </Typography>
-            {!isAuthenticated && (
-              <Button
-                variant="contained"
-                size="large"
-                onClick={() => navigate('/register')}
+                Elige un nombre épico para tu guerrero:
+              </Typography>
+
+              <TextField
+                value={bruteName}
+                onChange={(e) => setBruteName(e.target.value)}
+                placeholder="Nombre del Brute"
+                fullWidth
+                sx={{
+                  mb: 2,
+                  '& .MuiOutlinedInput-root': {
+                    backgroundColor: '#fff',
+                    fontFamily: 'Handwritten, arial',
+                    fontSize: 18,
+                    '& fieldset': {
+                      borderColor: '#725254',
+                      borderWidth: 2,
+                    },
+                  },
+                }}
+              />
+
+              <FantasyButton
+                type="submit"
+                fantasy="success"
+                fullWidth
+                disabled={!bruteName.trim()}
               >
-                Crear mi Brute Ahora
-              </Button>
-            )}
-          </Card>
-        </Container>
+                ¡Crear mi Brute!
+              </FantasyButton>
+            </Box>
+          </PaperBox>
+        </Grid>
+
+        {/* How to Play Section */}
+        <Grid item xs={12} md={6}>
+          <PaperBox>
+            <Typography
+              variant="h3"
+              sx={{
+                fontFamily: 'GameFont, LaBrute, arial',
+                color: '#733d2c',
+                mb: 3,
+                textAlign: 'center',
+              }}
+            >
+              ¿Cómo jugar?
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+              <HowToPlayItem
+                number={1}
+                title="Crea tu Brute"
+                description="Dale un nombre épico a tu guerrero y personaliza su apariencia."
+                icon="⚔️"
+              />
+              <HowToPlayItem
+                number={2}
+                title="Pelea"
+                description="Enfréntate a otros Brutes en combates automáticos llenos de acción."
+                icon="🏆"
+              />
+              <HowToPlayItem
+                number={3}
+                title="Sube de Nivel"
+                description="Gana experiencia, mejora tus estadísticas y desbloquea nuevas habilidades."
+                icon="📈"
+              />
+              <HowToPlayItem
+                number={4}
+                title="Domina la Arena"
+                description="Sé el mejor gladiador y presume tu récord de victorias."
+                icon="👑"
+              />
+            </Box>
+          </PaperBox>
+        </Grid>
+      </Grid>
+
+      {/* Features Section */}
+      <Box sx={{ mt: 6 }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4}>
+            <FeatureCard
+              title="Combates Épicos"
+              description="Peleas automáticas con animaciones fluidas y efectos especiales."
+              icon="⚔️"
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <FeatureCard
+              title="Habilidades Únicas"
+              description="Desbloquea poderes especiales y armas legendarias."
+              icon="✨"
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <FeatureCard
+              title="Torneos"
+              description="Compite contra otros jugadores en torneos diarios."
+              icon="🏅"
+            />
+          </Grid>
+        </Grid>
       </Box>
-    </Layout>
+    </Container>
   );
 };
 
-export default Home;
+// Helper Components
+interface HowToPlayItemProps {
+  number: number;
+  title: string;
+  description: string;
+  icon: string;
+}
 
+const HowToPlayItem = ({ number, title, description, icon }: HowToPlayItemProps) => (
+  <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+    <Box
+      sx={{
+        width: 40,
+        height: 40,
+        borderRadius: '50%',
+        backgroundColor: '#733d2c',
+        color: '#f6ee90',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'LaBrute, arial',
+        fontSize: 24,
+        flexShrink: 0,
+        boxShadow: '2px 2px 0 rgba(0,0,0,0.2)',
+      }}
+    >
+      {icon}
+    </Box>
+    <Box>
+      <Typography
+        sx={{
+          fontFamily: 'GameFont, LaBrute, arial',
+          fontSize: 18,
+          color: '#733d2c',
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: 'Handwritten, arial',
+          fontSize: 14,
+          color: 'rgb(176, 107, 79)',
+        }}
+      >
+        {description}
+      </Typography>
+    </Box>
+  </Box>
+);
+
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const FeatureCard = ({ title, description, icon }: FeatureCardProps) => (
+  <PaperBox
+    variant="accent"
+    sx={{
+      textAlign: 'center',
+      height: '100%',
+      transition: 'transform 0.2s',
+      '&:hover': {
+        transform: 'translateY(-4px)',
+      },
+    }}
+  >
+    <Box
+      sx={{
+        fontSize: 48,
+        mb: 2,
+        filter: 'drop-shadow(2px 2px 0 rgba(0,0,0,0.2))',
+      }}
+    >
+      {icon}
+    </Box>
+    <Typography
+      sx={{
+        fontFamily: 'GameFont, LaBrute, arial',
+        fontSize: 20,
+        color: '#733d2c',
+        mb: 1,
+      }}
+    >
+      {title}
+    </Typography>
+    <Typography
+      sx={{
+        fontFamily: 'Handwritten, arial',
+        fontSize: 14,
+        color: 'rgb(176, 107, 79)',
+      }}
+    >
+      {description}
+    </Typography>
+  </PaperBox>
+);
+
+export default Home;

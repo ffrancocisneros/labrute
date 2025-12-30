@@ -1,296 +1,472 @@
-import React, { useEffect, useState } from 'react';
+import { Box, Container, Grid, Typography, CircularProgress, Alert, LinearProgress } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Grid,
-  Button,
-  CircularProgress,
-  Alert,
-  Chip,
-  Paper,
-  Divider,
-} from '@mui/material';
-import {
-  ArrowBack,
-  SportsMma,
-} from '@mui/icons-material';
-import { Layout } from '../components/Layout';
-import { BruteStats } from '../components/Brute';
-import { BruteCard } from '../components/Brute';
-import { useAuth } from '../hooks/useAuth';
-import { useOpponents } from '../hooks/useBrute';
+import { PaperBox, FantasyButton } from '../components/UI';
+import { useBrute } from '../hooks/useBrute';
 import { useFight } from '../hooks/useFight';
-import { FightArena, FightLog } from '../components/Fight';
-import { bruteApi } from '../services/api';
-import { Brute } from '../types';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const BruteDetail: React.FC = () => {
-  const { name } = useParams<{ name: string }>();
+const BruteDetail = () => {
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useAuth();
-  
-  const [brute, setBrute] = useState<Brute | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  
-  const { opponents, loading: loadingOpponents } = useOpponents(brute?.id);
-  const { startFight, result, error: fightError, reset } = useFight();
-  
-  const [showFight, setShowFight] = useState(false);
-  const [fightOpponent, setFightOpponent] = useState<Brute | null>(null);
-  
+  const { getBrute, loading: bruteLoading, error: bruteError } = useBrute();
+  const { startFight, loading: fightLoading, fightResult } = useFight();
+  const [brute, setBrute] = useState<any>(null);
+  const [opponents, setOpponents] = useState<any[]>([]);
+
   useEffect(() => {
-    const fetchBrute = async () => {
-      if (!name) return;
-      
-      setLoading(true);
-      setError(null);
-      
-      try {
-        const response = await bruteApi.getByName(name);
-        if (response.success && response.data) {
-          setBrute(response.data);
-        } else {
-          setError(response.error || 'Brute no encontrado');
-        }
-      } catch (err: any) {
-        setError(err.message || 'Error al cargar el brute');
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchBrute();
-  }, [name]);
-  
-  const isOwner = brute && user && brute.userId === user.id;
-  
-  const handleFight = async (opponent: Brute) => {
-    if (!brute) return;
-    
-    setFightOpponent(opponent);
-    
-    try {
-      await startFight(brute.id, opponent.id);
-      setShowFight(true);
-    } catch (err) {
-      // Error is handled in the hook
+    if (id) {
+      loadBrute();
+    }
+  }, [id]);
+
+  const loadBrute = async () => {
+    if (id) {
+      const data = await getBrute(parseInt(id));
+      setBrute(data);
+      // TODO: Load opponents
     }
   };
-  
-  const handleBackFromFight = () => {
-    setShowFight(false);
-    setFightOpponent(null);
-    reset();
-    // Refresh brute data
-    if (name) {
-      bruteApi.getByName(name).then(response => {
-        if (response.success && response.data) {
-          setBrute(response.data);
-        }
-      });
+
+  const handleFight = async (opponentId: number) => {
+    if (brute) {
+      const result = await startFight(brute.id, opponentId);
+      // Handle fight result
     }
   };
-  
-  if (loading) {
+
+  if (bruteLoading) {
     return (
-      <Layout>
+      <Container maxWidth="lg">
         <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: '#733d2c' }} />
         </Box>
-      </Layout>
+      </Container>
     );
   }
-  
-  if (error || !brute) {
+
+  if (bruteError || !brute) {
     return (
-      <Layout>
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error || 'Brute no encontrado'}
+      <Container maxWidth="lg">
+        <Alert severity="error" sx={{ mt: 4 }}>
+          {bruteError || 'Brute no encontrado'}
         </Alert>
-        <Button
-          startIcon={<ArrowBack />}
-          onClick={() => navigate(-1)}
+      </Container>
+    );
+  }
+
+  return (
+    <Container maxWidth="lg">
+      {/* Back Button */}
+      <Box sx={{ mb: 3 }}>
+        <FantasyButton
+          fantasy="secondary"
+          onClick={() => navigate('/dashboard')}
+          startIcon={<ArrowBackIcon />}
         >
           Volver
-        </Button>
-      </Layout>
-    );
-  }
-  
-  // Show fight arena if fight is in progress
-  if (showFight && result && fightOpponent) {
-    return (
-      <Layout>
-        <Button
-          startIcon={<ArrowBack />}
-          onClick={handleBackFromFight}
-          sx={{ mb: 2 }}
-        >
-          Volver al brute
-        </Button>
-        
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={8}>
-            <FightArena
-              attacker={brute}
-              defender={fightOpponent}
-              result={result}
-              onBack={handleBackFromFight}
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <FightLog
-              log={result.log}
-              attackerName={brute.name}
-              defenderName={fightOpponent.name}
-              attackerId={brute.id}
-            />
-          </Grid>
-        </Grid>
-      </Layout>
-    );
-  }
-  
-  return (
-    <Layout>
-      <Button
-        startIcon={<ArrowBack />}
-        onClick={() => navigate(-1)}
-        sx={{ mb: 2 }}
-      >
-        Volver
-      </Button>
-      
-      {fightError && (
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {fightError}
-        </Alert>
-      )}
-      
+        </FantasyButton>
+      </Box>
+
       <Grid container spacing={4}>
-        {/* Brute Info */}
+        {/* Left Column - Brute Info */}
         <Grid item xs={12} md={4}>
-          <Paper
-            sx={{
-              p: 3,
-              textAlign: 'center',
-              background: 'rgba(0,0,0,0.3)',
-              border: '2px solid rgba(212, 175, 55, 0.3)',
-            }}
-          >
-            {/* Avatar */}
+          <PaperBox>
+            {/* Brute Avatar */}
             <Box
               sx={{
-                width: 100,
-                height: 100,
-                borderRadius: '50%',
-                background: `linear-gradient(135deg, ${brute.skinColor} 0%, ${brute.clothingColor} 100%)`,
-                border: '4px solid',
-                borderColor: 'primary.main',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '2.5rem',
-                mx: 'auto',
+                width: '100%',
+                height: 250,
+                backgroundImage: `url(/images/game/misc/brute-${(brute.id % 5) + 1}.png)`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                filter: 'drop-shadow(3px 3px 6px rgba(0,0,0,0.3))',
                 mb: 2,
               }}
+            />
+
+            {/* Name & Level */}
+            <Typography
+              sx={{
+                fontFamily: 'LaBrute, GameFont, arial',
+                fontSize: 32,
+                color: '#733d2c',
+                textAlign: 'center',
+                textShadow: '2px 2px 0 rgba(255,255,255,0.3)',
+              }}
             >
-              {brute.gender === 'male' ? '👨' : '👩'}
-            </Box>
-            
-            <Typography variant="h4" color="primary.main" gutterBottom>
               {brute.name}
             </Typography>
-            
-            <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', mb: 2 }}>
-              <Chip label={`Nivel ${brute.level}`} color="primary" />
-              {isOwner && (
-                <Chip label="Tu brute" variant="outlined" color="success" />
-              )}
-            </Box>
-            
-            <Divider sx={{ my: 2, borderColor: 'rgba(212, 175, 55, 0.2)' }} />
-            
-            {/* Record */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4, mb: 2 }}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h4" color="success.main">
-                  {brute.wins}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  Victorias
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: 1,
+                mb: 3,
+              }}
+            >
+              <Box
+                sx={{
+                  px: 2,
+                  py: 0.5,
+                  backgroundColor: '#733d2c',
+                  borderRadius: 2,
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: 'LaBrute, arial',
+                    fontSize: 14,
+                    color: '#f6ee90',
+                  }}
+                >
+                  Nivel {brute.level}
                 </Typography>
               </Box>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h4" color="error.main">
-                  {brute.losses}
+            </Box>
+
+            {/* XP Bar */}
+            <Box sx={{ mb: 3 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                <Typography
+                  sx={{
+                    fontFamily: 'Handwritten, arial',
+                    fontSize: 12,
+                    color: 'rgb(176, 107, 79)',
+                  }}
+                >
+                  Experiencia
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  Derrotas
+                <Typography
+                  sx={{
+                    fontFamily: 'arial',
+                    fontSize: 11,
+                    color: 'rgb(176, 107, 79)',
+                  }}
+                >
+                  {brute.experience} / {brute.level * 100}
                 </Typography>
               </Box>
+              <LinearProgress
+                variant="determinate"
+                value={(brute.experience / (brute.level * 100)) * 100}
+                sx={{
+                  height: 12,
+                  borderRadius: 2,
+                  backgroundColor: '#e8d4b3',
+                  '& .MuiLinearProgress-bar': {
+                    backgroundColor: '#a9d346',
+                    borderRadius: 2,
+                  },
+                }}
+              />
             </Box>
-            
-            {/* Skills */}
-            {brute.skills && brute.skills.length > 0 && (
-              <Box sx={{ mt: 2 }}>
-                <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+
+            {/* Win/Loss Record */}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: 4,
+              }}
+            >
+              <RecordStat label="Victorias" value={brute.wins} color="#a9d346" />
+              <RecordStat label="Derrotas" value={brute.losses} color="#ff8889" />
+            </Box>
+          </PaperBox>
+        </Grid>
+
+        {/* Right Column - Stats & Actions */}
+        <Grid item xs={12} md={8}>
+          {/* Stats */}
+          <PaperBox sx={{ mb: 3 }}>
+            <Typography
+              sx={{
+                fontFamily: 'GameFont, LaBrute, arial',
+                fontSize: 24,
+                color: '#733d2c',
+                mb: 3,
+              }}
+            >
+              Estadísticas
+            </Typography>
+
+            <Grid container spacing={2}>
+              <Grid item xs={6} sm={3}>
+                <StatCard
+                  label="Fuerza"
+                  value={brute.strength}
+                  icon="💪"
+                  color="#ff6b6b"
+                />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <StatCard
+                  label="Agilidad"
+                  value={brute.agility}
+                  icon="⚡"
+                  color="#4ecdc4"
+                />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <StatCard
+                  label="Velocidad"
+                  value={brute.speed}
+                  icon="🏃"
+                  color="#45b7d1"
+                />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <StatCard
+                  label="Vida"
+                  value={brute.health}
+                  icon="❤️"
+                  color="#f39c12"
+                />
+              </Grid>
+            </Grid>
+          </PaperBox>
+
+          {/* Arena */}
+          <PaperBox variant="accent">
+            <Typography
+              sx={{
+                fontFamily: 'GameFont, LaBrute, arial',
+                fontSize: 24,
+                color: '#733d2c',
+                mb: 3,
+              }}
+            >
+              ¡Arena de Combate!
+            </Typography>
+
+            <Box
+              sx={{
+                backgroundImage: 'url(/images/arena/sand.webp)',
+                backgroundSize: 'cover',
+                borderRadius: 2,
+                p: 3,
+                textAlign: 'center',
+                border: '3px solid #725254',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: 'Handwritten, arial',
+                  fontSize: 16,
+                  color: '#fff',
+                  textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+                  mb: 3,
+                }}
+              >
+                ¡Elige un oponente y demuestra tu valía!
+              </Typography>
+
+              <FantasyButton fantasy="error" disabled={fightLoading}>
+                {fightLoading ? 'Buscando oponente...' : '⚔️ ¡Buscar Pelea!'}
+              </FantasyButton>
+            </Box>
+          </PaperBox>
+
+          {/* Skills & Weapons */}
+          <Grid container spacing={3} sx={{ mt: 0 }}>
+            <Grid item xs={12} sm={6}>
+              <PaperBox>
+                <Typography
+                  sx={{
+                    fontFamily: 'GameFont, LaBrute, arial',
+                    fontSize: 18,
+                    color: '#733d2c',
+                    mb: 2,
+                  }}
+                >
                   Habilidades
                 </Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, justifyContent: 'center' }}>
-                  {brute.skills.map((s) => (
-                    <Chip
-                      key={s.skill.id}
-                      label={s.skill.nameEs || s.skill.nameEn}
-                      size="small"
-                      variant="outlined"
-                    />
-                  ))}
-                </Box>
-              </Box>
-            )}
-          </Paper>
-        </Grid>
-        
-        {/* Stats & Actions */}
-        <Grid item xs={12} md={8}>
-          <BruteStats brute={brute} />
-          
-          {/* Opponents Section (only for owner) */}
-          {isOwner && isAuthenticated && (
-            <Box sx={{ mt: 4 }}>
-              <Typography variant="h5" color="primary.main" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <SportsMma /> Oponentes Disponibles
-              </Typography>
-              
-              {loadingOpponents ? (
-                <CircularProgress />
-              ) : opponents.length === 0 ? (
-                <Alert severity="info">
-                  No hay oponentes disponibles de nivel similar.
-                </Alert>
-              ) : (
-                <Grid container spacing={2}>
-                  {opponents.map((opponent) => (
-                    <Grid item xs={12} sm={6} key={opponent.id}>
-                      <BruteCard
-                        brute={opponent}
-                        isOpponent
-                        onFight={() => handleFight(opponent)}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
-              )}
-            </Box>
-          )}
+                {brute.skills?.length > 0 ? (
+                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                    {brute.skills.map((skill: any) => (
+                      <SkillBadge key={skill.id} name={skill.name} />
+                    ))}
+                  </Box>
+                ) : (
+                  <Typography
+                    sx={{
+                      fontFamily: 'Handwritten, arial',
+                      fontSize: 14,
+                      color: 'rgb(176, 107, 79)',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    Sube de nivel para desbloquear habilidades
+                  </Typography>
+                )}
+              </PaperBox>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <PaperBox>
+                <Typography
+                  sx={{
+                    fontFamily: 'GameFont, LaBrute, arial',
+                    fontSize: 18,
+                    color: '#733d2c',
+                    mb: 2,
+                  }}
+                >
+                  Armas
+                </Typography>
+                {brute.weapons?.length > 0 ? (
+                  <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                    {brute.weapons.map((weapon: any) => (
+                      <WeaponBadge key={weapon.id} name={weapon.name} />
+                    ))}
+                  </Box>
+                ) : (
+                  <Typography
+                    sx={{
+                      fontFamily: 'Handwritten, arial',
+                      fontSize: 14,
+                      color: 'rgb(176, 107, 79)',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    Sube de nivel para desbloquear armas
+                  </Typography>
+                )}
+              </PaperBox>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
-    </Layout>
+    </Container>
   );
 };
 
-export default BruteDetail;
+// Helper Components
+interface RecordStatProps {
+  label: string;
+  value: number;
+  color: string;
+}
 
+const RecordStat = ({ label, value, color }: RecordStatProps) => (
+  <Box sx={{ textAlign: 'center' }}>
+    <Typography
+      sx={{
+        fontFamily: 'LaBrute, arial',
+        fontSize: 32,
+        color,
+        fontWeight: 'bold',
+      }}
+    >
+      {value}
+    </Typography>
+    <Typography
+      sx={{
+        fontFamily: 'Handwritten, arial',
+        fontSize: 12,
+        color: 'rgb(176, 107, 79)',
+      }}
+    >
+      {label}
+    </Typography>
+  </Box>
+);
+
+interface StatCardProps {
+  label: string;
+  value: number;
+  icon: string;
+  color: string;
+}
+
+const StatCard = ({ label, value, icon, color }: StatCardProps) => (
+  <Box
+    sx={{
+      textAlign: 'center',
+      p: 2,
+      backgroundColor: 'rgba(255,255,255,0.5)',
+      borderRadius: 2,
+      border: '2px solid #dec37f',
+    }}
+  >
+    <Typography sx={{ fontSize: 24, mb: 0.5 }}>{icon}</Typography>
+    <Typography
+      sx={{
+        fontFamily: 'LaBrute, arial',
+        fontSize: 24,
+        color,
+        fontWeight: 'bold',
+      }}
+    >
+      {value}
+    </Typography>
+    <Typography
+      sx={{
+        fontFamily: 'arial',
+        fontSize: 10,
+        color: 'rgb(176, 107, 79)',
+        textTransform: 'uppercase',
+      }}
+    >
+      {label}
+    </Typography>
+  </Box>
+);
+
+interface SkillBadgeProps {
+  name: string;
+}
+
+const SkillBadge = ({ name }: SkillBadgeProps) => (
+  <Box
+    sx={{
+      px: 2,
+      py: 0.5,
+      backgroundColor: '#4a90d9',
+      borderRadius: 2,
+      border: '2px solid #3a7bc0',
+    }}
+  >
+    <Typography
+      sx={{
+        fontFamily: 'LaBrute, arial',
+        fontSize: 12,
+        color: '#fff',
+      }}
+    >
+      {name}
+    </Typography>
+  </Box>
+);
+
+interface WeaponBadgeProps {
+  name: string;
+}
+
+const WeaponBadge = ({ name }: WeaponBadgeProps) => (
+  <Box
+    sx={{
+      px: 2,
+      py: 0.5,
+      backgroundColor: '#733d2c',
+      borderRadius: 2,
+      border: '2px solid #5a2d1f',
+    }}
+  >
+    <Typography
+      sx={{
+        fontFamily: 'LaBrute, arial',
+        fontSize: 12,
+        color: '#f6ee90',
+      }}
+    >
+      {name}
+    </Typography>
+  </Box>
+);
+
+export default BruteDetail;

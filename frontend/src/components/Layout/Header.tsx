@@ -1,263 +1,142 @@
-import React, { useState } from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Box,
-  Menu,
-  MenuItem,
-  Avatar,
-  Divider,
-  useTheme,
-  useMediaQuery,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material';
-import {
-  Menu as MenuIcon,
-  AccountCircle,
-  Logout,
-  Dashboard,
-  EmojiEvents,
-  SportsMma,
-} from '@mui/icons-material';
+import { AppBar, Box, Button, Container, Toolbar, Typography } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
+import PersonIcon from '@mui/icons-material/Person';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-const Header: React.FC = () => {
-  const { isAuthenticated, user, logout } = useAuth();
+const Header = () => {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  
-  const handleLogout = async () => {
-    handleClose();
-    await logout();
+
+  const handleLogout = () => {
+    logout();
     navigate('/');
   };
-  
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-  
-  const navItems = [
-    { label: 'Inicio', path: '/', icon: <SportsMma /> },
-    { label: 'Ranking', path: '/leaderboard', icon: <EmojiEvents /> },
-  ];
-  
-  const authItems = isAuthenticated
-    ? [{ label: 'Mi Arena', path: '/dashboard', icon: <Dashboard /> }]
-    : [];
-  
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', py: 2 }}>
-      <Typography variant="h6" sx={{ my: 2, color: 'primary.main' }}>
-        ⚔️ LaBrute
-      </Typography>
-      <Divider sx={{ borderColor: 'rgba(212, 175, 55, 0.2)' }} />
-      <List>
-        {[...navItems, ...authItems].map((item) => (
-          <ListItem 
-            key={item.path} 
-            component={RouterLink} 
-            to={item.path}
-            sx={{ 
-              color: 'text.primary',
-              '&:hover': { bgcolor: 'rgba(212, 175, 55, 0.1)' }
-            }}
-          >
-            <ListItemIcon sx={{ color: 'primary.main', minWidth: 40 }}>
-              {item.icon}
-            </ListItemIcon>
-            <ListItemText primary={item.label} />
-          </ListItem>
-        ))}
-      </List>
-      {!isAuthenticated && (
-        <Box sx={{ px: 2, mt: 2 }}>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={() => navigate('/login')}
-            sx={{ mb: 1 }}
-          >
-            Entrar
-          </Button>
-          <Button
-            variant="outlined"
-            fullWidth
-            onClick={() => navigate('/register')}
-          >
-            Registrarse
-          </Button>
-        </Box>
-      )}
-    </Box>
-  );
-  
+
   return (
-    <>
-      <AppBar position="sticky">
-        <Toolbar>
-          {isMobile && (
-            <IconButton
-              color="inherit"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-          
-          <Typography
-            variant="h6"
-            component={RouterLink}
+    <AppBar 
+      position="static" 
+      sx={{ 
+        backgroundColor: '#733d2c',
+        backgroundImage: 'linear-gradient(180deg, #8b4f3a 0%, #733d2c 50%, #5a2d1f 100%)',
+        boxShadow: '0 4px 8px rgba(0,0,0,0.4)',
+      }}
+    >
+      <Container maxWidth="lg">
+        <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
+          {/* Logo */}
+          <Box
+            component={Link}
             to="/"
             sx={{
-              flexGrow: 0,
-              textDecoration: 'none',
-              color: 'primary.main',
               display: 'flex',
               alignItems: 'center',
+              textDecoration: 'none',
               gap: 1,
-              fontFamily: '"MedievalSharp", cursive',
-              fontSize: '1.5rem',
-              mr: 4,
             }}
           >
-            ⚔️ LaBrute
-          </Typography>
-          
-          {!isMobile && (
-            <Box sx={{ display: 'flex', gap: 1, flexGrow: 1 }}>
-              {[...navItems, ...authItems].map((item) => (
+            <SportsKabaddiIcon sx={{ fontSize: 40, color: '#f6ee90' }} />
+            <Typography
+              sx={{
+                fontFamily: 'LaBrute, GameFont, arial',
+                fontSize: { xs: 24, md: 36 },
+                color: '#f6ee90',
+                textShadow: '2px 2px 0 rgba(0,0,0,0.3)',
+                letterSpacing: 2,
+              }}
+            >
+              LaBrute
+            </Typography>
+          </Box>
+
+          {/* Navigation */}
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Button
+              component={Link}
+              to="/leaderboard"
+              startIcon={<EmojiEventsIcon />}
+              sx={{
+                color: '#fbf2af',
+                fontFamily: 'LaBrute, arial',
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                },
+              }}
+            >
+              Ranking
+            </Button>
+
+            {user ? (
+              <>
                 <Button
-                  key={item.path}
-                  component={RouterLink}
-                  to={item.path}
-                  color="inherit"
-                  startIcon={item.icon}
+                  component={Link}
+                  to="/dashboard"
+                  startIcon={<PersonIcon />}
                   sx={{
+                    color: '#fbf2af',
+                    fontFamily: 'LaBrute, arial',
                     '&:hover': {
-                      bgcolor: 'rgba(212, 175, 55, 0.1)',
+                      backgroundColor: 'rgba(255,255,255,0.1)',
                     },
                   }}
                 >
-                  {item.label}
+                  {user.username}
                 </Button>
-              ))}
-            </Box>
-          )}
-          
-          <Box sx={{ flexGrow: 1 }} />
-          
-          {isAuthenticated ? (
-            <Box>
-              <IconButton
-                size="large"
-                onClick={handleMenu}
-                color="inherit"
-                sx={{
-                  border: '2px solid',
-                  borderColor: 'primary.main',
-                  '&:hover': {
-                    bgcolor: 'rgba(212, 175, 55, 0.1)',
-                  },
-                }}
-              >
-                <Avatar
+                <Button
+                  onClick={handleLogout}
+                  startIcon={<LogoutIcon />}
                   sx={{
-                    width: 32,
-                    height: 32,
-                    bgcolor: 'primary.main',
-                    color: 'primary.contrastText',
-                    fontSize: '0.9rem',
+                    color: '#ff8889',
+                    fontFamily: 'LaBrute, arial',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                    },
                   }}
                 >
-                  {user?.username?.[0]?.toUpperCase() || 'U'}
-                </Avatar>
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem disabled>
-                  <AccountCircle sx={{ mr: 1 }} />
-                  {user?.username}
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={() => { handleClose(); navigate('/dashboard'); }}>
-                  <Dashboard sx={{ mr: 1 }} />
-                  Mi Arena
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>
-                  <Logout sx={{ mr: 1 }} />
                   Salir
-                </MenuItem>
-              </Menu>
-            </Box>
-          ) : (
-            !isMobile && (
-              <Box sx={{ display: 'flex', gap: 1 }}>
+                </Button>
+              </>
+            ) : (
+              <>
                 <Button
-                  color="inherit"
-                  onClick={() => navigate('/login')}
+                  component={Link}
+                  to="/login"
+                  sx={{
+                    backgroundColor: '#a9d346',
+                    color: '#fff',
+                    fontFamily: 'LaBrute, arial',
+                    px: 2,
+                    '&:hover': {
+                      backgroundColor: '#8fb93a',
+                    },
+                  }}
                 >
                   Entrar
                 </Button>
                 <Button
-                  variant="contained"
-                  onClick={() => navigate('/register')}
+                  component={Link}
+                  to="/register"
+                  sx={{
+                    backgroundColor: '#f6ee90',
+                    color: '#733d2c',
+                    fontFamily: 'LaBrute, arial',
+                    px: 2,
+                    '&:hover': {
+                      backgroundColor: '#e8e080',
+                    },
+                  }}
                 >
-                  Registrarse
+                  Registro
                 </Button>
-              </Box>
-            )
-          )}
+              </>
+            )}
+          </Box>
         </Toolbar>
-      </AppBar>
-      
-      <Drawer
-        variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{ keepMounted: true }}
-        sx={{
-          display: { xs: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 280 },
-        }}
-      >
-        {drawer}
-      </Drawer>
-    </>
+      </Container>
+    </AppBar>
   );
 };
 
 export default Header;
-

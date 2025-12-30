@@ -1,173 +1,286 @@
-import React from 'react';
-import {
-  Box,
-  Typography,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Chip,
-  CircularProgress,
-  Alert,
-  Avatar,
-} from '@mui/material';
-import { EmojiEvents } from '@mui/icons-material';
-import { Layout } from '../components/Layout';
-import { useLeaderboard } from '../hooks/useBrute';
+import { Box, Container, Typography, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PaperBox } from '../components/UI';
+import api from '../services/api';
 
-const Leaderboard: React.FC = () => {
+interface LeaderboardEntry {
+  id: number;
+  name: string;
+  level: number;
+  wins: number;
+  losses: number;
+  userId: number;
+}
+
+const Leaderboard = () => {
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { brutes, loading, error } = useLeaderboard(20);
-  
-  const getMedalColor = (position: number) => {
-    switch (position) {
-      case 1: return '#FFD700'; // Gold
-      case 2: return '#C0C0C0'; // Silver
-      case 3: return '#CD7F32'; // Bronze
-      default: return undefined;
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
+
+  const fetchLeaderboard = async () => {
+    try {
+      const response = await api.get('/brutes/leaderboard');
+      setLeaderboard(response.data.data || []);
+    } catch (error) {
+      console.error('Error fetching leaderboard:', error);
+    } finally {
+      setLoading(false);
     }
   };
-  
+
+  const getRankStyle = (rank: number) => {
+    if (rank === 1) return { backgroundColor: '#ffd700', color: '#5a2d1f' };
+    if (rank === 2) return { backgroundColor: '#c0c0c0', color: '#5a2d1f' };
+    if (rank === 3) return { backgroundColor: '#cd7f32', color: '#fff' };
+    return { backgroundColor: '#dbbf95', color: '#733d2c' };
+  };
+
+  const getRankIcon = (rank: number) => {
+    if (rank === 1) return '👑';
+    if (rank === 2) return '🥈';
+    if (rank === 3) return '🥉';
+    return `#${rank}`;
+  };
+
   return (
-    <Layout>
-      <Box sx={{ py: 2 }}>
+    <Container maxWidth="md">
+      {/* Header */}
+      <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Typography
-          variant="h3"
-          color="primary.main"
-          gutterBottom
-          sx={{ display: 'flex', alignItems: 'center', gap: 2 }}
+          sx={{
+            fontFamily: 'LaBrute, GameFont, arial',
+            fontSize: 42,
+            color: '#733d2c',
+            textShadow: '2px 2px 0 rgba(255,255,255,0.3)',
+          }}
         >
-          <EmojiEvents sx={{ fontSize: 48 }} />
-          Ranking de Gladiadores
+          🏆 Ranking de la Arena
         </Typography>
-        
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-          Los mejores guerreros de la arena
+        <Typography
+          sx={{
+            fontFamily: 'Handwritten, arial',
+            fontSize: 18,
+            color: 'rgb(176, 107, 79)',
+          }}
+        >
+          Los gladiadores más temidos
         </Typography>
-        
-        {error && (
-          <Alert severity="error" sx={{ mb: 2 }}>
-            {error}
-          </Alert>
-        )}
-        
+      </Box>
+
+      <PaperBox>
         {loading ? (
           <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
-            <CircularProgress />
+            <CircularProgress sx={{ color: '#733d2c' }} />
+          </Box>
+        ) : leaderboard.length === 0 ? (
+          <Box sx={{ textAlign: 'center', py: 4 }}>
+            <Typography
+              sx={{
+                fontFamily: 'Handwritten, arial',
+                fontSize: 18,
+                color: 'rgb(176, 107, 79)',
+              }}
+            >
+              ¡Aún no hay gladiadores en la arena!
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: 'Handwritten, arial',
+                fontSize: 14,
+                color: 'rgb(176, 107, 79)',
+                mt: 1,
+              }}
+            >
+              Sé el primero en crear un Brute y dominar el ranking
+            </Typography>
           </Box>
         ) : (
-          <TableContainer
-            component={Paper}
-            sx={{
-              background: 'rgba(0,0,0,0.3)',
-              border: '1px solid rgba(212, 175, 55, 0.2)',
-            }}
-          >
+          <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ color: 'primary.main', fontWeight: 600 }}>#</TableCell>
-                  <TableCell sx={{ color: 'primary.main', fontWeight: 600 }}>Brute</TableCell>
-                  <TableCell sx={{ color: 'primary.main', fontWeight: 600 }}>Dueño</TableCell>
-                  <TableCell align="center" sx={{ color: 'primary.main', fontWeight: 600 }}>Nivel</TableCell>
-                  <TableCell align="center" sx={{ color: 'primary.main', fontWeight: 600 }}>Victorias</TableCell>
-                  <TableCell align="center" sx={{ color: 'primary.main', fontWeight: 600 }}>Derrotas</TableCell>
-                  <TableCell align="center" sx={{ color: 'primary.main', fontWeight: 600 }}>% Victoria</TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: 'GameFont, LaBrute, arial',
+                      color: '#733d2c',
+                      borderBottom: '3px solid #dec37f',
+                      width: 80,
+                    }}
+                  >
+                    Rango
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: 'GameFont, LaBrute, arial',
+                      color: '#733d2c',
+                      borderBottom: '3px solid #dec37f',
+                    }}
+                  >
+                    Nombre
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{
+                      fontFamily: 'GameFont, LaBrute, arial',
+                      color: '#733d2c',
+                      borderBottom: '3px solid #dec37f',
+                    }}
+                  >
+                    Nivel
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{
+                      fontFamily: 'GameFont, LaBrute, arial',
+                      color: '#733d2c',
+                      borderBottom: '3px solid #dec37f',
+                    }}
+                  >
+                    Victorias
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{
+                      fontFamily: 'GameFont, LaBrute, arial',
+                      color: '#733d2c',
+                      borderBottom: '3px solid #dec37f',
+                    }}
+                  >
+                    Derrotas
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{
+                      fontFamily: 'GameFont, LaBrute, arial',
+                      color: '#733d2c',
+                      borderBottom: '3px solid #dec37f',
+                    }}
+                  >
+                    Ratio
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {brutes.map((brute, index) => {
-                  const position = index + 1;
-                  const medalColor = getMedalColor(position);
-                  const winRate = brute.wins + brute.losses > 0
-                    ? Math.round((brute.wins / (brute.wins + brute.losses)) * 100)
-                    : 0;
-                  
+                {leaderboard.map((entry, index) => {
+                  const rank = index + 1;
+                  const rankStyle = getRankStyle(rank);
+                  const ratio = entry.wins + entry.losses > 0
+                    ? ((entry.wins / (entry.wins + entry.losses)) * 100).toFixed(1)
+                    : '0.0';
+
                   return (
                     <TableRow
-                      key={brute.id}
-                      hover
-                      onClick={() => navigate(`/brute/${brute.name}`)}
+                      key={entry.id}
+                      onClick={() => navigate(`/brute/${entry.id}`)}
                       sx={{
                         cursor: 'pointer',
+                        transition: 'background-color 0.2s',
                         '&:hover': {
-                          bgcolor: 'rgba(212, 175, 55, 0.1)',
+                          backgroundColor: 'rgba(219, 191, 149, 0.3)',
                         },
                       }}
                     >
                       <TableCell>
-                        {medalColor ? (
-                          <Avatar
-                            sx={{
-                              width: 32,
-                              height: 32,
-                              bgcolor: medalColor,
-                              color: '#000',
-                              fontSize: '0.9rem',
-                              fontWeight: 700,
-                            }}
-                          >
-                            {position}
-                          </Avatar>
-                        ) : (
-                          <Typography variant="body2" color="text.secondary">
-                            {position}
-                          </Typography>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Box
-                            sx={{
-                              width: 32,
-                              height: 32,
-                              borderRadius: '50%',
-                              background: `linear-gradient(135deg, ${brute.skinColor} 0%, ${brute.clothingColor} 100%)`,
-                              border: '2px solid',
-                              borderColor: position <= 3 ? medalColor : 'rgba(212, 175, 55, 0.3)',
-                            }}
-                          />
-                          <Typography fontWeight={position <= 3 ? 600 : 400}>
-                            {brute.name}
-                          </Typography>
+                        <Box
+                          sx={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontFamily: rank <= 3 ? 'inherit' : 'LaBrute, arial',
+                            fontSize: rank <= 3 ? 24 : 14,
+                            boxShadow: '2px 2px 0 rgba(0,0,0,0.2)',
+                            ...rankStyle,
+                          }}
+                        >
+                          {getRankIcon(rank)}
                         </Box>
                       </TableCell>
                       <TableCell>
-                        <Typography variant="body2" color="text.secondary">
-                          {brute.user?.username || 'Anónimo'}
-                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                          <Box
+                            sx={{
+                              width: 50,
+                              height: 60,
+                              backgroundImage: `url(/images/game/misc/brute-${(entry.id % 5) + 1}.png)`,
+                              backgroundSize: 'contain',
+                              backgroundRepeat: 'no-repeat',
+                              backgroundPosition: 'center',
+                            }}
+                          />
+                          <Typography
+                            sx={{
+                              fontFamily: 'GameFont, LaBrute, arial',
+                              fontSize: 18,
+                              color: '#733d2c',
+                            }}
+                          >
+                            {entry.name}
+                          </Typography>
+                        </Box>
                       </TableCell>
                       <TableCell align="center">
-                        <Chip
-                          size="small"
-                          label={brute.level}
-                          color="primary"
-                        />
-                      </TableCell>
-                      <TableCell align="center">
-                        <Typography color="success.main" fontWeight={600}>
-                          {brute.wins}
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="center">
-                        <Typography color="error.main">
-                          {brute.losses}
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="center">
-                        <Chip
-                          size="small"
-                          label={`${winRate}%`}
+                        <Box
                           sx={{
-                            bgcolor: winRate >= 60 ? 'success.main' :
-                                     winRate >= 40 ? 'warning.main' : 'error.main',
-                            color: '#fff',
+                            display: 'inline-block',
+                            px: 1.5,
+                            py: 0.5,
+                            backgroundColor: '#733d2c',
+                            borderRadius: 1,
                           }}
-                        />
+                        >
+                          <Typography
+                            sx={{
+                              fontFamily: 'LaBrute, arial',
+                              fontSize: 14,
+                              color: '#f6ee90',
+                            }}
+                          >
+                            {entry.level}
+                          </Typography>
+                        </Box>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          sx={{
+                            fontFamily: 'LaBrute, arial',
+                            fontSize: 18,
+                            color: '#a9d346',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          {entry.wins}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          sx={{
+                            fontFamily: 'LaBrute, arial',
+                            fontSize: 18,
+                            color: '#ff8889',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          {entry.losses}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Typography
+                          sx={{
+                            fontFamily: 'Handwritten, arial',
+                            fontSize: 14,
+                            color: 'rgb(176, 107, 79)',
+                          }}
+                        >
+                          {ratio}%
+                        </Typography>
                       </TableCell>
                     </TableRow>
                   );
@@ -176,10 +289,9 @@ const Leaderboard: React.FC = () => {
             </Table>
           </TableContainer>
         )}
-      </Box>
-    </Layout>
+      </PaperBox>
+    </Container>
   );
 };
 
 export default Leaderboard;
-
